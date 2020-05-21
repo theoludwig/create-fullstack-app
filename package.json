@@ -1,0 +1,41 @@
+{
+  "name": "create-fullstack-app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "create-fullstack-app": "./index.js"
+  },
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Divlo/create-fullstack-app.git"
+  },
+  "keywords": [
+    "react",
+    "next",
+    "express",
+    "sequelize",
+    "fullstack"
+  ],
+  "author": "Divlo <contact@divlo.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Divlo/create-fullstack-app/issues"
+  },
+  "homepage": "https://github.com/Divlo/create-fullstack-app#readme",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "child-process-promise": "^2.2.1",
+    "commander": "^5.1.0",
+    "directory-exists": "^2.0.1",
+    "inquirer": "^7.1.0",
+    "make-dir": "^3.1.0",
+    "ncp": "^2.0.0",
+    "ora": "^4.0.4",
+    "replace-in-file": "^6.0.0",
+    "validate-npm-package-name": "^3.0.0"
+  }
+}
