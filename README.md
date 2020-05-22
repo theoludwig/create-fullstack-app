@@ -11,6 +11,8 @@
   <a href="https://github.com/Divlo/create-fullstack-app/commits/master"><img src="https://img.shields.io/github/commit-activity/m/Divlo/create-fullstack-app" alt="Commit Activity"/></a>
   <a href="https://github.com/Divlo/create-fullstack-app/graphs/contributors"><img src="https://img.shields.io/github/contributors/Divlo/create-fullstack-app" alt="Contributors"/></a>
   <img src="https://img.shields.io/github/stars/Divlo/create-fullstack-app?style=social" alt="Stars"/>
+  <br/> <br/>
+  <a href="https://github.com/GoogleChrome/lighthouse"><img width="650px" src=".github/lighthouse_google-chrome.gif" alt="FunctionProject" /></a>
 </p>
 
 ## 📜 About
