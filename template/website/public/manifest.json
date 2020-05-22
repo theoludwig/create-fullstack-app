@@ -1,6 +1,6 @@
 {
-  "name": "Next.js TypeScript App",
-  "short_name": "Next.js App",
+  "name": "{{ projectName }}",
+  "short_name": "{{ projectName }}",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",

@@ -55,14 +55,25 @@ const QUESTIONS = [
         name: "projectName",
         type: "input",
         message: "Project name:"
+    },
+    {
+        name: "projectDescription",
+        type: "input",
+        message: "Project description:"
+    },
+    {
+        name: "domainName",
+        type: "input",
+        message: "Project domain name in production:"
     }
 ];
 
 inquirer.prompt(QUESTIONS).then(async (answers) => {
     console.log();
-    const { projectName } = answers;
+    const { projectName, projectDescription, domainName } = answers;
     const folderToCreatePath = path.join(CURRENT_DIRECTORY, projectDirectory as string);
 
+    // Verification of users inputs
     if (directoryExists.sync(folderToCreatePath)) {
         console.error(
             `Could not create a project called "${chalk.red(
@@ -70,6 +81,23 @@ inquirer.prompt(QUESTIONS).then(async (answers) => {
             )}" because the folder name already exists...`
         );
         process.exit(1);
+    }
+
+    if ((projectDescription as string).length >= 255) {
+        console.error(
+            `Could not create a project 
+            because the description should ${chalk.red("not exceed 255 characters")}.`
+        );
+        process.exit(1);
+    }
+
+    const isDomainName = /(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/.exec(domainName as string);
+    if (isDomainName == null) {
+        console.error(
+            `Could not create a project 
+            because you didn't enter a correct ${chalk.red("domain name")}.`
+        );
+        process.exit(1);   
     }
 
     // Copy files
@@ -86,7 +114,9 @@ inquirer.prompt(QUESTIONS).then(async (answers) => {
     // Replace files 
     const spinnerReplaceFiles = ora({ text: "Replace template variables in files...", spinner: 'dots', color: 'cyan' }).start();
     const replaceFilesObject = { 
-        projectName: projectName as string 
+        projectName: projectName as string,
+        projectDescription: projectDescription as string,
+        domainName: isDomainName[0] as string
     };
     await replaceInFiles(replaceFilesObject, createdTemplatePathDirectory);
     spinnerReplaceFiles.succeed();
