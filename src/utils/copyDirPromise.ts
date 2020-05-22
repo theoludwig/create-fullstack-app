@@ -1,6 +1,6 @@
-const { ncp } = require("ncp");
+import { ncp } from "ncp";
 
-function copyDirPromise(source, destination) {
+function copyDirPromise(source: string, destination: string) {
     return new Promise((next) => {
         ncp(source, destination, (error) => {
             if (error) return next(error);
@@ -9,4 +9,4 @@ function copyDirPromise(source, destination) {
     });
 }
 
-module.exports = copyDirPromise;
+export default copyDirPromise;

@@ -1,6 +1,6 @@
-const validateProjectName = require("validate-npm-package-name");
+import validateProjectName from "validate-npm-package-name";
 
-function validateNpmName(name) {
+function validateNpmName(name: string) {
     const nameValidation = validateProjectName(name);
     if (nameValidation.validForNewPackages) {
         return { valid: true };
@@ -15,4 +15,4 @@ function validateNpmName(name) {
     };
 }
 
-module.exports = validateNpmName;
+export default validateNpmName;

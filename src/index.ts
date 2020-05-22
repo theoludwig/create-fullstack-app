@@ -1,21 +1,21 @@
 #!/usr/bin/env node
-const chalk           = require("chalk");
-const ora             = require('ora');
-const path            = require("path");
-const inquirer        = require("inquirer");
-const Commander       = require("commander");
-const makeDir         = require("make-dir");
-const directoryExists = require("directory-exists");
+import chalk from "chalk";
+import ora from 'ora';
+import path from "path";
+import inquirer from "inquirer";
+import Commander from "commander";
+import makeDir from "make-dir";
+import directoryExists from "directory-exists";
 
-const packageJson       = require("./package.json");
-const validateNpmName   = require("./utils/validate-package");
-const copyDirPromise    = require("./utils/copyDirPromise");
-const installPackages   = require('./utils/installPackages');
-const replaceInFiles    = require('./replaceInFiles');
+const packageJson = require("../package.json");
+import validateNpmName from "./utils/validate-package";
+import copyDirPromise from "./utils/copyDirPromise";
+import installPackages from './utils/installPackages';
+import replaceInFiles from './replaceInFiles';
 const CURRENT_DIRECTORY = process.cwd();
-const TEMPLATE_PATH     = path.join(__dirname, "template");
+const TEMPLATE_PATH     = path.join(__dirname, "..", "template");
 
-let projectDirectory;
+let projectDirectory: string | undefined;
 const program = new Commander.Command(packageJson.name)
     .version(packageJson.version)
     .arguments("[project-directory]")
@@ -47,7 +47,7 @@ if (!projectDirectory || typeof projectDirectory !== 'string') {
 projectDirectory = projectDirectory.trim();
 const validationDirectory = validateNpmName(projectDirectory);
 if (!validationDirectory.valid) {
-    console.log(chalk.red("Invalid directory name: ") + validationDirectory.problems[0]);
+    console.log(chalk.red("Invalid directory name: ") + validationDirectory.problems![0]);
 }
 
 const QUESTIONS = [
@@ -61,7 +61,7 @@ const QUESTIONS = [
 inquirer.prompt(QUESTIONS).then(async (answers) => {
     console.log();
     const { projectName } = answers;
-    const folderToCreatePath = path.join(CURRENT_DIRECTORY, projectDirectory);
+    const folderToCreatePath = path.join(CURRENT_DIRECTORY, projectDirectory as string);
 
     if (directoryExists.sync(folderToCreatePath)) {
         console.error(
@@ -84,7 +84,10 @@ inquirer.prompt(QUESTIONS).then(async (answers) => {
 
     // Replace files 
     const spinnerReplaceFiles = ora({ text: "Replace template variables in files...", spinner: 'dots', color: 'cyan' }).start();
-    await replaceInFiles({ projectName }, createdTemplatePathDirectory);
+    const replaceFilesObject = { 
+        projectName: projectName as string 
+    };
+    await replaceInFiles(replaceFilesObject, createdTemplatePathDirectory);
     spinnerReplaceFiles.succeed();
 
     console.log(
