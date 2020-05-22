@@ -17,8 +17,6 @@
 
 ## 📜 About
 
-Starter template for creating a Fullstack TypeScript application with ease.
-
 Create your fullstack application:
 ```sh
 npx create-fullstack-app my-app
@@ -31,7 +29,7 @@ You can easily generate you own icons of various sizes thanks to [Web App Manife
 
 ## 🚀 Features
 
-- 💯 Maximize lighthouse score
+- 💯 Maximize Lighthouse Google Chrome score
 - ✨ Follow best practices (at least try 😅)
 - ⚡️ Easy to use
 
@@ -39,6 +37,7 @@ You can easily generate you own icons of various sizes thanks to [Web App Manife
 
 ### Website (front-end)
 - React with Next.js (the react framework for server-side rendering)
+- Axios and Context API (integrated with React) for state management
 
 ### API (back-end)
 - Node.js with Express.js (Fast, unopinionated, minimalist web framework)

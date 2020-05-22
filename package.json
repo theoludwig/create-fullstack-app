@@ -1,6 +1,6 @@
 {
   "name": "create-fullstack-app",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
@@ -9,8 +9,8 @@
     "template"
   ],
   "scripts": {
-    "build": "tsc --watch",
-    "release": "tsc"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
   "repository": {
     "type": "git",
