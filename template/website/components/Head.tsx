@@ -15,14 +15,14 @@ const Head: React.FC<HeadProps> = ({ title, image, description }) => (
         {/* Meta Tag */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={description} /> 
-        <link rel="canonical" href="starter.divlo.fr"/> 
+        <link rel="canonical" href="dev.divlo.fr"/> 
         <meta name="Language" content="fr" /> 
         <meta name="theme-color" content="#ffd800" />
 
         {/* Open Graph Metadata */}
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" /> 
-        <meta property="og:url" content="https://starter.divlo.fr/" /> 
+        <meta property="og:url" content="https://dev.divlo.fr/" /> 
         <meta property="og:image" content={image} /> 
         <meta property="og:description" content={description} /> 
         <meta property="og:locale" content="fr_FR" />

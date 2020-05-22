@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+
 import Head from 'components/Head';
 
 const Home: React.FC = () => {

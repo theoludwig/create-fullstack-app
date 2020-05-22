@@ -79,6 +79,7 @@ inquirer.prompt(QUESTIONS).then(async (answers) => {
     spinnerFiles.succeed();
 
     // Install NPM packages...
+    console.log("Installing packages. This might take a couple of minutes.");
     await installPackages(path.join(createdTemplatePathDirectory, 'website'), 'Installing "website" npm packages...');
     await installPackages(path.join(createdTemplatePathDirectory, 'api'), 'Installing "api" npm packages...');
 

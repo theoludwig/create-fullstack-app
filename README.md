@@ -20,7 +20,17 @@ Create your fullstack application:
 ```sh
 npx create-fullstack-app my-app
 ```
-Then you will need to answer some questions and you'll be ready to go. 
+Then you will need to answer some questions and you'll be ready to code your new project.
+
+By default the icons are the TypeScript logo in various sizes located in the folder [website/public/images/icons](./template/website/public/images/icons).
+
+You can easily generate you own icons of various sizes thanks to [Web App Manifest Generator](https://app-manifest.firebaseapp.com/).
+
+## 🚀 Features
+
+- 💯 Maximize lighthouse score
+- ✨ Follow best practices (at least try 😅)
+- ⚡️ Easy to use
 
 ## 📦 Libraries (& Frameworks) 
 
