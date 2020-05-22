@@ -1,6 +1,6 @@
 {
   "name": "create-fullstack-app",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
@@ -36,15 +36,14 @@
     "directory-exists": "^2.0.1",
     "inquirer": "^7.1.0",
     "make-dir": "^3.1.0",
-    "ncp": "^2.0.0",
     "ora": "^4.0.4",
     "replace-in-file": "^6.0.0",
+    "tslib": "^2.0.0",
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
     "@types/child-process-promise": "^2.2.1",
     "@types/inquirer": "^6.5.0",
-    "@types/ncp": "^2.0.4",
     "@types/node": "^14.0.5",
     "@types/validate-npm-package-name": "^3.0.0",
     "typescript": "^3.9.3"
