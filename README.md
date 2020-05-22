@@ -12,7 +12,7 @@
   <a href="https://github.com/Divlo/create-fullstack-app/graphs/contributors"><img src="https://img.shields.io/github/contributors/Divlo/create-fullstack-app" alt="Contributors"/></a>
   <img src="https://img.shields.io/github/stars/Divlo/create-fullstack-app?style=social" alt="Stars"/>
   <br/> <br/>
-  <a href="https://github.com/GoogleChrome/lighthouse"><img width="650px" src="https://github.com/Divlo/create-fullstack-app/blob/master/.github/lighthouse_google-chrome.gif" alt="Google Chrome Lighthouse" /></a>
+  <a href="https://github.com/GoogleChrome/lighthouse"><img width="650px" src="https://raw.githubusercontent.com/Divlo/create-fullstack-app/master/.github/lighthouse_google-chrome.gif" alt="Google Chrome Lighthouse" /></a>
 </p>
 
 ## 📜 About
