@@ -25,8 +25,8 @@ const Head: React.FC<HeadProps> = ({ title, image, description }) => (
         <meta property="og:url" content="https://{{ domainName }}/" /> 
         <meta property="og:image" content={image} /> 
         <meta property="og:description" content={description} /> 
-        <meta property="og:locale" content="fr_FR" />
-        <meta property="og:site_name" content="Next.js TypeScript App" /> 
+        <meta property="og:locale" content="en_EN" />
+        <meta property="og:site_name" content="{{ projectName }}" /> 
 
         {/* Twitter card Metadata */}
         <meta name="twitter:card" content="summary" />

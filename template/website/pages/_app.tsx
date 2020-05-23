@@ -11,6 +11,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             <Component {...pageProps} />
 
             <style jsx global>{`
+                *, *::before, *::after {
+                    box-sizing: border-box;
+                }
                 #__next {
                     min-height: 100vh;
                 }
