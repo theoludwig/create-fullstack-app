@@ -6,6 +6,7 @@ import inquirer from "inquirer";
 import Commander from "commander";
 import makeDir from "make-dir";
 import directoryExists from "directory-exists";
+import updateNotifier  from 'update-notifier';
 
 const packageJson = require("../package.json");
 import validateNpmName from "./utils/validateNpmName";
@@ -26,6 +27,8 @@ const program = new Commander.Command(packageJson.name)
     })
     .allowUnknownOption()
     .parse(process.argv);
+
+updateNotifier({ pkg: packageJson }).notify();
 
 if (!projectDirectory || typeof projectDirectory !== "string") {
     console.log();
