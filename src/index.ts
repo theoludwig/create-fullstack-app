@@ -120,12 +120,6 @@ inquirer.prompt(QUESTIONS).then(async (answers) => {
     await copyDirPromise(TEMPLATE_PATH, createdTemplatePathDirectory);
     spinnerFiles.succeed();
 
-    // git init
-    if (tryGitInit(createdTemplatePathDirectory)) {
-        console.log("Initialized a git repository.");
-        console.log();
-    }
-
     // Install NPM packages...
     console.log("Installing packages. This might take a couple of minutes.");
     await installPackages(
@@ -150,6 +144,13 @@ inquirer.prompt(QUESTIONS).then(async (answers) => {
     };
     await replaceInFiles(replaceFilesObject, createdTemplatePathDirectory);
     spinnerReplaceFiles.succeed();
+
+    // git init
+    process.chdir(createdTemplatePathDirectory);
+    if (tryGitInit(createdTemplatePathDirectory)) {
+        console.log("Initialized a git repository.");
+        console.log();
+    }
 
     console.log(
         `\n ${chalk.green(
