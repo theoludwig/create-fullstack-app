@@ -1,6 +1,6 @@
 {
   "name": "create-fullstack-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "start:test": "node build/index.js app-test"
   },
   "repository": {
     "type": "git",
