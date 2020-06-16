@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import Head from 'components/Head';
+import Head from "components/Head";
 
 const Home: React.FC = () => {
     return (
@@ -16,6 +16,6 @@ const Home: React.FC = () => {
             `}</style>
         </Fragment>
     );
-}
+};
 
 export default Home;

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 import { Model, BuildOptions } from "sequelize/types";
 
 declare global {
@@ -10,7 +10,7 @@ declare global {
         statusCode: number;
         message: string;
     }
-    
+
     interface RequestHandlerObject {
         req: Request;
         res: Response;
@@ -18,6 +18,6 @@ declare global {
     }
 
     type SequelizeModelInstance = typeof Model & {
-        new(values?: object, options?: BuildOptions): Model;
-    }
+        new (values?: object, options?: BuildOptions): Model;
+    };
 }

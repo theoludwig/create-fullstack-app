@@ -6,24 +6,26 @@
     "dev": "cross-env NODE_ENV=development node server",
     "build": "next build",
     "export": "next export",
-    "start": "cross-env NODE_ENV=production node server"
+    "start": "cross-env NODE_ENV=production node server",
+    "format": "prettier --write \"**/*.ts\" \"**/*.tsx\""
   },
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "express-http-to-https": "^1.1.4",
-    "next": "9.4.2",
+    "next": "9.4.4",
     "next-fonts": "^1.1.0",
-    "next-pwa": "^2.4.1",
-    "nextjs-redirect": "^2.0.2",
+    "next-pwa": "^2.6.0",
+    "nextjs-redirect": "^4.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@types/node": "^14.0.5",
-    "@types/react": "^16.9.35",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.36",
     "@types/styled-jsx": "^2.2.8",
     "cross-env": "^7.0.2",
-    "typescript": "^3.9.3"
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.5"
   }
 }

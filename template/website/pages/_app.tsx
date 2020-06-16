@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import { AppProps } from "next/app";
 
 /* Global CSS (and Fonts) Imports */
-import 'styles/normalize.css';
-import theme from 'styles/theme';
+import "styles/normalize.css";
+import theme from "styles/theme";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
@@ -11,7 +11,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             <Component {...pageProps} />
 
             <style jsx global>{`
-                *, *::before, *::after {
+                *,
+                *::before,
+                *::after {
                     box-sizing: border-box;
                 }
                 #__next {
@@ -29,6 +31,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             `}</style>
         </Fragment>
     );
-}
+};
 
 export default MyApp;

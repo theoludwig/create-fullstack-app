@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "start:dev": "node build/index.js app-test"
+    "start:dev": "node build/index.js app-test",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "repository": {
     "type": "git",
@@ -31,14 +32,14 @@
   },
   "homepage": "https://github.com/Divlo/create-fullstack-app#readme",
   "dependencies": {
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "child-process-promise": "^2.2.1",
     "commander": "^5.1.0",
     "directory-exists": "^2.0.1",
-    "inquirer": "^7.1.0",
+    "inquirer": "^7.2.0",
     "make-dir": "^3.1.0",
     "ora": "^4.0.4",
-    "replace-in-file": "^6.0.0",
+    "replace-in-file": "^6.1.0",
     "rimraf": "^3.0.2",
     "tslib": "^2.0.0",
     "update-notifier": "^4.1.0",
@@ -47,10 +48,11 @@
   "devDependencies": {
     "@types/child-process-promise": "^2.2.1",
     "@types/inquirer": "^6.5.0",
-    "@types/node": "^14.0.5",
+    "@types/node": "^14.0.13",
     "@types/rimraf": "^3.0.0",
     "@types/update-notifier": "^4.1.0",
     "@types/validate-npm-package-name": "^3.0.0",
-    "typescript": "^3.9.3"
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.5"
   }
 }

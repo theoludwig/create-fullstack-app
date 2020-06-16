@@ -1,4 +1,4 @@
-import { replaceInFile } from 'replace-in-file';
+import { replaceInFile } from "replace-in-file";
 import path from "path";
 
 interface ReplaceFilesObject {
@@ -7,37 +7,60 @@ interface ReplaceFilesObject {
     domainName: string;
 }
 
-function manageReplaceInFiles({ projectName, projectDescription, domainName }: ReplaceFilesObject, createdTemplatePathDirectory: string) {
+function manageReplaceInFiles(
+    { projectName, projectDescription, domainName }: ReplaceFilesObject,
+    createdTemplatePathDirectory: string
+) {
     async function replaceAppName() {
         await replaceInFile({
             files: [
-                path.join(createdTemplatePathDirectory, 'README.md'),
-                path.join(createdTemplatePathDirectory, 'website', 'public', 'manifest.json'),
-                path.join(createdTemplatePathDirectory, 'website', 'components', 'Head.tsx'),
+                path.join(createdTemplatePathDirectory, "README.md"),
+                path.join(
+                    createdTemplatePathDirectory,
+                    "website",
+                    "public",
+                    "manifest.json"
+                ),
+                path.join(
+                    createdTemplatePathDirectory,
+                    "website",
+                    "components",
+                    "Head.tsx"
+                )
             ],
             from: /{{ projectName }}/g,
-            to:  projectName
+            to: projectName
         });
     }
 
     async function replaceAppDescription() {
         await replaceInFile({
             files: [
-                path.join(createdTemplatePathDirectory, 'README.md'),
-                path.join(createdTemplatePathDirectory, 'website', 'components', 'Head.tsx'),
+                path.join(createdTemplatePathDirectory, "README.md"),
+                path.join(
+                    createdTemplatePathDirectory,
+                    "website",
+                    "components",
+                    "Head.tsx"
+                )
             ],
             from: /{{ projectDescription }}/g,
-            to:  projectDescription
+            to: projectDescription
         });
     }
 
     async function replaceDomainName() {
         await replaceInFile({
             files: [
-                path.join(createdTemplatePathDirectory, 'website', 'components', 'Head.tsx'),
+                path.join(
+                    createdTemplatePathDirectory,
+                    "website",
+                    "components",
+                    "Head.tsx"
+                )
             ],
             from: /{{ domainName }}/g,
-            to:  domainName
+            to: domainName
         });
     }
 
@@ -46,9 +69,7 @@ function manageReplaceInFiles({ projectName, projectDescription, domainName }: R
         await replaceAppDescription();
         await replaceDomainName();
         next();
-    }); 
+    });
 }
-
-
 
 export default manageReplaceInFiles;

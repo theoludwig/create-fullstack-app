@@ -6,7 +6,7 @@ import inquirer from "inquirer";
 import Commander from "commander";
 import makeDir from "make-dir";
 import directoryExists from "directory-exists";
-import updateNotifier  from 'update-notifier';
+import updateNotifier from "update-notifier";
 
 const packageJson = require("../package.json");
 import validateNpmName from "./utils/validateNpmName";
