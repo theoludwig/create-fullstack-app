@@ -1,12 +1,12 @@
-import { NextFunction } from "express";
+import { NextFunction } from 'express'
 
-function errorHandler(
-    next: NextFunction,
-    { statusCode, message }: ErrorHandlerObject
+function errorHandler (
+  next: NextFunction,
+  { statusCode, message }: ErrorHandlerObject
 ) {
-    const error: ResponseError = new Error(message);
-    error.statusCode = statusCode;
-    return next(error);
+  const error: ResponseError = new Error(message)
+  error.statusCode = statusCode
+  return next(error)
 }
 
-export default errorHandler;
+export default errorHandler
