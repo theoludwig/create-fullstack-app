@@ -11,6 +11,11 @@
     "standard-check": "standardx \"./**/*.{js,jsx,ts,tsx}\" --verbose | snazzy || true"
   },
   "eslintConfig": {
+    "settings": {
+      "react": {
+        "version": "16.13.1"
+      }
+    },
     "rules": {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "error"
