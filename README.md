@@ -46,6 +46,8 @@ You can easily generate you own icons of various sizes thanks to [Web App Manife
 - Node.js with Express.js (Fast, unopinionated, minimalist web framework)
 - Sequelize (a promise-based Node.js ORM for MySQL and others database dialect)
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
 ## 📄 License
 
 [MIT](./LICENSE)

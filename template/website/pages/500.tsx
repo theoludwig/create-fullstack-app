@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
+import React from 'react'
 
-import Head from "components/Head";
-import styles from "styles/errors.module.css";
+import Head from 'components/Head'
+import styles from 'styles/errors.module.css'
 
 const Error500: React.FC = () => {
-    return (
-        <Fragment>
-            <Head />
+  return (
+    <>
+      <Head />
 
-            <p className={styles.errorParagraph}>500 Error ❌</p>
-        </Fragment>
-    );
-};
+      <p className={styles.errorParagraph}>500 Error ❌</p>
+    </>
+  )
+}
 
-export default Error500;
+export default Error500

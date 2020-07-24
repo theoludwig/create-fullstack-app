@@ -1,21 +1,22 @@
-import React, { Fragment } from "react";
+import React from 'react'
 
-import Head from "components/Head";
+import Head from 'components/Head'
 
 const Home: React.FC = () => {
-    return (
-        <Fragment>
-            <Head />
+  return (
+    <>
+      <Head />
 
-            <p>Hello world! 👋</p>
+      <p>Hello world! 👋</p>
 
-            <style jsx>{`
-                p {
-                    margin-left: 15px;
-                }
-            `}</style>
-        </Fragment>
-    );
-};
+      <style jsx>{`
+        p {
+          margin-left: 15px;
+        }
+      `}
+      </style>
+    </>
+  )
+}
 
-export default Home;
+export default Home
