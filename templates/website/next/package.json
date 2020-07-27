@@ -1,0 +1,49 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node server",
+    "build": "next build",
+    "export": "next export",
+    "start": "cross-env NODE_ENV=production node server",
+    "format": "standardx \"./**/*.{js,jsx,ts,tsx}\" --fix | snazzy || exit 0"
+  },
+  "eslintConfig": {
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint/eslint-plugin"]
+  },
+  "dependencies": {
+    "axios": "latest",
+    "express": "latest",
+    "express-http-to-https": "latest",
+    "next": "latest",
+    "next-fonts": "latest",
+    "next-pwa": "latest",
+    "nextjs-redirect": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/styled-jsx": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "cross-env": "latest",
+    "snazzy": "latest",
+    "standardx": "latest",
+    "typescript": "latest"
+  }
+}

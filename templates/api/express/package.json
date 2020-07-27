@@ -1,0 +1,54 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "concurrently \"npm run build\" \"cross-env NODE_ENV=production node build/app.js\"",
+    "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon build/app.js\"",
+    "format": "standardx \"./src/**/*.ts\" --fix | snazzy || exit 0"
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint/eslint-plugin"]
+  },
+  "dependencies": {
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-fileupload": "latest",
+    "express-http-to-https": "latest",
+    "express-validator": "latest",
+    "helmet": "latest",
+    "morgan": "latest",
+    "mysql2": "latest",
+    "reflect-metadata": "latest",
+    "sequelize": "latest",
+    "sequelize-typescript": "latest",
+    "tslib": "latest"
+  },
+  "devDependencies": {
+    "@types/bluebird": "latest",
+    "@types/cors": "latest",
+    "@types/express": "latest",
+    "@types/express-fileupload": "latest",
+    "@types/helmet": "latest",
+    "@types/morgan": "latest",
+    "@types/node": "latest",
+    "@types/validator": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "concurrently": "latest",
+    "cross-env": "latest",
+    "nodemon": "latest",
+    "snazzy": "latest",
+    "standardx": "latest",
+    "typescript": "latest"
+  }
+}

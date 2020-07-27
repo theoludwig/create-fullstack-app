@@ -11,9 +11,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "start:dev": "node build/index.js app-test",
-    "format": "standardx \"./src/**/*.ts\" --fix | snazzy || true",
-    "standard-check": "standardx \"./src/**/*.ts\" --verbose | snazzy || true"
+    "start:dev": "node build/index.js app-test --only-website",
+    "format": "standardx \"./src/**/*.ts\" --fix | snazzy || exit 0",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "@types/child-process-promise": "^2.2.1",
     "@types/inquirer": "^7.3.0",
-    "@types/node": "^14.0.25",
+    "@types/node": "^14.0.26",
     "@types/rimraf": "^3.0.0",
     "@types/update-notifier": "^4.1.0",
     "@types/validate-npm-package-name": "^3.0.0",

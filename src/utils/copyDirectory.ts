@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-function copyDirPromise (source: string, destination: string) {
+function copyDirectory (source: string, destination: string) {
   return new Promise(resolve => {
     const filesToCreate = fs.readdirSync(source)
     filesToCreate.forEach(async file => {
@@ -13,7 +13,7 @@ function copyDirPromise (source: string, destination: string) {
         fs.copyFileSync(originalFilePath, writePath)
       } else if (stats.isDirectory()) {
         fs.mkdirSync(path.join(destination, file))
-        await copyDirPromise(
+        await copyDirectory(
           path.join(source, file),
           path.join(destination, file)
         )
@@ -23,4 +23,4 @@ function copyDirPromise (source: string, destination: string) {
   })
 }
 
-export default copyDirPromise
+export default copyDirectory
