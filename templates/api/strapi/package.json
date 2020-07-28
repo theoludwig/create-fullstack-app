@@ -1,0 +1,29 @@
+{
+  "name": "api",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "format": "standard --fix | snazzy || exit 0"
+  },
+  "dependencies": {
+    "strapi": "latest",
+    "strapi-admin": "latest",
+    "strapi-utils": "latest",
+    "strapi-plugin-content-type-builder": "latest",
+    "strapi-plugin-content-manager": "latest",
+    "strapi-plugin-users-permissions": "latest",
+    "strapi-plugin-email": "latest",
+    "strapi-plugin-upload": "latest",
+    "strapi-connector-bookshelf": "latest",
+    "knex": "latest",
+    "mysql": "latest"
+  },
+  "devDependencies": {
+    "snazzy": "latest",
+    "standard": "latest"
+  }
+}

@@ -139,24 +139,24 @@ inquirer.prompt(getQuestions(onlyApi, onlyWebsite)).then(async answers => {
   await loading('Replace template variables in files...', async () => {
     if (!createdFullstackDirectory.isFullstack) {
       if (onlyApi) {
-        await templateAPI.replaceInFile(createdDirectory, {
+        await templateAPI.replaceInFiles(createdDirectory, {
           projectName,
           projectDescription
         })
         return
       }
 
-      await templateWebsite.replaceInFile(createdDirectory, {
+      await templateWebsite.replaceInFiles(createdDirectory, {
         projectName,
         projectDescription,
         domainName
       })
     } else {
-      await templateAPI.replaceInFile(createdFullstackDirectory.api, {
+      await templateAPI.replaceInFiles(createdFullstackDirectory.api, {
         projectName,
         projectDescription
       })
-      await templateWebsite.replaceInFile(createdFullstackDirectory.website, {
+      await templateWebsite.replaceInFiles(createdFullstackDirectory.website, {
         projectName,
         projectDescription,
         domainName

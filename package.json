@@ -4,10 +4,7 @@
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
-  "files": [
-    "build",
-    "template"
-  ],
+  "files": ["build", "template"],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -19,13 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/Divlo/create-fullstack-app.git"
   },
-  "keywords": [
-    "react",
-    "next",
-    "express",
-    "sequelize",
-    "fullstack"
-  ],
+  "keywords": ["react", "next", "express", "sequelize", "fullstack"],
   "author": "Divlo <contact@divlo.fr>",
   "license": "MIT",
   "bugs": {
@@ -40,9 +31,7 @@
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint/eslint-plugin"
-    ]
+    "plugins": ["@typescript-eslint/eslint-plugin"]
   },
   "dependencies": {
     "chalk": "^4.1.0",
