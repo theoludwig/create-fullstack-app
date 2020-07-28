@@ -28,6 +28,7 @@
 ### Website (front-end) :
 
 - [React.js](https://reactjs.org/) with [Next.js](https://nextjs.org/) (server-side rendering)
+- [Vue.js](https://vuejs.org/) with [Nuxt.js](https://nuxtjs.org/) (server-side rendering)
 
 ### API (back-end) :
 
@@ -37,8 +38,6 @@ _Note : The projects templates use [MySQL](https://www.mysql.com/) as database._
 - [Strapi](https://strapi.io/) (Headless CMS)
 
 ## ⚙️ Usage
-
-Create your fullstack application:
 
 ```sh
 npx create-fullstack-app <directory-name>

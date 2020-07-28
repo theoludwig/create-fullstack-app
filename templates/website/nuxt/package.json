@@ -1,0 +1,38 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "format": "eslint --fix --ext .js,.ts,.vue --ignore-path .gitignore . || exit 0"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@nuxt/typescript-runtime": "latest",
+    "@nuxtjs/axios": "latest",
+    "@nuxtjs/pwa": "latest",
+    "nuxt": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/types": "latest",
+    "@nuxt/typescript-build": "latest",
+    "@nuxtjs/eslint-config": "latest",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "@nuxtjs/eslint-module": "latest",
+    "babel-eslint": "latest",
+    "eslint": "latest",
+    "eslint-plugin-nuxt": "latest",
+    "husky": "latest",
+    "lint-staged": "latest"
+  }
+}

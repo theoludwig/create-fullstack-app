@@ -46,6 +46,25 @@ export const templateChoices = {
           await replaceDomainName([headTag], domainName)
         }
       }
+    },
+    {
+      name: 'Vue.js with Nuxt.js (server-side rendering)',
+      value: {
+        path: path.join(TEMPLATE_WEBSITE_PATH, 'nuxt'),
+        replaceInFiles: async (
+          directory: string,
+          { projectName, projectDescription, domainName }: ReplaceFilesObject
+        ) => {
+          const readme = path.join(directory, 'README.md')
+          const nuxtConfig = path.join(directory, 'nuxt.config.js')
+          await replaceProjectName([readme, nuxtConfig], projectName)
+          await replaceProjectDescription(
+            [readme, nuxtConfig],
+            projectDescription
+          )
+          await replaceDomainName([nuxtConfig], domainName)
+        }
+      }
     }
   ]
 }

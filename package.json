@@ -4,7 +4,10 @@
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
-  "files": ["build", "template"],
+  "files": [
+    "build",
+    "template"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -16,7 +19,16 @@
     "type": "git",
     "url": "git+https://github.com/Divlo/create-fullstack-app.git"
   },
-  "keywords": ["react", "next", "express", "sequelize", "fullstack"],
+  "keywords": [
+    "cli",
+    "fullstack",
+    "template",
+    "react",
+    "next",
+    "express",
+    "sequelize",
+    "strapi"
+  ],
   "author": "Divlo <contact@divlo.fr>",
   "license": "MIT",
   "bugs": {
@@ -31,7 +43,9 @@
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint/eslint-plugin"]
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ]
   },
   "dependencies": {
     "chalk": "^4.1.0",
@@ -54,8 +68,8 @@
     "@types/rimraf": "^3.0.0",
     "@types/update-notifier": "^4.1.0",
     "@types/validate-npm-package-name": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^3.7.0",
-    "@typescript-eslint/parser": "^3.7.0",
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
     "snazzy": "^8.0.0",
     "standardx": "^5.0.0",
     "typescript": "^3.9.7"
