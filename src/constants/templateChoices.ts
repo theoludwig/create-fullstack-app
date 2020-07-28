@@ -15,7 +15,7 @@ export const TEMPLATE_COMMON_PATH = path.join(TEMPLATE_PATH, 'common')
 export const templateChoices = {
   api: [
     {
-      name: 'Express with Sequelize (ORM)',
+      name: 'Express.js with Sequelize (ORM)',
       value: {
         path: path.join(TEMPLATE_API_PATH, 'express'),
         replaceInFiles: replaceNameDescriptionInReadme
@@ -31,7 +31,7 @@ export const templateChoices = {
   ],
   website: [
     {
-      name: 'React with Next (SSR)',
+      name: 'React.js with Next.js (server-side rendering)',
       value: {
         path: path.join(TEMPLATE_WEBSITE_PATH, 'next'),
         replaceInFiles: async (

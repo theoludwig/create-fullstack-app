@@ -15,19 +15,7 @@
 
 ## 📜 About
 
-Create your fullstack application:
-
-```sh
-npx create-fullstack-app my-app
-```
-
-<!-- TODO: Write README.md with changes like --only-website --only-api and all the templates availables. -->
-
-Then you will need to answer some questions and you'll be ready to code your new project.
-
-By default the icons are the TypeScript logo in various sizes located in the folder [/website/public/images/icons](./template/website/public/images/icons).
-
-You can easily generate you own icons of various sizes thanks to [Web App Manifest Generator](https://app-manifest.firebaseapp.com/).
+**create-fullstack-app** is a CLI tool to easily generate boilerplate code for your projects with TypeScript. You don't need to learn and configure many tools and create the basics folders/files so you can **focus on development**. There are many templates available so you can generate any projects (front-end, back-end or both) with any frameworks.
 
 ## 🚀 Features
 
@@ -35,17 +23,43 @@ You can easily generate you own icons of various sizes thanks to [Web App Manife
 - ✨ Follow [JavaScript Standard Style](https://standardjs.com/) (for TypeScript)
 - ⚡️ Easy to use
 
-## 📦 Libraries (& Frameworks)
+## 📦 Templates availables :
 
-### Website (front-end)
+### Website (front-end) :
 
-- React with Next.js (the react framework for server-side rendering)
-- Axios and Context API (integrated with React) for state management
+- [React.js](https://reactjs.org/) with [Next.js](https://nextjs.org/) (server-side rendering)
 
-### API (back-end)
+### API (back-end) :
 
-- Node.js with Express.js (Fast, unopinionated, minimalist web framework)
-- Sequelize (a promise-based Node.js ORM for MySQL and others database dialect)
+_Note : The projects templates use [MySQL](https://www.mysql.com/) as database._
+
+- [Express.js](https://expressjs.com/) with [Sequelize](https://sequelize.org/) (ORM)
+- [Strapi](https://strapi.io/) (Headless CMS)
+
+## ⚙️ Usage
+
+Create your fullstack application:
+
+```sh
+npx create-fullstack-app <directory-name>
+```
+
+It will ask you some questions (template(s), name, description, etc.), when answered, it will copy and install all the dependencies needed for your project.
+
+### Options :
+
+```
+-V, --version   output the version number
+-h, --help      display help for command
+--only-website  generate only a website project
+--only-api      generate only an API project
+```
+
+### Tips :
+
+By default, when you generate a website (front-end) project, there are the icons of the TypeScript logo in various sizes located in the static/public folder.
+
+You can easily generate you own icons of various sizes thanks to [Web App Manifest Generator](https://app-manifest.firebaseapp.com/).
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 

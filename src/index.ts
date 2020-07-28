@@ -21,13 +21,13 @@ const CURRENT_DIRECTORY = process.cwd()
 let projectDirectoryName: string | undefined
 const program = new Commander.Command(packageJson.name)
   .version(packageJson.version)
-  .arguments('[project-directory-name]')
-  .usage(`${chalk.green('[project-directory-name]')}`)
+  .arguments('<directory-name>')
+  .usage(`${chalk.green('<directory-name>')}`)
   .action(name => {
     projectDirectoryName = name
   })
-  .option('--only-api', 'Create only the API project.')
-  .option('--only-website', 'Create only the Website project.')
+  .option('--only-api', 'generate only an API project')
+  .option('--only-website', 'generate only a Website project')
   .allowUnknownOption()
   .parse(process.argv)
 
