@@ -8,6 +8,7 @@ const sequelize: Sequelize = new Sequelize({
   dialect: DATABASE.dialect,
   username: DATABASE.user,
   password: DATABASE.password,
+  port: DATABASE.port,
   models: [path.join(__dirname, '..', '..', 'models')]
 })
 

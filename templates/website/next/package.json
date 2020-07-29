@@ -22,7 +22,9 @@
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint/eslint-plugin"]
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ]
   },
   "dependencies": {
     "axios": "latest",

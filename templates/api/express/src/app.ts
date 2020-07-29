@@ -2,25 +2,19 @@
 import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
-
-/* Files Imports & Variables */
-import sequelize from './assets/utils/sequelize'
-import { PORT } from './assets/config/config'
-import { get404, get500 } from './controllers/errors'
-
-/* Middlewares */
 import helmet from 'helmet'
 import { redirectToHTTPS } from 'express-http-to-https'
 import morgan from 'morgan'
 import cors from 'cors'
-dotenv.config({
-  path: path.join(
-    __dirname,
-    '..',
-    process.env.NODE_ENV === 'production' ? '.env.production' : '.env'
-  )
-})
+import sequelize from './assets/utils/sequelize'
+import { PORT } from './assets/config/config'
+import { get404, get500 } from './controllers/errors'
+
+/* Variables */
+dotenv.config()
 const app = express()
+
+/* Middlewares */
 app.use(helmet())
 app.use(redirectToHTTPS([/localhost:(\d{4})/]))
 app.use(morgan('dev'))
