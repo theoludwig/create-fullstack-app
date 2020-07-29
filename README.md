@@ -15,7 +15,7 @@
 
 ## 📜 About
 
-**create-fullstack-app** is a CLI tool to easily generate boilerplate code for your projects with TypeScript. You don't need to learn and configure many tools and create the basics folders/files so you can **focus on development**. There are many templates available so you can generate any projects (front-end, back-end or both) with any frameworks.
+**create-fullstack-app** is a CLI tool to easily generate boilerplate code for your projects with TypeScript/JavaScript. You don't need to learn and configure many tools and create the basics folders/files so you can **focus on development**. There are many templates available so you can generate any projects (front-end, back-end or both) with any frameworks.
 
 ## 🚀 Features
 
