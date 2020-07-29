@@ -1,36 +1,41 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
-import ora from 'ora'
+import childProcess from 'child-process-promise'
 import path from 'path'
 import inquirer from 'inquirer'
 import Commander from 'commander'
 import makeDir from 'make-dir'
 import directoryExists from 'directory-exists'
 import updateNotifier from 'update-notifier'
+
 import validateNpmName from './utils/validateNpmName'
-import copyDirPromise from './utils/copyDirPromise'
-import installPackages from './utils/installPackages'
+import copyDirectory from './utils/copyDirectory'
+import loading from './utils/loading'
 import tryGitInit from './utils/tryGitInit'
-import replaceInFiles from './replaceInFiles'
+import { getQuestions } from './constants/questions'
+import { TEMPLATE_COMMON_PATH } from './constants/templateChoices'
 
 const packageJson = require('../package.json')
 const CURRENT_DIRECTORY = process.cwd()
-const TEMPLATE_PATH = path.join(__dirname, '..', 'template')
 
-let projectDirectory: string | undefined
+let projectDirectoryName: string | undefined
 const program = new Commander.Command(packageJson.name)
   .version(packageJson.version)
-  .arguments('[project-directory]')
-  .usage(`${chalk.green('[project-directory]')}`)
+  .arguments('<directory-name>')
+  .usage(`${chalk.green('<directory-name>')}`)
   .action(name => {
-    projectDirectory = name
+    projectDirectoryName = name
   })
+  .option('--only-api', 'generate only an API project')
+  .option('--only-website', 'generate only a Website project')
   .allowUnknownOption()
   .parse(process.argv)
 
+const { onlyApi, onlyWebsite } = program.opts()
+
 updateNotifier({ pkg: packageJson }).notify()
 
-if (!projectDirectory || typeof projectDirectory !== 'string') {
+if (!projectDirectoryName || typeof projectDirectoryName !== 'string') {
   console.log()
   console.log('Please specify the project directory:')
   console.log(
@@ -48,109 +53,120 @@ if (!projectDirectory || typeof projectDirectory !== 'string') {
   process.exit(1)
 }
 
-projectDirectory = projectDirectory.trim()
-const validationDirectory = validateNpmName(projectDirectory)
+projectDirectoryName = projectDirectoryName.trim()
+const validationDirectory = validateNpmName(projectDirectoryName)
 if (!validationDirectory.valid) {
-  console.log(
+  console.error(
     chalk.red('Invalid directory name: ') + validationDirectory.problems![0]
   )
+  process.exit(1)
 }
 
-const QUESTIONS = [
-  {
-    name: 'projectName',
-    type: 'input',
-    message: 'Project name:'
-  },
-  {
-    name: 'projectDescription',
-    type: 'input',
-    message: 'Project description:'
-  },
-  {
-    name: 'domainName',
-    type: 'input',
-    message: 'Project domain name in production:'
-  }
-]
+const projectDirectory = path.join(CURRENT_DIRECTORY, projectDirectoryName)
 
-inquirer.prompt(QUESTIONS).then(async answers => {
+if (directoryExists.sync(projectDirectory)) {
+  console.error(
+    `Could not create a project called "${chalk.red(
+      projectDirectoryName
+    )}" because the folder name already exists...`
+  )
+  process.exit(1)
+}
+
+inquirer.prompt(getQuestions(onlyApi, onlyWebsite)).then(async answers => {
   console.log()
-  const { projectName, projectDescription, domainName } = answers
-  const folderToCreatePath = path.join(
-    CURRENT_DIRECTORY,
-    projectDirectory as string
-  )
+  const {
+    templateWebsite,
+    templateAPI,
+    projectName,
+    projectDescription,
+    domainName
+  } = answers
 
-  // Verification of users inputs
-  if (directoryExists.sync(folderToCreatePath)) {
-    console.error(
-      `Could not create a project called "${chalk.red(
-        projectDirectory
-      )}" because the folder name already exists...`
+  /* Copy files */
+  const createdFullstackDirectory = { website: '', api: '', isFullstack: false }
+  let createdDirectory = ''
+  await loading('Copy files...', async () => {
+    createdDirectory = await makeDir(projectDirectory)
+    await copyDirectory(TEMPLATE_COMMON_PATH, createdDirectory)
+
+    if (onlyApi) {
+      await copyDirectory(templateAPI.path, createdDirectory)
+      return
+    }
+
+    if (onlyWebsite) {
+      await copyDirectory(templateWebsite.path, createdDirectory)
+      return
+    }
+
+    createdFullstackDirectory.website = await makeDir(
+      path.join(createdDirectory, 'website')
     )
-    process.exit(1)
-  }
-
-  if ((projectDescription as string).length >= 255) {
-    console.error(
-      `Could not create a project 
-            because the description should ${chalk.red(
-              'not exceed 255 characters'
-            )}.`
+    createdFullstackDirectory.api = await makeDir(
+      path.join(createdDirectory, 'api')
     )
-    process.exit(1)
-  }
+    await copyDirectory(templateWebsite.path, createdFullstackDirectory.website)
+    await copyDirectory(templateAPI.path, createdFullstackDirectory.api)
+    createdFullstackDirectory.isFullstack = true
+  })
 
-  const isDomainName = /(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/.exec(
-    domainName as string
-  )
-  if (isDomainName == null) {
-    console.error(
-      `Could not create a project 
-            because you didn't enter a correct ${chalk.red('domain name')}.`
+  /* Installing NPM packages... */
+  if (!createdFullstackDirectory.isFullstack) {
+    await loading(
+      'Installing npm packages. This might take a couple of minutes.',
+      async () => {
+        await childProcess.exec('npm install', {
+          cwd: createdDirectory
+        })
+      }
     )
-    process.exit(1)
+  } else {
+    console.log('Installing npm packages. This might take a couple of minutes.')
+    await loading('Installing "api" packages...', async () => {
+      await childProcess.exec('npm install', {
+        cwd: createdFullstackDirectory.api
+      })
+    })
+    await loading('Installing "website" packages...', async () => {
+      await childProcess.exec('npm install', {
+        cwd: createdFullstackDirectory.website
+      })
+    })
   }
 
-  // Copy files
-  const spinnerFiles = ora({
-    text: 'Copy files...',
-    spinner: 'dots',
-    color: 'cyan'
-  }).start()
-  const createdTemplatePathDirectory = await makeDir(folderToCreatePath)
-  await copyDirPromise(TEMPLATE_PATH, createdTemplatePathDirectory)
-  spinnerFiles.succeed()
+  /* Replace in files */
+  await loading('Replace template variables in files...', async () => {
+    if (!createdFullstackDirectory.isFullstack) {
+      if (onlyApi) {
+        await templateAPI.replaceInFiles(createdDirectory, {
+          projectName,
+          projectDescription
+        })
+        return
+      }
 
-  // Install NPM packages...
-  console.log('Installing packages. This might take a couple of minutes.')
-  await installPackages(
-    path.join(createdTemplatePathDirectory, 'website'),
-    'Installing "website" npm packages...'
-  )
-  await installPackages(
-    path.join(createdTemplatePathDirectory, 'api'),
-    'Installing "api" npm packages...'
-  )
+      await templateWebsite.replaceInFiles(createdDirectory, {
+        projectName,
+        projectDescription,
+        domainName
+      })
+    } else {
+      await templateAPI.replaceInFiles(createdFullstackDirectory.api, {
+        projectName,
+        projectDescription
+      })
+      await templateWebsite.replaceInFiles(createdFullstackDirectory.website, {
+        projectName,
+        projectDescription,
+        domainName
+      })
+    }
+  })
 
-  // Replace files
-  const spinnerReplaceFiles = ora({
-    text: 'Replace template variables in files...',
-    spinner: 'dots',
-    color: 'cyan'
-  }).start()
-  const replaceFilesObject = {
-    projectName: projectName as string,
-    projectDescription: projectDescription as string,
-    domainName: isDomainName[0] as string
-  }
-  await replaceInFiles(replaceFilesObject, createdTemplatePathDirectory)
-  spinnerReplaceFiles.succeed()
-
-  // git init
-  process.chdir(createdTemplatePathDirectory)
-  if (tryGitInit(createdTemplatePathDirectory)) {
+  /* Try git init */
+  process.chdir(createdDirectory)
+  if (tryGitInit(createdDirectory)) {
     console.log('Initialized a git repository.')
     console.log()
   }
@@ -158,6 +174,6 @@ inquirer.prompt(QUESTIONS).then(async answers => {
   console.log(
     `\n ${chalk.green(
       'Success!'
-    )} Created "${projectName}" at ${createdTemplatePathDirectory}`
+    )} Created "${projectName}" at ${createdDirectory}`
   )
 })
