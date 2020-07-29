@@ -21,4 +21,4 @@ PostsRouter.route('/')
     postsController.createPost
   )
 
-module.exports = PostsRouter
+export default PostsRouter

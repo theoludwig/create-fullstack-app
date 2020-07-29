@@ -18,8 +18,8 @@ export const get500: ErrorRequestHandler = (
 ) => {
   console.error(error)
   const { statusCode, message } = error
-  if (isProduction && !statusCode) {
+  if (isProduction && statusCode != null) {
     return res.status(serverError.statusCode).json(serverError.message)
   }
-  return res.status(statusCode || 500).json({ message })
+  return res.status(statusCode ?? 500).json({ message })
 }

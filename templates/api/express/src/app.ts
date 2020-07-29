@@ -6,9 +6,11 @@ import helmet from 'helmet'
 import { redirectToHTTPS } from 'express-http-to-https'
 import morgan from 'morgan'
 import cors from 'cors'
+
 import sequelize from './assets/utils/sequelize'
 import { PORT } from './assets/config/config'
 import { get404, get500 } from './controllers/errors'
+import routesPosts from './routes/posts'
 
 /* Variables */
 dotenv.config()
@@ -23,7 +25,7 @@ app.use(express.json())
 
 /* Routes */
 app.use(express.static(path.join(__dirname, '..', 'public')))
-app.use('/posts', require('./routes/posts'))
+app.use('/posts', routesPosts)
 
 /* Errors Handling */
 app.use(get404)
@@ -38,4 +40,4 @@ sequelize
       console.log('\x1b[36m%s\x1b[0m', `Started on port ${PORT}.`)
     )
   })
-  .catch((error) => console.error(error))
+  .catch(error => console.error(error))
