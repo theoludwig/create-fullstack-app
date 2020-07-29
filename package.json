@@ -1,12 +1,12 @@
 {
   "name": "create-fullstack-app",
-  "version": "1.1.0",
+  "version": "2.0.1",
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
   "files": [
     "build",
-    "template"
+    "templates"
   ],
   "scripts": {
     "build": "tsc",
@@ -67,7 +67,7 @@
   "devDependencies": {
     "@types/child-process-promise": "^2.2.1",
     "@types/inquirer": "^7.3.0",
-    "@types/node": "^14.0.26",
+    "@types/node": "^14.0.27",
     "@types/rimraf": "^3.0.0",
     "@types/update-notifier": "^4.1.0",
     "@types/validate-npm-package-name": "^3.0.0",
