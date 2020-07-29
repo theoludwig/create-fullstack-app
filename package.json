@@ -25,9 +25,12 @@
     "template",
     "react",
     "next",
+    "vue",
+    "nuxt",
     "express",
     "sequelize",
-    "strapi"
+    "strapi",
+    "nest"
   ],
   "author": "Divlo <contact@divlo.fr>",
   "license": "MIT",

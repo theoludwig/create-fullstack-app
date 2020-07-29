@@ -27,6 +27,13 @@ export const templateChoices = {
         path: path.join(TEMPLATE_API_PATH, 'strapi'),
         replaceInFiles: replaceNameDescriptionInReadme
       }
+    },
+    {
+      name: 'Nest.js (framework for building efficient, scalable server-side applications)',
+      value: {
+        path: path.join(TEMPLATE_API_PATH, 'nest'),
+        replaceInFiles: replaceNameDescriptionInReadme
+      }
     }
   ],
   website: [
