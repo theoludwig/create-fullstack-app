@@ -7,24 +7,7 @@
     "build": "next build",
     "export": "next export",
     "start": "cross-env NODE_ENV=production node server",
-    "format": "standardx \"./**/*.{js,jsx,ts,tsx}\" --fix | snazzy || exit 0"
-  },
-  "eslintConfig": {
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "rules": {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
-    }
-  },
-  "standardx": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint/eslint-plugin"
-    ]
+    "format": "ts-standard --fix | snazzy || exit 0"
   },
   "dependencies": {
     "axios": "latest",
@@ -41,11 +24,9 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/styled-jsx": "latest",
-    "@typescript-eslint/eslint-plugin": "latest",
-    "@typescript-eslint/parser": "latest",
     "cross-env": "latest",
     "snazzy": "latest",
-    "standardx": "latest",
+    "ts-standard": "latest",
     "typescript": "latest"
   }
 }

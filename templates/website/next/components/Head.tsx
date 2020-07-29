@@ -2,14 +2,14 @@ import React from 'react'
 import HeadTag from 'next/head'
 
 interface HeadProps {
-    title?: string;
-    image?: string;
-    description?: string;
+  title?: string
+  image?: string
+  description?: string
 }
 
 const Head: React.FC<HeadProps> = ({ title, image, description }) => (
   <HeadTag>
-    <title>{title || ''}</title>
+    <title>{title ?? ''}</title>
     <link rel='icon' type='image/png' href={image} />
 
     {/* Meta Tag */}
