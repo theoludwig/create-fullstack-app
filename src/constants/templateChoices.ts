@@ -3,8 +3,7 @@ import path from 'path'
 import {
   replaceProjectName,
   replaceProjectDescription,
-  replaceDomainName,
-  replaceNameDescriptionInReadme
+  replaceDomainName
 } from '../utils/replaceInFiles'
 
 export const TEMPLATE_PATH = path.join(__dirname, '..', '..', 'templates')
@@ -17,22 +16,20 @@ export const templateChoices = {
     {
       name: 'Express.js with Sequelize (ORM)',
       value: {
-        path: path.join(TEMPLATE_API_PATH, 'express'),
-        replaceInFiles: replaceNameDescriptionInReadme
+        path: path.join(TEMPLATE_API_PATH, 'express')
       }
     },
     {
       name: 'Strapi (Headless CMS)',
       value: {
-        path: path.join(TEMPLATE_API_PATH, 'strapi'),
-        replaceInFiles: replaceNameDescriptionInReadme
+        path: path.join(TEMPLATE_API_PATH, 'strapi')
       }
     },
     {
-      name: 'Nest.js (framework for building efficient, scalable server-side applications)',
+      name:
+        'Nest.js (framework for building efficient, scalable server-side applications)',
       value: {
-        path: path.join(TEMPLATE_API_PATH, 'nest'),
-        replaceInFiles: replaceNameDescriptionInReadme
+        path: path.join(TEMPLATE_API_PATH, 'nest')
       }
     }
   ],
@@ -45,11 +42,10 @@ export const templateChoices = {
           directory: string,
           { projectName, projectDescription, domainName }: ReplaceFilesObject
         ) => {
-          const readme = path.join(directory, 'README.md')
           const headTag = path.join(directory, 'components', 'Head.tsx')
           const manifestJSON = path.join(directory, 'public', 'manifest.json')
-          await replaceProjectName([readme, headTag, manifestJSON], projectName)
-          await replaceProjectDescription([readme, headTag], projectDescription)
+          await replaceProjectName([headTag, manifestJSON], projectName)
+          await replaceProjectDescription([headTag], projectDescription)
           await replaceDomainName([headTag], domainName)
         }
       }
@@ -62,13 +58,9 @@ export const templateChoices = {
           directory: string,
           { projectName, projectDescription, domainName }: ReplaceFilesObject
         ) => {
-          const readme = path.join(directory, 'README.md')
           const nuxtConfig = path.join(directory, 'nuxt.config.js')
-          await replaceProjectName([readme, nuxtConfig], projectName)
-          await replaceProjectDescription(
-            [readme, nuxtConfig],
-            projectDescription
-          )
+          await replaceProjectName([nuxtConfig], projectName)
+          await replaceProjectDescription([nuxtConfig], projectDescription)
           await replaceDomainName([nuxtConfig], domainName)
         }
       }

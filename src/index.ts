@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
+import logSymbols from 'log-symbols'
 import childProcess from 'child-process-promise'
 import path from 'path'
 import inquirer from 'inquirer'
@@ -14,6 +15,7 @@ import loading from './utils/loading'
 import tryGitInit from './utils/tryGitInit'
 import { getQuestions } from './constants/questions'
 import { TEMPLATE_COMMON_PATH } from './constants/templateChoices'
+import { replaceNameDescriptionInReadme } from './utils/replaceInFiles'
 
 const packageJson = require('../package.json')
 const CURRENT_DIRECTORY = process.cwd()
@@ -31,7 +33,11 @@ const program = new Commander.Command(packageJson.name)
   .allowUnknownOption()
   .parse(process.argv)
 
-const { onlyApi, onlyWebsite } = program.opts()
+let { onlyApi, onlyWebsite } = program.opts()
+if (onlyApi && onlyWebsite) {
+  onlyApi = false
+  onlyWebsite = false
+}
 
 updateNotifier({ pkg: packageJson }).notify()
 
@@ -84,79 +90,66 @@ inquirer.prompt(getQuestions(onlyApi, onlyWebsite)).then(async answers => {
   } = answers
 
   /* Copy files */
-  const createdFullstackDirectory = { website: '', api: '', isFullstack: false }
-  let createdDirectory = ''
-  await loading('Copy files...', async () => {
-    createdDirectory = await makeDir(projectDirectory)
-    await copyDirectory(TEMPLATE_COMMON_PATH, createdDirectory)
+  const createdProject = {
+    website: '',
+    api: '',
+    rootPath: '',
+    isFullstack: false
+  }
+  await loading('Copy files.', async () => {
+    createdProject.rootPath = await makeDir(projectDirectory)
+    await copyDirectory(TEMPLATE_COMMON_PATH, createdProject.rootPath)
 
     if (onlyApi) {
-      await copyDirectory(templateAPI.path, createdDirectory)
+      createdProject.api = createdProject.rootPath
+      await copyDirectory(templateAPI.path, createdProject.rootPath)
       return
     }
 
     if (onlyWebsite) {
-      await copyDirectory(templateWebsite.path, createdDirectory)
+      createdProject.website = createdProject.rootPath
+      await copyDirectory(templateWebsite.path, createdProject.rootPath)
       return
     }
 
-    createdFullstackDirectory.website = await makeDir(
-      path.join(createdDirectory, 'website')
+    createdProject.website = await makeDir(
+      path.join(createdProject.rootPath, 'website')
     )
-    createdFullstackDirectory.api = await makeDir(
-      path.join(createdDirectory, 'api')
+    createdProject.api = await makeDir(
+      path.join(createdProject.rootPath, 'api')
     )
-    await copyDirectory(templateWebsite.path, createdFullstackDirectory.website)
-    await copyDirectory(templateAPI.path, createdFullstackDirectory.api)
-    createdFullstackDirectory.isFullstack = true
+    await copyDirectory(templateWebsite.path, createdProject.website)
+    await copyDirectory(templateAPI.path, createdProject.api)
+    createdProject.isFullstack = true
   })
 
   /* Installing NPM packages... */
-  if (!createdFullstackDirectory.isFullstack) {
-    await loading(
-      'Installing npm packages. This might take a couple of minutes.',
-      async () => {
+  await loading(
+    'Installing npm packages. This might take a couple of minutes.',
+    async () => {
+      if (createdProject.api !== '') {
         await childProcess.exec('npm install', {
-          cwd: createdDirectory
+          cwd: createdProject.api
         })
       }
-    )
-  } else {
-    console.log('Installing npm packages. This might take a couple of minutes.')
-    await loading('Installing "api" packages...', async () => {
-      await childProcess.exec('npm install', {
-        cwd: createdFullstackDirectory.api
-      })
-    })
-    await loading('Installing "website" packages...', async () => {
-      await childProcess.exec('npm install', {
-        cwd: createdFullstackDirectory.website
-      })
-    })
-  }
+
+      if (createdProject.website !== '') {
+        await childProcess.exec('npm install', {
+          cwd: createdProject.website
+        })
+      }
+    }
+  )
 
   /* Replace in files */
-  await loading('Replace template variables in files...', async () => {
-    if (!createdFullstackDirectory.isFullstack) {
-      if (onlyApi) {
-        await templateAPI.replaceInFiles(createdDirectory, {
-          projectName,
-          projectDescription
-        })
-        return
-      }
+  await loading('Replace template variables in files.', async () => {
+    await replaceNameDescriptionInReadme(createdProject.rootPath, {
+      projectName,
+      projectDescription
+    } as ReplaceFilesObject)
 
-      await templateWebsite.replaceInFiles(createdDirectory, {
-        projectName,
-        projectDescription,
-        domainName
-      })
-    } else {
-      await templateAPI.replaceInFiles(createdFullstackDirectory.api, {
-        projectName,
-        projectDescription
-      })
-      await templateWebsite.replaceInFiles(createdFullstackDirectory.website, {
+    if (createdProject.website !== '') {
+      await templateWebsite.replaceInFiles(createdProject.website, {
         projectName,
         projectDescription,
         domainName
@@ -165,15 +158,14 @@ inquirer.prompt(getQuestions(onlyApi, onlyWebsite)).then(async answers => {
   })
 
   /* Try git init */
-  process.chdir(createdDirectory)
-  if (tryGitInit(createdDirectory)) {
-    console.log('Initialized a git repository.')
-    console.log()
+  process.chdir(createdProject.rootPath)
+  if (tryGitInit(createdProject.rootPath)) {
+    console.log(logSymbols.success, 'Initialized a git repository.')
   }
 
   console.log(
-    `\n ${chalk.green(
-      'Success!'
-    )} Created "${projectName}" at ${createdDirectory}`
+    `\n ${chalk.green('Success!')} Created "${projectName}" at ${
+      createdProject.rootPath
+    }`
   )
 })
