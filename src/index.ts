@@ -17,6 +17,7 @@ import { getQuestions } from './constants/questions'
 import { TEMPLATE_COMMON_PATH } from './constants/templateChoices'
 import { replaceNameDescriptionInReadme } from './utils/replaceInFiles'
 
+/* eslint-disable-next-line */
 const packageJson = require('../package.json')
 const CURRENT_DIRECTORY = process.cwd()
 
@@ -33,7 +34,10 @@ const program = new Commander.Command(packageJson.name)
   .allowUnknownOption()
   .parse(process.argv)
 
-let { onlyApi, onlyWebsite } = program.opts()
+let { onlyApi, onlyWebsite } = program.opts() as {
+  onlyApi: boolean
+  onlyWebsite: boolean
+}
 if (onlyApi && onlyWebsite) {
   onlyApi = false
   onlyWebsite = false
@@ -41,7 +45,7 @@ if (onlyApi && onlyWebsite) {
 
 updateNotifier({ pkg: packageJson }).notify()
 
-if (!projectDirectoryName || typeof projectDirectoryName !== 'string') {
+if (projectDirectoryName == null || typeof projectDirectoryName !== 'string') {
   console.log()
   console.log('Please specify the project directory:')
   console.log(
@@ -62,8 +66,9 @@ if (!projectDirectoryName || typeof projectDirectoryName !== 'string') {
 projectDirectoryName = projectDirectoryName.trim()
 const validationDirectory = validateNpmName(projectDirectoryName)
 if (!validationDirectory.valid) {
+  const problems = validationDirectory.problems != null ? validationDirectory.problems[0] : ''
   console.error(
-    chalk.red('Invalid directory name: ') + validationDirectory.problems![0]
+    chalk.red('Invalid directory name: ') + problems
   )
   process.exit(1)
 }
@@ -79,93 +84,97 @@ if (directoryExists.sync(projectDirectory)) {
   process.exit(1)
 }
 
-inquirer.prompt(getQuestions(onlyApi, onlyWebsite)).then(async answers => {
-  console.log()
-  const {
-    templateWebsite,
-    templateAPI,
-    projectName,
-    projectDescription,
-    domainName
-  } = answers
+inquirer
+  .prompt(getQuestions(onlyApi, onlyWebsite))
+  .then(async answers => {
+    console.log()
+    const {
+      templateWebsite,
+      templateAPI,
+      projectName,
+      projectDescription,
+      domainName
+    } = answers as QuestionsAnswers
 
-  /* Copy files */
-  const createdProject = {
-    website: '',
-    api: '',
-    rootPath: '',
-    isFullstack: false
-  }
-  await loading('Copy files.', async () => {
-    createdProject.rootPath = await makeDir(projectDirectory)
-    await copyDirectory(TEMPLATE_COMMON_PATH, createdProject.rootPath)
-
-    if (onlyApi) {
-      createdProject.api = createdProject.rootPath
-      await copyDirectory(templateAPI.path, createdProject.rootPath)
-      return
+    /* Copy files */
+    const createdProject = {
+      website: '',
+      api: '',
+      rootPath: '',
+      isFullstack: false
     }
+    await loading('Copy files.', async () => {
+      createdProject.rootPath = await makeDir(projectDirectory)
+      await copyDirectory(TEMPLATE_COMMON_PATH, createdProject.rootPath)
 
-    if (onlyWebsite) {
-      createdProject.website = createdProject.rootPath
-      await copyDirectory(templateWebsite.path, createdProject.rootPath)
-      return
-    }
-
-    createdProject.website = await makeDir(
-      path.join(createdProject.rootPath, 'website')
-    )
-    createdProject.api = await makeDir(
-      path.join(createdProject.rootPath, 'api')
-    )
-    await copyDirectory(templateWebsite.path, createdProject.website)
-    await copyDirectory(templateAPI.path, createdProject.api)
-    createdProject.isFullstack = true
-  })
-
-  /* Installing NPM packages... */
-  await loading(
-    'Installing npm packages. This might take a couple of minutes.',
-    async () => {
-      if (createdProject.api !== '') {
-        await childProcess.exec('npm install', {
-          cwd: createdProject.api
-        })
+      if (onlyApi) {
+        createdProject.api = createdProject.rootPath
+        await copyDirectory(templateAPI.path, createdProject.rootPath)
+        return
       }
+
+      if (onlyWebsite) {
+        createdProject.website = createdProject.rootPath
+        await copyDirectory(templateWebsite.path, createdProject.rootPath)
+        return
+      }
+
+      createdProject.website = await makeDir(
+        path.join(createdProject.rootPath, 'website')
+      )
+      createdProject.api = await makeDir(
+        path.join(createdProject.rootPath, 'api')
+      )
+      await copyDirectory(templateWebsite.path, createdProject.website)
+      await copyDirectory(templateAPI.path, createdProject.api)
+      createdProject.isFullstack = true
+    })
+
+    /* Installing NPM packages... */
+    await loading(
+      'Installing npm packages. This might take a couple of minutes.',
+      async () => {
+        if (createdProject.api !== '') {
+          await childProcess.exec('npm install', {
+            cwd: createdProject.api
+          })
+        }
+
+        if (createdProject.website !== '') {
+          await childProcess.exec('npm install', {
+            cwd: createdProject.website
+          })
+        }
+      }
+    )
+
+    /* Replace in files */
+    await loading('Replace template variables in files.', async () => {
+      const replaceFilesObject: ReplaceNameDescription = { projectName, projectDescription }
+      await replaceNameDescriptionInReadme(createdProject.rootPath, replaceFilesObject)
 
       if (createdProject.website !== '') {
-        await childProcess.exec('npm install', {
-          cwd: createdProject.website
+        await templateWebsite.replaceInFiles(createdProject.website, {
+          projectName,
+          projectDescription,
+          domainName
         })
       }
-    }
-  )
+    })
 
-  /* Replace in files */
-  await loading('Replace template variables in files.', async () => {
-    await replaceNameDescriptionInReadme(createdProject.rootPath, {
-      projectName,
-      projectDescription
-    } as ReplaceFilesObject)
-
-    if (createdProject.website !== '') {
-      await templateWebsite.replaceInFiles(createdProject.website, {
-        projectName,
-        projectDescription,
-        domainName
-      })
+    /* Try git init */
+    process.chdir(createdProject.rootPath)
+    if (tryGitInit(createdProject.rootPath)) {
+      console.log(logSymbols.success, 'Initialized a git repository.')
     }
+
+    console.log(
+      `\n ${chalk.green('Success!')} Created "${projectName}" at ${
+        createdProject.rootPath
+      }`
+    )
   })
-
-  /* Try git init */
-  process.chdir(createdProject.rootPath)
-  if (tryGitInit(createdProject.rootPath)) {
-    console.log(logSymbols.success, 'Initialized a git repository.')
-  }
-
-  console.log(
-    `\n ${chalk.green('Success!')} Created "${projectName}" at ${
-      createdProject.rootPath
-    }`
-  )
-})
+  .catch(error => {
+    console.error(error)
+    console.log(chalk.red('Error:') + ' please try again...')
+  })

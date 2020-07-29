@@ -4,7 +4,7 @@ import path from 'path'
 export async function replaceProjectName (
   files: string[],
   projectName: string
-) {
+): Promise<void> {
   await replaceInFile({
     files,
     from: /{{ projectName }}/g,
@@ -15,7 +15,7 @@ export async function replaceProjectName (
 export async function replaceProjectDescription (
   files: string[],
   projectDescription: string
-) {
+): Promise<void> {
   await replaceInFile({
     files,
     from: /{{ projectDescription }}/g,
@@ -23,7 +23,10 @@ export async function replaceProjectDescription (
   })
 }
 
-export async function replaceDomainName (files: string[], domainName: string) {
+export async function replaceDomainName (
+  files: string[],
+  domainName: string
+): Promise<void> {
   await replaceInFile({
     files,
     from: /{{ domainName }}/g,
@@ -33,8 +36,8 @@ export async function replaceDomainName (files: string[], domainName: string) {
 
 export async function replaceNameDescriptionInReadme (
   directory: string,
-  { projectName, projectDescription }: ReplaceFilesObject
-) {
+  { projectName, projectDescription }: ReplaceNameDescription
+): Promise<void> {
   const readme = path.join(directory, 'README.md')
   await replaceProjectName([readme], projectName)
   await replaceProjectDescription([readme], projectDescription)
