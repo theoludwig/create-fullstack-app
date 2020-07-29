@@ -1,10 +1,6 @@
 import path from 'path'
 
-import {
-  replaceProjectName,
-  replaceProjectDescription,
-  replaceDomainName
-} from '../utils/replaceInFiles'
+import { replaceProjectName, replaceProjectDescription, replaceDomainName } from '../utils/replaceInFiles'
 
 export const TEMPLATE_PATH = path.join(__dirname, '..', '..', 'templates')
 export const TEMPLATE_API_PATH = path.join(TEMPLATE_PATH, 'api')
@@ -26,10 +22,15 @@ export const templateChoices = {
       }
     },
     {
-      name:
-        'Nest.js (framework for building efficient, scalable server-side applications)',
+      name: 'Nest.js (framework for building efficient, scalable server-side applications)',
       value: {
         path: path.join(TEMPLATE_API_PATH, 'nest')
+      }
+    },
+    {
+      name: 'Fastify (with mongoose, Boom, bcryptjs, and pretty logger named pino) - js',
+      value: {
+        path: path.join(TEMPLATE_API_PATH, 'fastify-mongodb-js')
       }
     }
   ],
@@ -44,9 +45,25 @@ export const templateChoices = {
         ) => {
           const headTag = path.join(directory, 'components', 'Head.tsx')
           const manifestJSON = path.join(directory, 'public', 'manifest.json')
-          await replaceProjectName([headTag, manifestJSON], projectName)
-          await replaceProjectDescription([headTag], projectDescription)
-          await replaceDomainName([headTag], domainName)
+          await replaceProjectName(
+            [
+              headTag,
+              manifestJSON
+            ],
+            projectName
+          )
+          await replaceProjectDescription(
+            [
+              headTag
+            ],
+            projectDescription
+          )
+          await replaceDomainName(
+            [
+              headTag
+            ],
+            domainName
+          )
         }
       }
     },
@@ -59,9 +76,24 @@ export const templateChoices = {
           { projectName, projectDescription, domainName }: ReplaceFilesObject
         ) => {
           const nuxtConfig = path.join(directory, 'nuxt.config.js')
-          await replaceProjectName([nuxtConfig], projectName)
-          await replaceProjectDescription([nuxtConfig], projectDescription)
-          await replaceDomainName([nuxtConfig], domainName)
+          await replaceProjectName(
+            [
+              nuxtConfig
+            ],
+            projectName
+          )
+          await replaceProjectDescription(
+            [
+              nuxtConfig
+            ],
+            projectDescription
+          )
+          await replaceDomainName(
+            [
+              nuxtConfig
+            ],
+            domainName
+          )
         }
       }
     }
