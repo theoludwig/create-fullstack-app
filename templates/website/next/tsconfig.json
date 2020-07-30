@@ -18,7 +18,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "references": [{ "types": "next" }, { "types": "next/types/global" }],
   "exclude": ["dist", ".next", "out", "next.config.js"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

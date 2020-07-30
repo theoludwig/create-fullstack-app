@@ -1,4 +1,3 @@
-import React from 'react'
 import HeadTag from 'next/head'
 
 interface HeadProps {
