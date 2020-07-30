@@ -1,6 +1,6 @@
 import { Dialect } from 'sequelize/types'
 
-export const PORT = process.env.PORT ?? 8080
+export const PORT = parseInt(process.env.PORT ?? '8080', 10)
 export const isProduction = process.env.NODE_ENV === 'production'
 export const DATABASE = {
   host: process.env.DATABASE_HOST,
