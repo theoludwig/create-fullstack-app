@@ -1,14 +1,13 @@
 import { PostsService } from './posts.service'
 import { Controller, Get } from '@nestjs/common'
+import { Posts } from './posts.entity'
 
 @Controller('posts')
 export class PostsController {
-  constructor (private readonly postsService: PostsService) {
-    this.postsService = postsService
-  }
+  constructor (private readonly postsService: PostsService) {}
 
   @Get()
-  async getPosts () {
-    return this.postsService.findAll()
+  async getPosts (): Promise<Posts[]> {
+    return await this.postsService.findAll()
   }
 }
