@@ -12,7 +12,7 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start:dev": "node build/index.js app-test --only-website",
-    "format": "standardx \"./src/**/*.ts\" --fix | snazzy || exit 0",
+    "format": "ts-standard \"./src/**/*.ts\" --fix | snazzy || exit 0",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -38,18 +38,6 @@
     "url": "https://github.com/Divlo/create-fullstack-app/issues"
   },
   "homepage": "https://github.com/Divlo/create-fullstack-app#readme",
-  "eslintConfig": {
-    "rules": {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
-    }
-  },
-  "standardx": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint/eslint-plugin"
-    ]
-  },
   "dependencies": {
     "chalk": "^4.1.0",
     "child-process-promise": "^2.2.1",
@@ -72,10 +60,8 @@
     "@types/rimraf": "^3.0.0",
     "@types/update-notifier": "^4.1.0",
     "@types/validate-npm-package-name": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^3.7.1",
-    "@typescript-eslint/parser": "^3.7.1",
     "snazzy": "^8.0.0",
-    "standardx": "^5.0.0",
+    "ts-standard": "^8.0.1",
     "typescript": "^3.9.7"
   }
 }

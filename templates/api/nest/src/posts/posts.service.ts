@@ -7,12 +7,10 @@ import { Posts } from './posts.entity'
 export class PostsService {
   constructor (
     @InjectRepository(Posts)
-    private postsRepository: Repository<Posts>
-  ) {
-    this.postsRepository = postsRepository
-  }
+    private readonly postsRepository: Repository<Posts>
+  ) {}
 
-  findAll (): Promise<Posts[]> {
-    return this.postsRepository.find()
+  async findAll (): Promise<Posts[]> {
+    return await this.postsRepository.find()
   }
 }

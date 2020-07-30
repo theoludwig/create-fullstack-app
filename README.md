@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://gitmoji.carloscuesta.me/"><img src="https://camo.githubusercontent.com/2a4924a23bd9ef18afe793f4999b1b9ec474e48f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6769746d6f6a692d253230f09f989c253230f09f988d2d4646444436372e7376673f7374796c653d666c61742d737175617265" alt="Gitmoji"/></a>
-  <a href="https://standardjs.com"><img alt="JavaScript Style Guide" src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"/></a>
+  <a href="https://www.npmjs.com/package/ts-standard"><img alt="TypeScript Style Guide" src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"/></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
   <a href="https://www.npmjs.com/package/create-fullstack-app"><img src="https://img.shields.io/npm/v/create-fullstack-app.svg" alt="npm version"></a>
   <br/> <br/>
@@ -20,7 +20,7 @@
 ## 🚀 Features
 
 - 💯 Maximize Lighthouse Google Chrome score
-- ✨ Follow [JavaScript Standard Style](https://standardjs.com/) (for TypeScript)
+- ✨ Follow [Typescript Standard Style](https://www.npmjs.com/package/ts-standard)
 - ⚡️ Easy to use
 
 ## 📦 Templates availables :
@@ -60,8 +60,6 @@ It will ask you some questions (template(s), name, description, etc.), when answ
 By default, when you generate a website (front-end) project, there are the icons of the TypeScript logo in various sizes located in the static/public folder.
 
 You can easily generate you own icons of various sizes thanks to [Web App Manifest Generator](https://app-manifest.firebaseapp.com/).
-
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
 ## 📄 License
 

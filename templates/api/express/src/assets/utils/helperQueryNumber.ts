@@ -1,5 +1,7 @@
-function helperQueryNumber (value: any, defaultValue: number) {
-  if (value && !isNaN(Number(value))) return parseInt(value as string, 10)
+function helperQueryNumber (value: string, defaultValue: number): number {
+  if (value != null && !isNaN(Number(value))) {
+    return parseInt(value, 10)
+  }
   return defaultValue
 }
 

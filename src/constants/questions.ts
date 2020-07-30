@@ -1,18 +1,19 @@
 import { templateChoices } from './templateChoices'
+import { QuestionCollection, DistinctQuestion } from 'inquirer'
 
-const questionWebsiteTemplate = {
+const questionWebsiteTemplate: DistinctQuestion = {
   name: 'templateWebsite',
   type: 'list',
   message: 'Select a Website template:',
   choices: templateChoices.website
 }
-const questionAPITemplate = {
+const questionAPITemplate: DistinctQuestion = {
   name: 'templateAPI',
   type: 'list',
   message: 'Select an API template:',
   choices: templateChoices.api
 }
-const questionCommon = [
+const questionCommon: DistinctQuestion = [
   {
     name: 'projectName',
     type: 'input',
@@ -24,13 +25,16 @@ const questionCommon = [
     message: 'Project description:'
   }
 ]
-const questionDomainName = {
+const questionDomainName: DistinctQuestion = {
   name: 'domainName',
   type: 'input',
   message: 'Project domain name in production:'
 }
 
-export function getQuestions (onlyApi: boolean, onlyWebsite: boolean) {
+export function getQuestions (
+  onlyApi: boolean,
+  onlyWebsite: boolean
+): QuestionCollection {
   if (onlyApi) {
     return [questionAPITemplate, ...questionCommon]
   }

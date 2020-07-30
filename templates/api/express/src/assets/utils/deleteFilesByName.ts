@@ -1,30 +1,27 @@
-import fs from 'fs'
+// import fs from 'fs'
+
+import * as fsWithCallbacks from 'fs'
 import path from 'path'
+
+const fs = fsWithCallbacks.promises
 
 /**
  * Delete Files by name (without taking into account the extension)
  */
-function deleteFilesByName (
+async function deleteFilesByName (
   filesNameToRemove: string,
   directoyPath: string
 ): Promise<void> {
-  return new Promise((resolve) => {
-    fs.readdir(path.resolve(directoyPath), (_error, fileNames) => {
-      for (const name of fileNames) {
-        const splitedName = name.split('.')
-        if (splitedName.length === 2) {
-          const fileName = splitedName[0]
-          if (
-            fileName === filesNameToRemove &&
-                        name !== 'default.png'
-          ) {
-            fs.unlinkSync(path.join(directoyPath, name))
-          }
-        }
+  const filesName = await fs.readdir(path.resolve(directoyPath))
+  for (const name of filesName) {
+    const splitedName = name.split('.')
+    if (splitedName.length === 2) {
+      const fileName = splitedName[0]
+      if (fileName === filesNameToRemove && name !== 'default.png') {
+        await fs.unlink(path.join(directoyPath, name))
       }
-      return resolve()
-    })
-  })
+    }
+  }
 }
 
 export default deleteFilesByName

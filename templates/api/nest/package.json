@@ -9,24 +9,14 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "format": "standardx \"{src,apps,libs,test}/**/*.ts\" --fix | snazzy || exit 0",
+    "format": "ts-standard \"{src,apps,libs,test}/**/*.ts\" --fix | snazzy || exit 0",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
-  "eslintConfig": {
-    "rules": {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
-    }
-  },
-  "standardx": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint/eslint-plugin"
-    ],
+  "ts-standard": {
     "envs": [
       "jest"
     ]
@@ -51,11 +41,9 @@
     "@types/jest": "latest",
     "@types/node": "latest",
     "@types/supertest": "latest",
-    "@typescript-eslint/eslint-plugin": "latest",
-    "@typescript-eslint/parser": "latest",
     "jest": "latest",
     "snazzy": "latest",
-    "standardx": "latest",
+    "ts-standard": "latest",
     "supertest": "latest",
     "ts-jest": "latest",
     "ts-loader": "latest",

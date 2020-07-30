@@ -4,7 +4,7 @@ import { AppProps } from 'next/app'
 import 'styles/normalize.css'
 import theme from 'styles/theme'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <>
       <Component {...pageProps} />
@@ -33,4 +33,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default MyApp
+export default App
