@@ -56,7 +56,7 @@ It will ask you some questions (template(s), name, description, etc.), when answ
 --only-api      generate only an API project
 ```
 
-### Tips :
+### Advice :
 
 By default, when you generate a website (front-end) project, there are the icons of the TypeScript logo in various sizes located in the static/public folder.
 
