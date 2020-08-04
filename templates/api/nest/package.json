@@ -9,7 +9,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "format": "ts-standard \"{src,apps,libs,test}/**/*.ts\" --fix | snazzy || exit 0",
+    "format": "ts-standard \"{src,apps,libs,test}/**/*.ts\" --fix | snazzy",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",

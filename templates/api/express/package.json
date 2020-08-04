@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "start": "concurrently \"npm run build\" \"cross-env NODE_ENV=production node build/app.js\"",
-    "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon build/app.js\"",
-    "format": "ts-standard \"./src/**/*.ts\" --fix | snazzy || exit 0",
-    "postinstall": "npm run build"
+    "start": "concurrently \"npm run build\" \"cross-env NODE_ENV=production node build/index.js\"",
+    "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon build/index.js\"",
+    "format": "ts-standard \"./src/**/*.ts\" --fix | snazzy",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "cors": "latest",
     "dotenv": "latest",
     "express": "latest",
+    "express-async-errors": "latest",
     "express-fileupload": "latest",
     "express-http-to-https": "latest",
     "express-validator": "latest",
@@ -20,8 +21,8 @@
     "morgan": "latest",
     "mysql2": "latest",
     "reflect-metadata": "latest",
-    "sequelize": "latest",
-    "sequelize-typescript": "latest",
+    "sequelize": "^5.22.3",
+    "sequelize-typescript": "^1.1.0",
     "tslib": "latest"
   },
   "devDependencies": {

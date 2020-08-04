@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { body } from 'express-validator'
 
 import * as postsController from '../controllers/posts'
+import { validateRequest } from './../middlewares/validateRequest'
 
 const PostsRouter = Router()
 
@@ -18,7 +19,8 @@ PostsRouter.route('/')
         )
         .trim()
     ],
+    validateRequest,
     postsController.createPost
   )
 
-export default PostsRouter
+export { PostsRouter }

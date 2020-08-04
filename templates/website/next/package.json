@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node server",
+    "dev:custom": "cross-env NODE_ENV=development node server",
+    "start:custom": "cross-env NODE_ENV=production node server",
+    "dev": "next",
+    "start": "next start",
     "build": "next build",
     "export": "next export",
-    "start": "cross-env NODE_ENV=production node server",
-    "format": "ts-standard --fix | snazzy || exit 0"
+    "format": "ts-standard --fix | snazzy"
   },
   "dependencies": {
     "axios": "latest",

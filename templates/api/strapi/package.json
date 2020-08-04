@@ -7,7 +7,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "format": "standard --fix | snazzy || exit 0"
+    "format": "standard --fix | snazzy"
   },
   "dependencies": {
     "strapi": "latest",

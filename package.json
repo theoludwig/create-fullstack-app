@@ -1,6 +1,6 @@
 {
   "name": "create-fullstack-app",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
@@ -12,8 +12,8 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start:dev": "node build/index.js app-test --only-website",
-    "format": "ts-standard \"./src/**/*.ts\" --fix | snazzy || exit 0",
-    "prepublish": "npm run build"
+    "format": "ts-standard \"./src/**/*.ts\" --fix | snazzy",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",

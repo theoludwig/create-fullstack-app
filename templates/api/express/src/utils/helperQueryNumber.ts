@@ -5,4 +5,4 @@ function helperQueryNumber (value: string, defaultValue: number): number {
   return defaultValue
 }
 
-export default helperQueryNumber
+export { helperQueryNumber }
