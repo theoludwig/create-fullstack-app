@@ -14,11 +14,15 @@ import { PostsRouter } from './routes/posts'
 const app = express()
 dotenv.config()
 
-app.use(helmet())
-app.use(redirectToHTTPS([/localhost:(\d{4})/]))
-app.use(morgan('dev'))
-app.use(cors())
 app.use(express.json())
+app.use(helmet())
+app.use(cors())
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('dev'))
+}
+if (process.env.NODE_ENV === 'production') {
+  app.use(redirectToHTTPS())
+}
 
 app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use('/posts', PostsRouter)

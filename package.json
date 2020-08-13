@@ -1,6 +1,6 @@
 {
   "name": "create-fullstack-app",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
