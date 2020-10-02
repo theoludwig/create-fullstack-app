@@ -1,7 +1,14 @@
 {
   "name": "api",
-  "version": "1.0.0",
   "private": true,
+  "ts-standard": {
+    "files": [
+      "{src,apps,libs,test}/**/*.ts"
+    ],
+    "envs": [
+      "jest"
+    ]
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -9,17 +16,13 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "format": "ts-standard \"{src,apps,libs,test}/**/*.ts\" --fix | snazzy",
+    "lint": "ts-standard | snazzy",
+    "format": "ts-standard --fix | snazzy",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
-  },
-  "ts-standard": {
-    "envs": [
-      "jest"
-    ]
   },
   "dependencies": {
     "@nestjs/common": "latest",

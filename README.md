@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="https://gitmoji.carloscuesta.me/"><img src="https://camo.githubusercontent.com/2a4924a23bd9ef18afe793f4999b1b9ec474e48f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6769746d6f6a692d253230f09f989c253230f09f988d2d4646444436372e7376673f7374796c653d666c61742d737175617265" alt="Gitmoji"/></a>
   <a href="https://www.npmjs.com/package/ts-standard"><img alt="Typescript Standard Style" src="https://camo.githubusercontent.com/f87caadb70f384c0361ec72ccf07714ef69a5c0a/68747470733a2f2f62616467656e2e6e65742f62616467652f636f64652532307374796c652f74732d7374616e646172642f626c75653f69636f6e3d74797065736372697074"/></a>
+  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
   <a href="https://www.npmjs.com/package/create-fullstack-app"><img src="https://img.shields.io/npm/v/create-fullstack-app.svg" alt="npm version"></a>
   <img src="https://github.com/Divlo/create-fullstack-app/workflows/Node.js%20CI/badge.svg" alt="Node.js CI" />

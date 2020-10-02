@@ -1,15 +1,6 @@
 {
   "name": "api",
-  "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "build": "tsc",
-    "start": "concurrently \"npm run build\" \"cross-env NODE_ENV=production node build/index.js\"",
-    "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon build/index.js\"",
-    "format": "ts-standard \"./src/**/*.ts\" --fix | snazzy",
-    "test": "jest --watchAll --no-cache",
-    "prepare": "npm run build"
-  },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
@@ -19,10 +10,24 @@
     "rootDir": "./src"
   },
   "ts-standard": {
+    "files": [
+      "./src/**/*.ts"
+    ],
     "envs": [
       "node",
       "jest"
     ]
+  },
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "start": "cross-env NODE_ENV=production node build/index.js",
+    "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon -e js,json,yaml build/index.js\"",
+    "lint": "ts-standard | snazzy",
+    "format": "ts-standard --fix | snazzy",
+    "test": "jest",
+    "test:watchAll": "jest --watchAll",
+    "test:clearCache": "jest --clearCache",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "cors": "latest",
@@ -55,6 +60,7 @@
     "cross-env": "latest",
     "jest": "latest",
     "nodemon": "latest",
+    "rimraf": "latest",
     "snazzy": "latest",
     "sqlite": "latest",
     "sqlite3": "latest",

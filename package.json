@@ -8,13 +8,6 @@
     "build",
     "templates"
   ],
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "start:dev": "node build/index.js app-test --only-website",
-    "format": "ts-standard \"./src/**/*.ts\" --fix | snazzy",
-    "prepare": "npm run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Divlo/create-fullstack-app.git"
@@ -38,30 +31,53 @@
     "url": "https://github.com/Divlo/create-fullstack-app/issues"
   },
   "homepage": "https://github.com/Divlo/create-fullstack-app#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "ts-standard": {
+    "files": [
+      "./src/**/*.ts"
+    ],
+    "envs": [
+      "node"
+    ]
+  },
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "dev": "tsc --watch",
+    "start:dev": "node build/index.js app-test --only-website",
+    "lint": "ts-standard | snazzy",
+    "format": "ts-standard --fix | snazzy",
+    "prepare": "npm run build"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "child-process-promise": "^2.2.1",
-    "commander": "^6.0.0",
+    "commander": "^6.1.0",
     "directory-exists": "^2.0.1",
     "inquirer": "^7.3.3",
     "log-symbols": "^4.0.0",
     "make-dir": "^3.1.0",
-    "ora": "^4.0.5",
+    "ora": "^5.1.0",
     "replace-in-file": "^6.1.0",
-    "rimraf": "^3.0.2",
-    "tslib": "^2.0.0",
-    "update-notifier": "^4.1.0",
+    "tslib": "^2.0.1",
+    "update-notifier": "^5.0.0",
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/child-process-promise": "^2.2.1",
-    "@types/inquirer": "^7.3.0",
-    "@types/node": "^14.0.27",
+    "@types/inquirer": "^7.3.1",
+    "@types/node": "^14.11.2",
     "@types/rimraf": "^3.0.0",
-    "@types/update-notifier": "^4.1.0",
+    "@types/update-notifier": "^5.0.0",
     "@types/validate-npm-package-name": "^3.0.0",
+    "rimraf": "^3.0.2",
     "snazzy": "^8.0.0",
-    "ts-standard": "^8.0.1",
-    "typescript": "^3.9.7"
+    "ts-standard": "^9.0.0",
+    "typescript": "^4.0.3"
   }
 }

@@ -1,14 +1,6 @@
 {
   "name": "website",
-  "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
-    "format": "eslint --fix --ext .js,.ts,.vue --ignore-path .gitignore ."
-  },
   "lint-staged": {
     "*.{js,ts,vue}": "eslint"
   },
@@ -16,6 +8,13 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "format": "eslint --fix --ext .js,.ts,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "latest",

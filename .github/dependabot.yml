@@ -1,0 +1,15 @@
+# For more information see: https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+
+  - package-ecosystem: 'npm'
+    versioning-strategy: 'auto'
+    directory: '/'
+    open-pull-requests-limit: 10
+    schedule:
+      interval: 'monthly'

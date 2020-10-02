@@ -1,7 +1,6 @@
 {
   "name": "api",
   "private": true,
-  "version": "1.0.0",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
