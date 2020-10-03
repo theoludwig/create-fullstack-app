@@ -89,6 +89,7 @@
     "@types/rimraf": "^3.0.0",
     "@types/update-notifier": "^5.0.0",
     "@types/validate-npm-package-name": "^3.0.0",
+    "husky": "^4.3.0",
     "jest": "^26.4.2",
     "mock-fs": "^4.13.0",
     "rimraf": "^3.0.2",
