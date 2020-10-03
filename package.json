@@ -36,12 +36,21 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./__test__/setup.ts"
+    ],
+    "rootDir": "./src"
+  },
   "ts-standard": {
     "files": [
       "./src/**/*.ts"
     ],
     "envs": [
-      "node"
+      "node",
+      "jest"
     ]
   },
   "scripts": {
@@ -50,6 +59,9 @@
     "start:dev": "node build/index.js app-test --only-website",
     "lint": "ts-standard | snazzy",
     "format": "ts-standard --fix | snazzy",
+    "test": "jest",
+    "test:watchAll": "jest --watchAll",
+    "test:clearCache": "jest --clearCache",
     "prepare": "npm run build"
   },
   "dependencies": {
@@ -71,12 +83,17 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@types/child-process-promise": "^2.2.1",
     "@types/inquirer": "^7.3.1",
+    "@types/jest": "^26.0.14",
+    "@types/mock-fs": "^4.10.0",
     "@types/node": "^14.11.2",
     "@types/rimraf": "^3.0.0",
     "@types/update-notifier": "^5.0.0",
     "@types/validate-npm-package-name": "^3.0.0",
+    "jest": "^26.4.2",
+    "mock-fs": "^4.13.0",
     "rimraf": "^3.0.2",
     "snazzy": "^8.0.0",
+    "ts-jest": "^26.4.1",
     "ts-standard": "^9.0.0",
     "typescript": "^4.0.3"
   }
