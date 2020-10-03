@@ -4,7 +4,7 @@ about: 'Correct spelling errors, improvements or additions to documentation file
 labels: 'documentation'
 ---
 
-<!--.
+<!--
 Please make sure your issue has not already been fixed.
 
 Please place an x (no spaces - [x]) in all [ ] that apply.
@@ -14,7 +14,7 @@ Please place an x (no spaces - [x]) in all [ ] that apply.
 
 - [ ] Is Missing
 - [ ] Is Confusing
-- [ ] Has Typo errors 
+- [ ] Has Typo errors
 - [ ] Not Sure?
 
 ### Proposal

@@ -4,6 +4,9 @@
   "description": "Create Fullstack TypeScript application with ease.",
   "main": "build/index.js",
   "bin": "build/index.js",
+  "engines": {
+    "node": ">=12"
+  },
   "files": [
     "build",
     "templates"

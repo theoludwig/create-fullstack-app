@@ -12,6 +12,7 @@ Please place an x (no spaces - [x]) in all [ ] that apply.
 -->
 
 ### What type of change does this PR introduce?
+
 - [ ] Create a new project template
 - [ ] Reporting a bug
 - [ ] Improve the CLI
@@ -19,6 +20,7 @@ Please place an x (no spaces - [x]) in all [ ] that apply.
 - [ ] Not sure?
 
 ### Does this PR introduce breaking changes?
+
 - [ ] Yes
 - [ ] No
 
