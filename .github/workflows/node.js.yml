@@ -26,3 +26,9 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm run test
+      - name: 'Cache dependencies'
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
