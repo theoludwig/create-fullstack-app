@@ -96,7 +96,7 @@
     "jest": "^26.4.2",
     "mock-fs": "^4.13.0",
     "rimraf": "^3.0.2",
-    "snazzy": "^8.0.0",
+    "snazzy": "^9.0.0",
     "ts-jest": "^26.4.1",
     "ts-standard": "^9.0.0",
     "typescript": "^4.0.3"
