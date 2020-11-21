@@ -13,7 +13,7 @@ const questionAPITemplate: DistinctQuestion = {
   message: 'Select an API template:',
   choices: templateChoices.api
 }
-const questionCommon: DistinctQuestion = [
+const questionCommon: DistinctQuestion[] = [
   {
     name: 'projectName',
     type: 'input',
