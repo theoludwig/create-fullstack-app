@@ -1,5 +1,6 @@
 import { replaceInFile } from 'replace-in-file'
 import path from 'path'
+import { ReplaceNameDescription } from '../typings'
 
 export async function replaceProjectName (
   files: string[],

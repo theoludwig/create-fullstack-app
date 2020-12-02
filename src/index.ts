@@ -16,6 +16,7 @@ import tryGitInit from './utils/tryGitInit'
 import { getQuestions } from './constants/questions'
 import { TEMPLATE_COMMON_PATH } from './constants/templateChoices'
 import { replaceNameDescriptionInReadme } from './utils/replaceInFiles'
+import { QuestionsAnswers, ReplaceNameDescription } from './typings'
 
 /* eslint-disable-next-line */
 const packageJson = require('../package.json')

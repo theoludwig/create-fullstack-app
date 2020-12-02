@@ -1,4 +1,5 @@
 import path from 'path'
+import { ReplaceFilesObject } from '../typings'
 
 import {
   replaceProjectName,

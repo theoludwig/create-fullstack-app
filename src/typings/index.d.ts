@@ -1,13 +1,13 @@
-interface ReplaceNameDescription {
+export interface ReplaceNameDescription {
   projectName: string
   projectDescription: string
 }
 
-interface ReplaceFilesObject extends ReplaceNameDescription {
+export interface ReplaceFilesObject extends ReplaceNameDescription {
   domainName: string
 }
 
-interface TemplateWebsite {
+export interface TemplateWebsite {
   path: string
   replaceInFiles: (
     directory: string,
@@ -15,11 +15,11 @@ interface TemplateWebsite {
   ) => Promise<void>
 }
 
-interface TemplateAPI {
+export interface TemplateAPI {
   path: string
 }
 
-interface QuestionsAnswers {
+export interface QuestionsAnswers {
   templateWebsite: TemplateWebsite
   templateAPI: TemplateAPI
   projectName: string
