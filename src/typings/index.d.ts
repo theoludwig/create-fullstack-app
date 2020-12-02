@@ -13,10 +13,14 @@ export interface TemplateWebsite {
     directory: string,
     replaceFilesObject: ReplaceFilesObject
   ) => Promise<void>
+  dependencies: string[]
+  devDependencies: string[]
 }
 
 export interface TemplateAPI {
   path: string
+  dependencies: string[]
+  devDependencies: string[]
 }
 
 export interface QuestionsAnswers {

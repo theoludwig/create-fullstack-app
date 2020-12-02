@@ -67,10 +67,9 @@ if (projectDirectoryName == null || typeof projectDirectoryName !== 'string') {
 projectDirectoryName = projectDirectoryName.trim()
 const validationDirectory = validateNpmName(projectDirectoryName)
 if (!validationDirectory.valid) {
-  const problems = validationDirectory.problems != null ? validationDirectory.problems[0] : ''
-  console.error(
-    chalk.red('Invalid directory name: ') + problems
-  )
+  const problems =
+    validationDirectory.problems != null ? validationDirectory.problems[0] : ''
+  console.error(chalk.red('Invalid directory name: ') + problems)
   process.exit(1)
 }
 
@@ -136,13 +135,23 @@ inquirer
       'Installing npm packages. This might take a couple of minutes.',
       async () => {
         if (createdProject.api !== '') {
-          await childProcess.exec('npm install', {
+          const dependencies = templateAPI.dependencies.join(' ')
+          const devDependencies = templateAPI.devDependencies.join(' ')
+          await childProcess.exec(`npm install ${dependencies}`, {
+            cwd: createdProject.api
+          })
+          await childProcess.exec(`npm install --save-dev ${devDependencies}`, {
             cwd: createdProject.api
           })
         }
 
         if (createdProject.website !== '') {
-          await childProcess.exec('npm install', {
+          const dependencies = templateWebsite.dependencies.join(' ')
+          const devDependencies = templateWebsite.devDependencies.join(' ')
+          await childProcess.exec(`npm install ${dependencies}`, {
+            cwd: createdProject.website
+          })
+          await childProcess.exec(`npm install --save-dev ${devDependencies}`, {
             cwd: createdProject.website
           })
         }
@@ -151,8 +160,14 @@ inquirer
 
     /* Replace in files */
     await loading('Replace template variables in files.', async () => {
-      const replaceFilesObject: ReplaceNameDescription = { projectName, projectDescription }
-      await replaceNameDescriptionInReadme(createdProject.rootPath, replaceFilesObject)
+      const replaceFilesObject: ReplaceNameDescription = {
+        projectName,
+        projectDescription
+      }
+      await replaceNameDescriptionInReadme(
+        createdProject.rootPath,
+        replaceFilesObject
+      )
 
       if (createdProject.website !== '') {
         await templateWebsite.replaceInFiles(createdProject.website, {

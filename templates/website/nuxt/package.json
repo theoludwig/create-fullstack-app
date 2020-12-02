@@ -16,22 +16,6 @@
     "generate": "nuxt-ts generate",
     "format": "eslint --fix --ext .js,.ts,.vue --ignore-path .gitignore ."
   },
-  "dependencies": {
-    "@nuxt/typescript-runtime": "latest",
-    "@nuxtjs/axios": "latest",
-    "@nuxtjs/pwa": "latest",
-    "nuxt": "latest"
-  },
-  "devDependencies": {
-    "@nuxt/types": "latest",
-    "@nuxt/typescript-build": "latest",
-    "@nuxtjs/eslint-config": "latest",
-    "@nuxtjs/eslint-config-typescript": "latest",
-    "@nuxtjs/eslint-module": "latest",
-    "babel-eslint": "latest",
-    "eslint": "latest",
-    "eslint-plugin-nuxt": "latest",
-    "husky": "latest",
-    "lint-staged": "latest"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

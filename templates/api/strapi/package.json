@@ -8,21 +8,6 @@
     "strapi": "strapi",
     "format": "standard --fix | snazzy"
   },
-  "dependencies": {
-    "strapi": "latest",
-    "strapi-admin": "latest",
-    "strapi-utils": "latest",
-    "strapi-plugin-content-type-builder": "latest",
-    "strapi-plugin-content-manager": "latest",
-    "strapi-plugin-users-permissions": "latest",
-    "strapi-plugin-email": "latest",
-    "strapi-plugin-upload": "latest",
-    "strapi-connector-bookshelf": "latest",
-    "knex": "latest",
-    "mysql": "latest"
-  },
-  "devDependencies": {
-    "snazzy": "latest",
-    "standard": "latest"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

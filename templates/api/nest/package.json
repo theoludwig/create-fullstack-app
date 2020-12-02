@@ -2,12 +2,18 @@
   "name": "api",
   "private": true,
   "ts-standard": {
-    "files": [
-      "{src,apps,libs,test}/**/*.ts"
-    ],
-    "envs": [
-      "jest"
-    ]
+    "files": ["{src,apps,libs,test}/**/*.ts"],
+    "envs": ["jest"]
+  },
+  "jest": {
+    "moduleFileExtensions": ["js", "json", "ts"],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   },
   "scripts": {
     "prebuild": "rimraf dist",
@@ -24,48 +30,6 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
-  "dependencies": {
-    "@nestjs/common": "latest",
-    "@nestjs/config": "latest",
-    "@nestjs/core": "latest",
-    "@nestjs/platform-express": "latest",
-    "@nestjs/typeorm": "latest",
-    "mysql": "latest",
-    "reflect-metadata": "latest",
-    "rimraf": "latest",
-    "rxjs": "latest",
-    "typeorm": "latest"
-  },
-  "devDependencies": {
-    "@nestjs/cli": "latest",
-    "@nestjs/schematics": "latest",
-    "@nestjs/testing": "latest",
-    "@types/express": "latest",
-    "@types/jest": "latest",
-    "@types/node": "latest",
-    "@types/supertest": "latest",
-    "jest": "latest",
-    "snazzy": "latest",
-    "ts-standard": "latest",
-    "supertest": "latest",
-    "ts-jest": "latest",
-    "ts-loader": "latest",
-    "ts-node": "latest",
-    "tsconfig-paths": "latest",
-    "typescript": "latest"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

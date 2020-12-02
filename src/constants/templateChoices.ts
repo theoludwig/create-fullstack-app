@@ -17,48 +17,48 @@ export const templateChoices = {
     {
       name: 'Express.js with Sequelize (ORM)',
       value: {
-        path: path.join(TEMPLATE_API_PATH, 'express')
-      },
-      dependencies: [
-        'cors',
-        'dotenv',
-        'express',
-        'express-async-errors',
-        'express-fileupload',
-        'express-http-to-https',
-        'express-validator',
-        'helmet',
-        'morgan',
-        'mysql2',
-        'reflect-metadata',
-        'sequelize@5.22.3',
-        'sequelize-typescript@1.1.0',
-        'tslib'
-      ],
-      devDependencies: [
-        '@types/bluebird',
-        '@types/cors',
-        '@types/express',
-        '@types/express-fileupload',
-        '@types/helmet',
-        '@types/jest',
-        '@types/morgan',
-        '@types/node',
-        '@types/supertest',
-        '@types/validator',
-        'concurrently',
-        'cross-env',
-        'jest',
-        'nodemon',
-        'rimraf',
-        'snazzy',
-        'sqlite',
-        'sqlite3',
-        'supertest',
-        'ts-jest',
-        'ts-standard',
-        'typescript'
-      ]
+        path: path.join(TEMPLATE_API_PATH, 'express'),
+        dependencies: [
+          'cors',
+          'dotenv',
+          'express',
+          'express-async-errors',
+          'express-fileupload',
+          'express-http-to-https',
+          'express-validator',
+          'helmet',
+          'morgan',
+          'mysql2',
+          'reflect-metadata',
+          'sequelize@5.22.3',
+          'sequelize-typescript@1.1.0',
+          'tslib'
+        ],
+        devDependencies: [
+          '@types/bluebird',
+          '@types/cors',
+          '@types/express',
+          '@types/express-fileupload',
+          '@types/helmet',
+          '@types/jest',
+          '@types/morgan',
+          '@types/node',
+          '@types/supertest',
+          '@types/validator',
+          'concurrently',
+          'cross-env',
+          'jest',
+          'nodemon',
+          'rimraf',
+          'snazzy',
+          'sqlite',
+          'sqlite3',
+          'supertest',
+          'ts-jest',
+          'ts-standard',
+          'typescript'
+        ]
+      }
     },
     {
       name: 'Strapi (Headless CMS)',
@@ -84,38 +84,38 @@ export const templateChoices = {
       name:
         'Nest.js (framework for building efficient, scalable server-side applications)',
       value: {
-        path: path.join(TEMPLATE_API_PATH, 'nest')
-      },
-      dependencies: [
-        '@nestjs/common',
-        '@nestjs/config',
-        '@nestjs/core',
-        '@nestjs/platform-express',
-        '@nestjs/typeorm',
-        'mysql',
-        'reflect-metadata',
-        'rimraf',
-        'rxjs',
-        'typeorm'
-      ],
-      devDependencies: [
-        '@nestjs/cli',
-        '@nestjs/schematics',
-        '@nestjs/testing',
-        '@types/express',
-        '@types/jest',
-        '@types/node',
-        '@types/supertest',
-        'jest',
-        'snazzy',
-        'ts-standard',
-        'supertest',
-        'ts-jest',
-        'ts-loader',
-        'ts-node',
-        'tsconfig-paths',
-        'typescript'
-      ]
+        path: path.join(TEMPLATE_API_PATH, 'nest'),
+        dependencies: [
+          '@nestjs/common',
+          '@nestjs/config',
+          '@nestjs/core',
+          '@nestjs/platform-express',
+          '@nestjs/typeorm',
+          'mysql',
+          'reflect-metadata',
+          'rimraf',
+          'rxjs',
+          'typeorm'
+        ],
+        devDependencies: [
+          '@nestjs/cli',
+          '@nestjs/schematics',
+          '@nestjs/testing',
+          '@types/express',
+          '@types/jest',
+          '@types/node',
+          '@types/supertest',
+          'jest',
+          'snazzy',
+          'ts-standard',
+          'supertest',
+          'ts-jest',
+          'ts-loader',
+          'ts-node',
+          'tsconfig-paths',
+          'typescript'
+        ]
+      }
     }
   ],
   website: [
@@ -132,28 +132,28 @@ export const templateChoices = {
           await replaceProjectName([headTag, manifestJSON], projectName)
           await replaceProjectDescription([headTag], projectDescription)
           await replaceDomainName([headTag], domainName)
-        }
-      },
-      dependencies: [
-        'axios',
-        'express',
-        'express-http-to-https',
-        'next',
-        'next-fonts',
-        'next-pwa',
-        'nextjs-redirect',
-        'react',
-        'react-dom'
-      ],
-      devDependencies: [
-        '@types/node',
-        '@types/react',
-        '@types/styled-jsx',
-        'cross-env',
-        'snazzy',
-        'ts-standard',
-        'typescript'
-      ]
+        },
+        dependencies: [
+          'axios',
+          'express',
+          'express-http-to-https',
+          'next',
+          'next-fonts',
+          'next-pwa',
+          'nextjs-redirect',
+          'react',
+          'react-dom'
+        ],
+        devDependencies: [
+          '@types/node',
+          '@types/react',
+          '@types/styled-jsx',
+          'cross-env',
+          'snazzy',
+          'ts-standard',
+          'typescript'
+        ]
+      }
     },
     {
       name: 'Vue.js with Nuxt.js (server-side rendering)',
@@ -167,20 +167,20 @@ export const templateChoices = {
           await replaceProjectName([nuxtConfig], projectName)
           await replaceProjectDescription([nuxtConfig], projectDescription)
           await replaceDomainName([nuxtConfig], domainName)
-        }
-      },
-      dependencies: [
-        '@nuxt/typescript-runtime',
-        '@nuxtjs/axios',
-        '@nuxtjs/pwa',
-        'nuxt'
-      ],
-      devDependencies: [
-        '@nuxt/typescript-runtime',
-        '@nuxtjs/axios',
-        '@nuxtjs/pwa',
-        'nuxt'
-      ]
+        },
+        dependencies: [
+          '@nuxt/typescript-runtime',
+          '@nuxtjs/axios',
+          '@nuxtjs/pwa',
+          'nuxt'
+        ],
+        devDependencies: [
+          '@nuxt/typescript-runtime',
+          '@nuxtjs/axios',
+          '@nuxtjs/pwa',
+          'nuxt'
+        ]
+      }
     }
   ]
 }

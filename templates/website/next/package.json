@@ -10,24 +10,6 @@
     "export": "next export",
     "format": "ts-standard --fix | snazzy"
   },
-  "dependencies": {
-    "axios": "latest",
-    "express": "latest",
-    "express-http-to-https": "latest",
-    "next": "latest",
-    "next-fonts": "latest",
-    "next-pwa": "latest",
-    "nextjs-redirect": "latest",
-    "react": "latest",
-    "react-dom": "latest"
-  },
-  "devDependencies": {
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/styled-jsx": "latest",
-    "cross-env": "latest",
-    "snazzy": "latest",
-    "ts-standard": "latest",
-    "typescript": "latest"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

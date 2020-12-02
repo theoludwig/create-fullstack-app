@@ -4,19 +4,12 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "./__test__/setup.ts"
-    ],
+    "setupFilesAfterEnv": ["./__test__/setup.ts"],
     "rootDir": "./src"
   },
   "ts-standard": {
-    "files": [
-      "./src/**/*.ts"
-    ],
-    "envs": [
-      "node",
-      "jest"
-    ]
+    "files": ["./src/**/*.ts"],
+    "envs": ["node", "jest"]
   },
   "scripts": {
     "build": "rimraf ./build && tsc",
@@ -29,44 +22,6 @@
     "test:clearCache": "jest --clearCache",
     "prepare": "npm run build"
   },
-  "dependencies": {
-    "cors": "latest",
-    "dotenv": "latest",
-    "express": "latest",
-    "express-async-errors": "latest",
-    "express-fileupload": "latest",
-    "express-http-to-https": "latest",
-    "express-validator": "latest",
-    "helmet": "latest",
-    "morgan": "latest",
-    "mysql2": "latest",
-    "reflect-metadata": "latest",
-    "sequelize": "^5.22.3",
-    "sequelize-typescript": "^1.1.0",
-    "tslib": "latest"
-  },
-  "devDependencies": {
-    "@types/bluebird": "latest",
-    "@types/cors": "latest",
-    "@types/express": "latest",
-    "@types/express-fileupload": "latest",
-    "@types/helmet": "latest",
-    "@types/jest": "latest",
-    "@types/morgan": "latest",
-    "@types/node": "latest",
-    "@types/supertest": "latest",
-    "@types/validator": "latest",
-    "concurrently": "latest",
-    "cross-env": "latest",
-    "jest": "latest",
-    "nodemon": "latest",
-    "rimraf": "latest",
-    "snazzy": "latest",
-    "sqlite": "latest",
-    "sqlite3": "latest",
-    "supertest": "latest",
-    "ts-jest": "latest",
-    "ts-standard": "latest",
-    "typescript": "latest"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
