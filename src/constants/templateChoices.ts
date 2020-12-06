@@ -78,7 +78,7 @@ export const templateChoices = {
           'mysql'
         ],
         devDependencies: ['snazzy', 'standard']
-      },
+      }
     },
     {
       name:
