@@ -63,22 +63,22 @@ export const templateChoices = {
     {
       name: 'Strapi (Headless CMS)',
       value: {
-        path: path.join(TEMPLATE_API_PATH, 'strapi')
+        path: path.join(TEMPLATE_API_PATH, 'strapi'),
+        dependencies: [
+          'strapi',
+          'strapi-admin',
+          'strapi-utils',
+          'strapi-plugin-content-type-builder',
+          'strapi-plugin-content-manager',
+          'strapi-plugin-users-permissions',
+          'strapi-plugin-email',
+          'strapi-plugin-upload',
+          'strapi-connector-bookshelf',
+          'knex',
+          'mysql'
+        ],
+        devDependencies: ['snazzy', 'standard']
       },
-      dependencies: [
-        'strapi',
-        'strapi-admin',
-        'strapi-utils',
-        'strapi-plugin-content-type-builder',
-        'strapi-plugin-content-manager',
-        'strapi-plugin-users-permissions',
-        'strapi-plugin-email',
-        'strapi-plugin-upload',
-        'strapi-connector-bookshelf',
-        'knex',
-        'mysql'
-      ],
-      devDependencies: ['snazzy', 'standard']
     },
     {
       name:
