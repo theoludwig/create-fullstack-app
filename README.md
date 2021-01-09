@@ -5,11 +5,12 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/ts-standard"><img alt="Typescript Standard Style" src="https://camo.githubusercontent.com/f87caadb70f384c0361ec72ccf07714ef69a5c0a/68747470733a2f2f62616467656e2e6e65742f62616467652f636f64652532307374796c652f74732d7374616e646172642f626c75653f69636f6e3d74797065736372697074"/></a>
-  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
+  <a href="https://github.com/Divlo/create-fullstack-app/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/Divlo/create-fullstack-app/workflows/Node.js%20CI/badge.svg" alt="Node.js CI" /></a>
   <a href="https://www.npmjs.com/package/create-fullstack-app"><img src="https://img.shields.io/npm/v/create-fullstack-app.svg" alt="npm version"></a>
-  <img src="https://github.com/Divlo/create-fullstack-app/workflows/Node.js%20CI/badge.svg" alt="Node.js CI" />
+  <a href="https://www.npmjs.com/package/ts-standard"><img alt="Typescript Standard Style" src="https://camo.githubusercontent.com/f87caadb70f384c0361ec72ccf07714ef69a5c0a/68747470733a2f2f62616467656e2e6e65742f62616467652f636f64652532307374796c652f74732d7374616e646172642f626c75653f69636f6e3d74797065736372697074"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
+  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits" /></a>
+  <a href="./.github/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
   <br/> <br/>
   <a href="https://github.com/GoogleChrome/lighthouse"><img width="650px" src="https://raw.githubusercontent.com/Divlo/create-fullstack-app/master/.github/lighthouse_google-chrome.gif" alt="Google Chrome Lighthouse" /></a>
 </p>
@@ -24,14 +25,14 @@
 - ✨ Follow [Typescript Standard Style](https://www.npmjs.com/package/ts-standard)
 - ⚡️ Easy to use
 
-## 📦 Templates availables :
+## 📦 Templates availables
 
-### Website (front-end) :
+### Website (front-end)
 
 - [React.js](https://reactjs.org/) with [Next.js](https://nextjs.org/) (server-side rendering)
 - [Vue.js](https://vuejs.org/) with [Nuxt.js](https://nuxtjs.org/) (server-side rendering)
 
-### API (back-end) :
+### API (back-end)
 
 _Note : The projects templates use [MySQL](https://www.mysql.com/) as database._
 
@@ -47,20 +48,20 @@ npx create-fullstack-app <directory-name>
 
 It will ask you some questions (template(s), name, description, etc.), when answered, it will copy and install all the dependencies needed for your project.
 
-### Options :
+### Options
 
-```
+```text
 -V, --version   output the version number
 -h, --help      display help for command
 --only-website  generate only a website project
 --only-api      generate only an API project
 ```
 
-### Advice :
+## 💡 Contributing
 
-By default, when you generate a website (front-end) project, there are the icons of the TypeScript logo in various sizes located in the static/public folder.
+Anyone can help to improve the project, submit a Feature Request, a bug report or even correct a simple spelling mistake.
 
-You can easily generate you own icons of various sizes thanks to [Web App Manifest Generator](https://app-manifest.firebaseapp.com/).
+The steps to contribute can be found in the [CONTRIBUTING.md](./.github/CONTRIBUTING.md) file.
 
 ## 📄 License
 

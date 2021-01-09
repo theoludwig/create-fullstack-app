@@ -2,20 +2,20 @@
 
 Thanks a lot for your interest in contributing to **create-fullstack-app**! 🎉
 
-## Types of contributions :
+## Types of contributions
 
 - Create a new project template
 - Reporting a bug
 - Improve the CLI
 - Correct a spelling error
 
-## Pull Requests :
+## Pull Requests
 
 - **Please first discuss** the change you wish to make via [issue](https://github.com/Divlo/create-fullstack-app/issues) before making a change. It might avoid a waste of your time.
 
 - Ensure your code respect [Typescript Standard Style](https://www.npmjs.com/package/ts-standard).
 
-- Make sure your code passes the tests.
+- Make sure your **code passes the tests**.
 
 If you're adding new features to **create-fullstack-app**, please include tests.
 
@@ -58,7 +58,7 @@ git commit -m "docs(readme): update installation process"
 git commit -m "fix(template): remove bugs"
 ```
 
-## Create a new project template :
+## Create a new project template
 
 You can create a new template by following these steps, for the example we'll add a [fastify](https://www.fastify.io/) template.
 

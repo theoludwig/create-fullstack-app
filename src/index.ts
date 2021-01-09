@@ -185,7 +185,7 @@ inquirer
     }
 
     console.log(
-      `\n ${chalk.green('Success!')} Created "${projectName}" at ${
+      `\n ${chalk.green('Success:')} created "${projectName}" at ${
         createdProject.rootPath
       }`
     )
