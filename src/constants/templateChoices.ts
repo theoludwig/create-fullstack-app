@@ -134,21 +134,27 @@ export const templateChoices = {
           await replaceDomainName([headTag], domainName)
         },
         dependencies: [
+          '@fontsource/roboto',
           'axios',
-          'express',
-          'express-http-to-https',
           'next',
-          'next-fonts',
           'next-pwa',
-          'nextjs-redirect',
+          'normalize.css',
           'react',
           'react-dom'
         ],
         devDependencies: [
+          '@commitlint/cli',
+          '@commitlint/config-conventional',
+          '@lhci/cli',
+          '@release-it/conventional-changelog',
+          '@styled-jsx/plugin-sass',
           '@types/node',
           '@types/react',
           '@types/styled-jsx',
-          'cross-env',
+          'copy-env-cli',
+          'husky',
+          'release-it',
+          'sass',
           'snazzy',
           'ts-standard',
           'typescript'

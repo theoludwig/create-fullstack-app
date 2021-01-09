@@ -1,31 +1,42 @@
-import { AppProps } from 'next/app'
+import '@fontsource/roboto/400.css'
 
-/* Global CSS (and Fonts) Imports */
-import 'styles/normalize.css'
-import theme from 'styles/theme'
+import 'normalize.css/normalize.css'
+
+import { AppProps } from 'next/app'
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <>
       <Component {...pageProps} />
 
-      <style jsx global>{`
-          *,
+      <style jsx global>
+        {`
           *::before,
           *::after {
             box-sizing: border-box;
           }
-          #__next {
-            min-height: 100vh;
+          html {
+            font-size: 62.5%; /* 1 rem = 10px; 10px/16px = 62.5% */
           }
           body {
+            --default-font-size: 1.6rem;
+            --color-background-primary: #181818;
+            --color-primary: #ffd800;
+            --color-secondary: rgb(222, 222, 222);
+
             display: flex;
             flex-flow: column wrap;
-            background-color: ${theme.colors.background};
-            color: ${theme.colors.text};
-            font-family: ${theme.fontFamily};
+            background-color: var(--color-background-primary);
+            color: var(--color-secondary);
+            font-size: var(--default-font-size);
+            font-family: 'Roboto', 'Arial', 'sans-serif';
             font-weight: 400;
-            font-size: 18px;
+          }
+          #__next {
+            max-width: 100%;
+          }
+          a {
+            color: var(--color-primary);
           }
         `}
       </style>

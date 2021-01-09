@@ -1,12 +1,12 @@
 import Head from 'components/Head'
-import styles from 'styles/errors.module.css'
+import { ErrorPage } from 'components/ErrorPage'
 
 const Error500: React.FC = () => {
   return (
     <>
-      <Head />
+      <Head title='Server Error' />
 
-      <p className={styles.errorParagraph}>500 Error ❌</p>
+      <ErrorPage message='Internal Server Error.' statusCode={500} />
     </>
   )
 }

@@ -1,12 +1,12 @@
 import Head from 'components/Head'
-import styles from 'styles/errors.module.css'
+import { ErrorPage } from 'components/ErrorPage'
 
 const Error404: React.FC = () => {
   return (
     <>
-      <Head />
+      <Head title='Not Found' />
 
-      <p className={styles.errorParagraph}>404 Error ❌</p>
+      <ErrorPage message='This page could not be found.' statusCode={404} />
     </>
   )
 }
