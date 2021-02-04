@@ -92,20 +92,30 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "tslib": "2.1.0"
+    "chalk": "4.1.0",
+    "clipanion": "3.0.0-rc.6",
+    "ora": "5.3.0",
+    "rimraf": "3.0.2",
+    "tslib": "2.1.0",
+    "update-notifier": "5.0.1",
+    "validate-npm-package-name": "3.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@release-it/conventional-changelog": "2.0.0",
     "@types/jest": "26.0.20",
-    "@types/node": "14.14.20",
-    "husky": "4.3.7",
+    "@types/mock-fs": "4.13.0",
+    "@types/node": "14.14.25",
+    "@types/rimraf": "3.0.0",
+    "@types/update-notifier": "5.0.0",
+    "@types/validate-npm-package-name": "3.0.2",
+    "husky": "4.3.8",
     "jest": "26.6.3",
-    "release-it": "14.2.2",
-    "rimraf": "3.0.2",
+    "mock-fs": "4.13.0",
+    "release-it": "14.3.0",
     "snazzy": "9.0.0",
-    "ts-jest": "26.4.4",
+    "ts-jest": "26.5.0",
     "ts-standard": "10.0.0",
     "typescript": "4.1.3"
   }
