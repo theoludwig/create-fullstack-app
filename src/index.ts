@@ -16,7 +16,7 @@ import tryGitInit from './utils/tryGitInit'
 import { checkFileExists } from './utils/checkFileExists'
 import { getQuestions } from './constants/question'
 import { TEMPLATE_COMMON_PATH } from './constants/templateChoices'
-import { QuestionsAnswers } from './typings/utils'
+import { QuestionsAnswers, TemplateAPI, TemplateWebsite } from './typings/utils'
 
 const CURRENT_DIRECTORY = process.cwd()
 
@@ -64,7 +64,38 @@ export class CreateFullstackAppCommand extends Command {
       projectName
     } = answers as QuestionsAnswers
 
-    /* Copy files */
+    const createdProject = await this.copyFiles({
+      templateAPI,
+      templateWebsite
+    })
+    await this.installPackages({
+      templateAPI,
+      templateWebsite,
+      createdProject
+    })
+    this.tryGitInit(createdProject)
+
+    console.log(
+      `\n ${chalk.green('Success:')} created "${projectName}" at ${
+        createdProject.rootPath
+      }`
+    )
+
+    return 0
+  }
+
+  private async copyFiles ({
+    templateAPI,
+    templateWebsite
+  }: {
+    templateAPI: TemplateAPI
+    templateWebsite: TemplateWebsite
+  }): Promise<{
+      website: string
+      api: string
+      rootPath: string
+      isFullstack: boolean
+    }> {
     const createdProject = {
       website: '',
       api: '',
@@ -72,6 +103,7 @@ export class CreateFullstackAppCommand extends Command {
       isFullstack: false
     }
     await loading('Copy files.', async () => {
+      const projectDirectory = path.join(CURRENT_DIRECTORY, this.directoryName)
       createdProject.rootPath = await makeDir(projectDirectory)
       await copyDirectory(TEMPLATE_COMMON_PATH, createdProject.rootPath)
 
@@ -97,8 +129,23 @@ export class CreateFullstackAppCommand extends Command {
       await copyDirectory(templateAPI.path, createdProject.api)
       createdProject.isFullstack = true
     })
+    return createdProject
+  }
 
-    /* Installing NPM packages... */
+  private async installPackages ({
+    templateAPI,
+    templateWebsite,
+    createdProject
+  }: {
+    templateAPI: TemplateAPI
+    templateWebsite: TemplateWebsite
+    createdProject: {
+      website: string
+      api: string
+      rootPath: string
+      isFullstack: boolean
+    }
+  }): Promise<void> {
     await loading(
       'Installing npm packages. This might take a couple of minutes.',
       async () => {
@@ -125,20 +172,18 @@ export class CreateFullstackAppCommand extends Command {
         }
       }
     )
+  }
 
-    /* Try git init */
+  private tryGitInit (createdProject: {
+    website: string
+    api: string
+    rootPath: string
+    isFullstack: boolean
+  }): void {
     process.chdir(createdProject.rootPath)
     if (tryGitInit(createdProject.rootPath)) {
       console.log(logSymbols.success, 'Initialized a git repository.')
     }
-
-    console.log(
-      `\n ${chalk.green('Success:')} created "${projectName}" at ${
-        createdProject.rootPath
-      }`
-    )
-
-    return 0
   }
 }
 
