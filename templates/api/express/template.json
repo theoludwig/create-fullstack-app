@@ -1,0 +1,42 @@
+{
+  "name": "Express.js with Sequelize (ORM)",
+  "dependencies": [
+    "cors",
+    "dotenv",
+    "express",
+    "express-async-errors",
+    "express-fileupload",
+    "express-http-to-https",
+    "express-validator",
+    "helmet",
+    "morgan",
+    "mysql2",
+    "reflect-metadata",
+    "sequelize",
+    "sequelize-typescript",
+    "tslib"
+  ],
+  "devDependencies": [
+    "@types/cors",
+    "@types/express",
+    "@types/express-fileupload",
+    "@types/helmet",
+    "@types/jest",
+    "@types/morgan",
+    "@types/node",
+    "@types/supertest",
+    "@types/validator",
+    "concurrently",
+    "cross-env",
+    "jest",
+    "nodemon",
+    "rimraf",
+    "snazzy",
+    "sqlite",
+    "sqlite3",
+    "supertest",
+    "ts-jest",
+    "ts-standard",
+    "typescript"
+  ]
+}

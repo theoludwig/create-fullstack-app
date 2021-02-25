@@ -3,7 +3,6 @@ import { sequelize } from './utils/database/sequelize'
 
 const PORT = parseInt(process.env.PORT ?? '8080', 10)
 
-// sequelize.sync({ force: true })
 sequelize
   .sync()
   .then(() => {

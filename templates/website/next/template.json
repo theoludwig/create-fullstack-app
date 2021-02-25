@@ -1,0 +1,29 @@
+{
+  "name": "React.js with Next.js (server-side rendering)",
+  "dependencies": [
+    "@fontsource/roboto",
+    "axios",
+    "next",
+    "next-pwa",
+    "normalize.css",
+    "react",
+    "react-dom"
+  ],
+  "devDependencies": [
+    "@commitlint/cli",
+    "@commitlint/config-conventional",
+    "@lhci/cli",
+    "@release-it/conventional-changelog",
+    "@styled-jsx/plugin-sass",
+    "@types/node",
+    "@types/react",
+    "@types/styled-jsx",
+    "copy-env-cli",
+    "husky",
+    "release-it",
+    "sass",
+    "snazzy",
+    "ts-standard",
+    "typescript"
+  ]
+}

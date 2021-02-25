@@ -1,0 +1,15 @@
+{
+  "name": "Vue.js with Nuxt.js (server-side rendering)",
+  "dependencies": [
+    "@nuxt/typescript-runtime",
+    "@nuxtjs/axios",
+    "@nuxtjs/pwa",
+    "nuxt"
+  ],
+  "devDependencies": [
+    "@nuxt/typescript-runtime",
+    "@nuxtjs/axios",
+    "@nuxtjs/pwa",
+    "nuxt"
+  ]
+}
