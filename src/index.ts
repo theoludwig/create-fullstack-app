@@ -1,11 +1,22 @@
+#!/usr/bin/env node
 import chalk from 'chalk'
 import path from 'path'
+import logSymbols from 'log-symbols'
+import childProcess from 'child-process-promise'
 import { Builtins, Cli, Command, Option } from 'clipanion'
 import updateNotifier from 'update-notifier'
+import makeDir from 'make-dir'
+import inquirer from 'inquirer'
 
 import { getPackageJSON } from './utils/getPackageJSON'
 import validateNpmName from './utils/validateNpmName'
+import copyDirectory from './utils/copyDirectory'
+import { loading } from './utils/loading'
+import tryGitInit from './utils/tryGitInit'
 import { checkFileExists } from './utils/checkFileExists'
+import { getQuestions } from './constants/question'
+import { TEMPLATE_COMMON_PATH } from './constants/templateChoices'
+import { QuestionsAnswers } from './typings/utils'
 
 const CURRENT_DIRECTORY = process.cwd()
 
@@ -44,6 +55,89 @@ export class CreateFullstackAppCommand extends Command {
       return 1
     }
 
+    const answers = await inquirer.prompt(
+      getQuestions(this.onlyAPI, this.onlyWebsite)
+    )
+    const {
+      templateWebsite,
+      templateAPI,
+      projectName
+    } = answers as QuestionsAnswers
+
+    /* Copy files */
+    const createdProject = {
+      website: '',
+      api: '',
+      rootPath: '',
+      isFullstack: false
+    }
+    await loading('Copy files.', async () => {
+      createdProject.rootPath = await makeDir(projectDirectory)
+      await copyDirectory(TEMPLATE_COMMON_PATH, createdProject.rootPath)
+
+      if (this.onlyAPI) {
+        createdProject.api = createdProject.rootPath
+        await copyDirectory(templateAPI.path, createdProject.rootPath)
+        return
+      }
+
+      if (this.onlyWebsite) {
+        createdProject.website = createdProject.rootPath
+        await copyDirectory(templateWebsite.path, createdProject.rootPath)
+        return
+      }
+
+      createdProject.website = await makeDir(
+        path.join(createdProject.rootPath, 'website')
+      )
+      createdProject.api = await makeDir(
+        path.join(createdProject.rootPath, 'api')
+      )
+      await copyDirectory(templateWebsite.path, createdProject.website)
+      await copyDirectory(templateAPI.path, createdProject.api)
+      createdProject.isFullstack = true
+    })
+
+    /* Installing NPM packages... */
+    await loading(
+      'Installing npm packages. This might take a couple of minutes.',
+      async () => {
+        if (createdProject.api !== '') {
+          const dependencies = templateAPI.dependencies.join(' ')
+          const devDependencies = templateAPI.devDependencies.join(' ')
+          await childProcess.exec(`npm install ${dependencies}`, {
+            cwd: createdProject.api
+          })
+          await childProcess.exec(`npm install --save-dev ${devDependencies}`, {
+            cwd: createdProject.api
+          })
+        }
+
+        if (createdProject.website !== '') {
+          const dependencies = templateWebsite.dependencies.join(' ')
+          const devDependencies = templateWebsite.devDependencies.join(' ')
+          await childProcess.exec(`npm install ${dependencies}`, {
+            cwd: createdProject.website
+          })
+          await childProcess.exec(`npm install --save-dev ${devDependencies}`, {
+            cwd: createdProject.website
+          })
+        }
+      }
+    )
+
+    /* Try git init */
+    process.chdir(createdProject.rootPath)
+    if (tryGitInit(createdProject.rootPath)) {
+      console.log(logSymbols.success, 'Initialized a git repository.')
+    }
+
+    console.log(
+      `\n ${chalk.green('Success:')} created "${projectName}" at ${
+        createdProject.rootPath
+      }`
+    )
+
     return 0
   }
 }
@@ -52,7 +146,7 @@ async function main (): Promise<void> {
   const packageJSON = await getPackageJSON()
   const cli = new Cli({
     binaryLabel: packageJSON.name,
-    binaryName: `${packageJSON.name}`,
+    binaryName: packageJSON.name,
     binaryVersion: packageJSON.version
   })
   cli.register(CreateFullstackAppCommand)
