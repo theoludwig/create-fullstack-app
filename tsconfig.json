@@ -12,7 +12,7 @@
     "rootDir": "./src",
     "removeComments": false,
     "noEmitOnError": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
