@@ -1,18 +1,15 @@
-import { templateChoices } from './templateChoices'
 import { QuestionCollection, DistinctQuestion } from 'inquirer'
 
-const questionWebsiteTemplate: DistinctQuestion = {
-  name: 'templateWebsite',
-  type: 'list',
-  message: 'Select a Website template:',
-  choices: templateChoices.website
+import { getTemplates } from './Template'
+
+export interface QuestionsAnswers {
+  templateWebsite: string
+  templateAPI: string
+  projectName: string
+  projectDescription: string
+  domainName: string
 }
-const questionAPITemplate: DistinctQuestion = {
-  name: 'templateAPI',
-  type: 'list',
-  message: 'Select an API template:',
-  choices: templateChoices.api
-}
+
 const questionCommon: DistinctQuestion[] = [
   {
     name: 'projectName',
@@ -31,10 +28,24 @@ const questionDomainName: DistinctQuestion = {
   message: 'Project domain name in production:'
 }
 
-export function getQuestions (
+export async function getQuestions (
   onlyApi: boolean,
   onlyWebsite: boolean
-): QuestionCollection {
+): Promise<QuestionCollection> {
+  const templateChoices = await getTemplates()
+  const questionWebsiteTemplate: DistinctQuestion = {
+    name: 'templateWebsite',
+    type: 'list',
+    message: 'Select a Website template:',
+    choices: templateChoices.website
+  }
+  const questionAPITemplate: DistinctQuestion = {
+    name: 'templateAPI',
+    type: 'list',
+    message: 'Select an API template:',
+    choices: templateChoices.api
+  }
+
   if (onlyApi) {
     return [questionAPITemplate, ...questionCommon]
   }

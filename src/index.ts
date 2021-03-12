@@ -4,11 +4,9 @@ import { Builtins, Cli } from 'clipanion'
 import updateNotifier from 'update-notifier'
 
 import { getPackageJSON } from './utils/getPackageJSON'
-import { CreateFullstackAppCommand } from './CreateFullstackAppCommand'
+import { CreateFullstackAppCommand } from './commands/CreateFullstackAppCommand'
 
 const [, , ...args] = process.argv
-
-// TODO: Read dynamically the templates availables with folder and read json file
 
 async function main (): Promise<void> {
   const packageJSON = await getPackageJSON()

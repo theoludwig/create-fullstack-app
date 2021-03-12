@@ -1,7 +1,7 @@
 import fsMock from 'mock-fs'
 import * as fsWithCallbacks from 'fs'
 
-import copyDirectory from '../copyDirectory'
+import { copyDirectory } from '../copyDirectory'
 
 const fs = fsWithCallbacks.promises
 
