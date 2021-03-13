@@ -27,7 +27,7 @@ export class CreateFullstackAppCommand extends Command {
     if (this.onlyAPI && this.onlyWebsite) {
       this.context.stderr.write(
         `${chalk.red(
-          "You can't set both --onlyAPI and --onlyWebsite flags."
+          "You can't set both --only-api and --only-website options."
         )}\n`
       )
       return 1
