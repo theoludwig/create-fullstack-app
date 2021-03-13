@@ -1,6 +1,9 @@
 import ora from 'ora'
 
-const loading = async (text: string, callback: () => Promise<void>): Promise<void> => {
+export const loading = async (
+  text: string,
+  callback: () => Promise<void>
+): Promise<void> => {
   const loader = ora({
     text,
     spinner: 'dots',
@@ -9,5 +12,3 @@ const loading = async (text: string, callback: () => Promise<void>): Promise<voi
   await callback()
   loader.succeed()
 }
-
-export default loading

@@ -1,0 +1,31 @@
+# dependencies
+node_modules
+.npm
+
+# next.js
+.next
+out
+
+# production
+build
+dist
+
+# PWA
+**/public/workbox-*.js
+**/public/sw.js
+
+# envs
+.env
+.env.production
+
+# debug
+npm-debug.log*
+
+# editors
+.vscode
+.theia
+.idea
+
+# misc
+.DS_Store
+.lighthouseci

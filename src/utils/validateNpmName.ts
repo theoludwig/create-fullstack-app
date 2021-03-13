@@ -1,19 +1,19 @@
 import validateProjectName from 'validate-npm-package-name'
 
-function validateNpmName (
-  name: string
-): { valid: boolean, problems?: string[] } {
+function validateNpmName (name: string): { isValid: boolean, problem: string } {
   const nameValidation = validateProjectName(name)
   if (nameValidation.validForNewPackages) {
-    return { valid: true }
+    return { isValid: true, problem: '' }
   }
 
+  const problems = [
+    ...(nameValidation.errors ?? []),
+    ...(nameValidation.warnings ?? [])
+  ]
+
   return {
-    valid: false,
-    problems: [
-      ...(nameValidation.errors ?? []),
-      ...(nameValidation.warnings ?? [])
-    ]
+    isValid: false,
+    problem: problems[0] ?? ''
   }
 }
 

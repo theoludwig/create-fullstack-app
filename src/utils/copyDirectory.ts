@@ -3,7 +3,7 @@ import path from 'path'
 
 const fs = fsWithCallbacks.promises
 
-async function copyDirectory (
+export async function copyDirectory (
   source: string,
   destination: string
 ): Promise<void> {
@@ -23,5 +23,3 @@ async function copyDirectory (
     }
   }
 }
-
-export default copyDirectory

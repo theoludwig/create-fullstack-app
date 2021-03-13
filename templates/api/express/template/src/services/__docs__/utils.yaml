@@ -1,0 +1,16 @@
+definitions:
+  PaginateModel:
+    type: 'object'
+    properties:
+      hasMore:
+        type: 'boolean'
+      totalItems:
+        type: 'number'
+  PaginateModelParameters:
+    'parameters':
+      - name: 'itemsPerPage'
+        in: 'query'
+        required: false
+      - name: 'page'
+        in: 'query'
+        required: false

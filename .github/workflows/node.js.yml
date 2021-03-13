@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [12.x, 14.x]
 
     steps:
       - uses: 'actions/checkout@v2'
@@ -29,11 +29,14 @@ jobs:
       - name: 'Cache dependencies'
         uses: 'actions/cache@v2'
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          path: '.npm'
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: 'Install dependencies'
-        run: 'npm install'
+        run: 'npm ci --cache .npm --prefer-offline'
+
+      - name: 'MarkdownLint'
+        run: 'npm run markdownlint'
 
       - name: 'Lint'
         run: 'npm run lint'

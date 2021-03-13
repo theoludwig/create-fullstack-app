@@ -1,0 +1,55 @@
+{
+  "name": "website",
+  "version": "0.0.1",
+  "description": "website",
+  "release-it": {
+    "git": {
+      "commit": false,
+      "push": false,
+      "tag": false
+    },
+    "npm": {
+      "publish": false
+    },
+    "hooks": {
+      "before:init": [
+        "npm run lint",
+        "npm run markdownlint",
+        "npm run build"
+      ]
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
+  },
+  "ts-standard": {
+    "ignore": [
+      ".next",
+      ".lighthouseci",
+      "node_modules",
+      "**/public/workbox-*.js",
+      "**/public/sw.js",
+      "next-env.d.ts"
+    ],
+    "envs": [
+      "node",
+      "browser"
+    ],
+    "report": "stylish"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
+    "export": "next export",
+    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules",
+    "lint": "ts-standard",
+    "release": "release-it",
+    "postinstall": "copy-env-cli && husky install"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

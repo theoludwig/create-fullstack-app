@@ -1,0 +1,26 @@
+# dependencies
+node_modules
+.npm
+
+# production
+build
+
+# testing
+coverage
+
+# envs
+.env
+.env.production
+
+# debug
+npm-debug.log*
+
+# editors
+.vscode
+.theia
+.idea
+
+# misc
+.DS_Store
+tmp
+temp

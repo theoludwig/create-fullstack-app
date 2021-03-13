@@ -1,0 +1,69 @@
+{
+  "name": "api",
+  "version": "0.0.1",
+  "release-it": {
+    "git": {
+      "commit": false,
+      "push": false,
+      "tag": false
+    },
+    "npm": {
+      "publish": false
+    },
+    "hooks": {
+      "before:init": [
+        "npm run lint",
+        "npm run markdownlint",
+        "npm run build",
+        "npm run test"
+      ]
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFiles": [
+      "./__test__/setEnvsVars.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "./__test__/setup.ts"
+    ],
+    "rootDir": "./src",
+    "collectCoverage": true,
+    "coverageDirectory": "../coverage/",
+    "coverageReporters": [
+      "text",
+      "cobertura"
+    ]
+  },
+  "ts-standard": {
+    "ignore": [
+      "build",
+      "coverage",
+      "node_modules"
+    ],
+    "envs": [
+      "node",
+      "jest"
+    ],
+    "report": "stylish"
+  },
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "start": "cross-env NODE_ENV=production node build/index.js",
+    "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon -e js,json,yaml build/index.js\"",
+    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules",
+    "lint": "ts-standard",
+    "release": "release-it",
+    "test": "jest",
+    "postinstall": "copy-env-cli && husky install"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

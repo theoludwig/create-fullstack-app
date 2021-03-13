@@ -34,14 +34,11 @@
     "url": "https://github.com/Divlo/create-fullstack-app/issues"
   },
   "homepage": "https://github.com/Divlo/create-fullstack-app#readme",
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "release-it": {
     "git": {
-      "commitMessage": "chore(release): v${version}"
+      "commit": false,
+      "push": false,
+      "tag": false
     },
     "github": {
       "release": false
@@ -52,6 +49,8 @@
     "hooks": {
       "before:init": [
         "npm run lint",
+        "npm run markdownlint",
+        "npm run build",
         "npm run test"
       ]
     },
@@ -71,60 +70,64 @@
     "rootDir": "./src"
   },
   "ts-standard": {
-    "files": [
-      "./src/**/*.ts"
+    "ignore": [
+      "build",
+      "node_modules",
+      "templates",
+      "app-test"
     ],
     "envs": [
       "node",
       "jest"
-    ]
+    ],
+    "report": "stylish"
   },
   "scripts": {
     "build": "rimraf ./build && tsc",
-    "start": "node build/index.js app-test --only-website",
+    "start": "node build/index.js app-test",
     "dev": "tsc --watch",
-    "lint": "ts-standard | snazzy",
-    "format": "ts-standard --fix | snazzy",
+    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules --ignore app-test",
+    "lint": "ts-standard",
     "release": "release-it",
     "test": "jest",
-    "test:watchAll": "jest --watchAll",
-    "test:clearCache": "jest --clearCache",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "dependencies": {
     "chalk": "4.1.0",
     "child-process-promise": "2.2.1",
-    "commander": "6.2.1",
-    "directory-exists": "2.0.1",
-    "inquirer": "7.3.3",
+    "clipanion": "3.0.0-rc.10",
+    "inquirer": "8.0.0",
     "log-symbols": "4.0.0",
     "make-dir": "3.1.0",
-    "ora": "5.2.0",
-    "replace-in-file": "6.1.0",
+    "ora": "5.3.0",
+    "rimraf": "3.0.2",
     "tslib": "2.1.0",
-    "update-notifier": "5.0.1",
-    "validate-npm-package-name": "3.0.0",
-    "rimraf": "3.0.2"
+    "update-notifier": "5.1.0",
+    "validate-npm-package-name": "3.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "11.0.0",
-    "@commitlint/config-conventional": "11.0.0",
-    "@release-it/conventional-changelog": "2.0.0",
+    "@commitlint/cli": "12.0.1",
+    "@commitlint/config-conventional": "12.0.1",
+    "@release-it/conventional-changelog": "2.0.1",
     "@types/child-process-promise": "2.2.1",
     "@types/inquirer": "7.3.1",
     "@types/jest": "26.0.20",
     "@types/mock-fs": "4.13.0",
-    "@types/node": "14.14.20",
+    "@types/node": "14.14.34",
     "@types/rimraf": "3.0.0",
     "@types/update-notifier": "5.0.0",
     "@types/validate-npm-package-name": "3.0.2",
-    "husky": "4.3.7",
+    "husky": "5.1.3",
     "jest": "26.6.3",
+    "markdownlint-cli": "0.27.1",
     "mock-fs": "4.13.0",
-    "release-it": "14.2.2",
-    "snazzy": "9.0.0",
-    "ts-jest": "26.4.4",
+    "pinst": "2.1.6",
+    "release-it": "14.4.1",
+    "ts-jest": "26.5.3",
     "ts-standard": "10.0.0",
-    "typescript": "4.1.3"
+    "typescript": "4.2.3"
   }
 }

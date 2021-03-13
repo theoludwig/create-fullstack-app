@@ -1,0 +1,33 @@
+{
+  "name": "Nest.js (framework for building efficient, scalable server-side applications)",
+  "dependencies": [
+    "@nestjs/common",
+    "@nestjs/config",
+    "@nestjs/core",
+    "@nestjs/platform-express",
+    "@nestjs/typeorm",
+    "mysql",
+    "reflect-metadata",
+    "rimraf",
+    "rxjs",
+    "typeorm"
+  ],
+  "devDependencies": [
+    "@nestjs/cli",
+    "@nestjs/schematics",
+    "@nestjs/testing",
+    "@types/express",
+    "@types/jest",
+    "@types/node",
+    "@types/supertest",
+    "jest",
+    "snazzy",
+    "ts-standard",
+    "supertest",
+    "ts-jest",
+    "ts-loader",
+    "ts-node",
+    "tsconfig-paths",
+    "typescript"
+  ]
+}
