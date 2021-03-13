@@ -4,6 +4,8 @@ import path from 'path'
 const fs = fsWithCallbacks.promises
 
 export const templatesPath = path.join(__dirname, '..', '..', 'templates')
+export const commonTemplatesPath = path.join(templatesPath, 'common')
+export const commonConfigTemplatesPath = path.join(templatesPath, 'common-config')
 
 export type TemplateType = 'api' | 'website'
 

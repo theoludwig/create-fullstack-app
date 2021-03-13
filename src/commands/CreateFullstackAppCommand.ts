@@ -5,9 +5,10 @@ import inquirer from 'inquirer'
 
 import validateNpmName from '../utils/validateNpmName'
 import { checkFileExists } from '../utils/checkFileExists'
+import { copyDirectory } from '../utils/copyDirectory'
 import { getQuestions, QuestionsAnswers } from '../services/Question'
 import makeDirectory from 'make-dir'
-import { getTemplate } from '../services/Template'
+import { getTemplate, commonTemplatesPath } from '../services/Template'
 import { Project } from '../services/Project'
 
 const CURRENT_DIRECTORY = process.cwd()
@@ -54,6 +55,7 @@ export class CreateFullstackAppCommand extends Command {
     const answers = (await inquirer.prompt(questions)) as QuestionsAnswers
     this.context.stdout.write('\n')
     await makeDirectory(projectDirectory)
+    await copyDirectory(commonTemplatesPath, projectDirectory)
     if (this.onlyAPI) {
       const templateAPI = await getTemplate({
         type: 'api',

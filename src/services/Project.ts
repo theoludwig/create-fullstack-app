@@ -3,7 +3,7 @@ import logSymbols from 'log-symbols'
 import childProcess from 'child-process-promise'
 
 import tryGitInit from '../utils/tryGitInit'
-import { Template } from './Template'
+import { Template, commonConfigTemplatesPath } from './Template'
 import { copyDirectory } from '../utils/copyDirectory'
 import { loading } from '../utils/loading'
 import makeDirectory from 'make-dir'
@@ -30,13 +30,17 @@ export class Project implements ProjectOptions {
   }
 
   private async copyFiles (): Promise<void> {
-    await loading(`Copy ${this.template.name} files.`, async () => {
-      await makeDirectory(this.projectPath)
-      await copyDirectory(
-        path.join(this.template.path, 'template'),
-        this.projectPath
-      )
-    })
+    await loading(
+      `Copy the files from the template called : ${this.template.name}.`,
+      async () => {
+        await makeDirectory(this.projectPath)
+        await copyDirectory(commonConfigTemplatesPath, this.projectPath)
+        await copyDirectory(
+          path.join(this.template.path, 'template'),
+          this.projectPath
+        )
+      }
+    )
   }
 
   private async installPackages (): Promise<void> {
