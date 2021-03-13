@@ -1,0 +1,22 @@
+definitions:
+  User:
+    type: 'object'
+    properties:
+      user:
+        type: object
+        properties:
+          id:
+            type: 'integer'
+            description: 'Unique id'
+          name:
+            type: 'string'
+            description: 'Unique name'
+          email:
+            type: 'string'
+            description: 'Unique email address'
+          createdAt:
+            type: 'string'
+            format: 'date-time'
+          updatedAt:
+            type: 'string'
+            format: 'date-time'

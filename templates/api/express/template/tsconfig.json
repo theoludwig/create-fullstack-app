@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
+    "target": "ES2020",
     "module": "commonjs",
-    "lib": ["ES2019"],
+    "lib": ["ES2020"],
     "moduleResolution": "node",
     "allowJs": false,
     "checkJs": false,
@@ -10,13 +10,14 @@
     "sourceMap": false,
     "outDir": "./build",
     "rootDir": "./src",
-    "removeComments": false,
+    "removeComments": true,
     "noEmitOnError": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "incremental": false
   }
 }

@@ -1,0 +1,37 @@
+/users/signup:
+  post:
+    tags:
+      - 'users'
+    summary: 'Signup the user'
+    description: 'Allows a new user to signup, if success he would need to confirm his email.'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: 'object'
+            properties:
+              email:
+                type: 'string'
+                format: 'email'
+              name:
+                type: 'string'
+                minLength: 3
+                maxLength: 30
+                example: 'user'
+              password:
+                type: 'string'
+                format: 'password'
+                example: 'password'
+            required:
+              - 'email'
+              - 'name'
+              - 'password'
+
+    responses:
+      allOf:
+        - $ref: '#/definitions/BadRequestError'
+        - '201':
+            content:
+              application/json:
+                schema:
+                  $ref: '#/definitions/User'
