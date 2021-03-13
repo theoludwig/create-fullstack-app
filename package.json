@@ -90,7 +90,6 @@
     "lint": "ts-standard",
     "release": "release-it",
     "test": "jest",
-    "prepare": "npm run build",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
