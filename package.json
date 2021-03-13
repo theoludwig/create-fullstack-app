@@ -73,7 +73,8 @@
     "ignore": [
       "build",
       "node_modules",
-      "templates"
+      "templates",
+      "app-test"
     ],
     "envs": [
       "node",
@@ -83,9 +84,9 @@
   },
   "scripts": {
     "build": "rimraf ./build && tsc",
-    "start": "node build/index.js app-test --only-website",
+    "start": "node build/index.js app-test",
     "dev": "tsc --watch",
-    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules",
+    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules --ignore app-test",
     "lint": "ts-standard",
     "release": "release-it",
     "test": "jest",
@@ -115,7 +116,7 @@
     "@types/inquirer": "7.3.1",
     "@types/jest": "26.0.20",
     "@types/mock-fs": "4.13.0",
-    "@types/node": "14.14.33",
+    "@types/node": "14.14.34",
     "@types/rimraf": "3.0.0",
     "@types/update-notifier": "5.0.0",
     "@types/validate-npm-package-name": "3.0.2",

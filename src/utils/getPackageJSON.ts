@@ -1,7 +1,9 @@
 import * as fsWithCallbacks from 'fs'
 import path from 'path'
 
-import { ObjectAny } from '../typings/utils'
+interface ObjectAny {
+  [key: string]: any
+}
 
 interface PackageJSON extends ObjectAny {
   name: string

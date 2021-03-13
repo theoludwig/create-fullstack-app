@@ -1,3 +1,4 @@
+import path from 'path'
 import logSymbols from 'log-symbols'
 import childProcess from 'child-process-promise'
 
@@ -21,14 +22,24 @@ export class Project implements ProjectOptions {
     this.projectPath = options.projectPath
   }
 
-  public async copyFiles (): Promise<void> {
+  public async create (): Promise<void> {
+    await this.copyFiles()
+    process.chdir(this.projectPath)
+    await this.installPackages()
+    this.tryGitInit()
+  }
+
+  private async copyFiles (): Promise<void> {
     await loading(`Copy ${this.template.name} files.`, async () => {
       await makeDirectory(this.projectPath)
-      await copyDirectory(this.template.path, this.projectPath)
+      await copyDirectory(
+        path.join(this.template.path, 'template'),
+        this.projectPath
+      )
     })
   }
 
-  public async installPackages (): Promise<void> {
+  private async installPackages (): Promise<void> {
     await loading(
       'Installing npm packages. This might take a couple of minutes.',
       async () => {
@@ -44,8 +55,7 @@ export class Project implements ProjectOptions {
     )
   }
 
-  public tryGitInit (): void {
-    process.chdir(this.projectPath)
+  private tryGitInit (): void {
     if (tryGitInit(this.projectPath)) {
       console.log(logSymbols.success, 'Initialized a git repository.')
     }

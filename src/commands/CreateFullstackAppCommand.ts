@@ -7,6 +7,8 @@ import validateNpmName from '../utils/validateNpmName'
 import { checkFileExists } from '../utils/checkFileExists'
 import { getQuestions, QuestionsAnswers } from '../services/Question'
 import makeDirectory from 'make-dir'
+import { getTemplate } from '../services/Template'
+import { Project } from '../services/Project'
 
 const CURRENT_DIRECTORY = process.cwd()
 
@@ -48,14 +50,58 @@ export class CreateFullstackAppCommand extends Command {
       )
       return 1
     }
-    const answers = (await inquirer.prompt(
-      await getQuestions(this.onlyAPI, this.onlyWebsite)
-    )) as QuestionsAnswers
+    const questions = await getQuestions(this.onlyAPI, this.onlyWebsite)
+    const answers = (await inquirer.prompt(questions)) as QuestionsAnswers
+    this.context.stdout.write('\n')
     await makeDirectory(projectDirectory)
+    if (this.onlyAPI) {
+      const templateAPI = await getTemplate({
+        type: 'api',
+        name: answers.templateAPI
+      })
+      const projectAPI = new Project({
+        template: templateAPI,
+        projectPath: projectDirectory
+      })
+      await projectAPI.create()
+    } else if (this.onlyWebsite) {
+      const templateWebsite = await getTemplate({
+        type: 'website',
+        name: answers.templateWebsite
+      })
+      const projectWebsite = new Project({
+        template: templateWebsite,
+        projectPath: projectDirectory
+      })
+      await projectWebsite.create()
+    } else {
+      const pathAPI = path.join(projectDirectory, 'api')
+      const pathWebsite = path.join(projectDirectory, 'website')
+      await makeDirectory(projectDirectory)
+      const templateAPI = await getTemplate({
+        type: 'api',
+        name: answers.templateAPI
+      })
+      const projectAPI = new Project({
+        template: templateAPI,
+        projectPath: pathAPI
+      })
+      const templateWebsite = await getTemplate({
+        type: 'website',
+        name: answers.templateWebsite
+      })
+      const projectWebsite = new Project({
+        template: templateWebsite,
+        projectPath: pathWebsite
+      })
+      await projectWebsite.create()
+      this.context.stdout.write('\n')
+      await projectAPI.create()
+    }
     this.context.stdout.write(
       `\n ${chalk.green('Success:')} created "${
         answers.projectName
-      }" at ${projectDirectory}`
+      }" at ${projectDirectory}\n`
     )
     return 0
   }
