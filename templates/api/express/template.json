@@ -15,7 +15,7 @@
     "reflect-metadata",
     "sequelize",
     "sequelize-typescript",
-    "swagger-jsdoc",
+    "swagger-jsdoc@6",
     "swagger-ui-express"
   ],
   "devDependencies": [

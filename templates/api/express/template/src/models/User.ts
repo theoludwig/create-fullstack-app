@@ -31,7 +31,7 @@ export default class User extends Model {
   })
   password?: string
 
-  toJSON(): UserToJSON {
+  toJSON (): UserToJSON {
     const attributes = Object.assign({}, this.get())
     return deleteObjectAttributes(
       attributes,
