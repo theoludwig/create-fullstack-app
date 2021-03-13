@@ -2,26 +2,20 @@
   "name": "website",
   "version": "0.0.1",
   "description": "website",
-  "license": "MIT",
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run lint"
-    }
-  },
   "release-it": {
     "git": {
-      "commitMessage": "chore(release): v${version}"
-    },
-    "github": {
-      "release": false
+      "commit": false,
+      "push": false,
+      "tag": false
     },
     "npm": {
       "publish": false
     },
     "hooks": {
       "before:init": [
-        "npm run lint"
+        "npm run lint",
+        "npm run markdownlint",
+        "npm run build"
       ]
     },
     "plugins": {
@@ -31,16 +25,30 @@
       }
     }
   },
+  "ts-standard": {
+    "ignore": [
+      ".next",
+      ".lighthouseci",
+      "node_modules",
+      "**/public/workbox-*.js",
+      "**/public/sw.js",
+      "next-env.d.ts"
+    ],
+    "envs": [
+      "node",
+      "browser"
+    ],
+    "report": "stylish"
+  },
   "scripts": {
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
     "export": "next export",
-    "lint": "ts-standard | snazzy",
-    "format": "ts-standard --fix | snazzy",
+    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules",
+    "lint": "ts-standard",
     "release": "release-it",
-    "lighthouse": "lhci autorun",
-    "postinstall": "copy-env-cli"
+    "postinstall": "copy-env-cli && husky install"
   },
   "dependencies": {},
   "devDependencies": {}

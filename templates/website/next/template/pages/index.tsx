@@ -7,11 +7,12 @@ const Home: React.FC = () => {
 
       <p>Hello world! 👋</p>
 
-      <style jsx>{`
-        p {
-          margin-left: 15px;
-        }
-      `}
+      <style jsx>
+        {`
+          p {
+            margin-left: 15px;
+          }
+        `}
       </style>
     </>
   )

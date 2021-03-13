@@ -1,4 +1,4 @@
-<h1 align="center">{{ projectName }}</h1>
+# {{ projectName }}
 
 ## 📜 About
 
