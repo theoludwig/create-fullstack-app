@@ -26,17 +26,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: 'Install dependencies'
-        run: 'npm ci'
-
-      - name: 'MarkdownLint'
-        run: 'npm run markdownlint'
-
-      - name: 'Lint'
-        run: 'npm run lint'
-
-      - name: 'Build'
-        run: 'npm run build'
-
-      - name: 'Test'
-        run: 'npm run test'
+      - run: 'npm ci'
+      - run: 'npm run lint:editorconfig'
+      - run: 'npm run lint:markdown'
+      - run: 'npm run lint'
+      - run: 'npm run build'
+      - run: 'npm run test'
