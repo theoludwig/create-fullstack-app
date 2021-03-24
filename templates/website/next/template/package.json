@@ -16,9 +16,11 @@
     },
     "hooks": {
       "before:init": [
+        "npm run lint:editorconfig",
+        "npm run lint:markdown",
         "npm run lint",
-        "npm run markdownlint",
-        "npm run build"
+        "npm run build",
+        "npm run lighthouse"
       ]
     },
     "plugins": {
@@ -48,7 +50,8 @@
     "start": "next start",
     "build": "next build",
     "export": "next export",
-    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules",
+    "lint:editorconfig": "editorconfig-checker",
+    "lint:markdown": "markdownlint '**/*.md' --dot --ignore node_modules",
     "lint": "ts-standard",
     "release": "release-it",
     "postinstall": "husky install"

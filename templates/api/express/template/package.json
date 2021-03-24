@@ -15,8 +15,9 @@
     },
     "hooks": {
       "before:init": [
+        "npm run lint:editorconfig",
+        "npm run lint:markdown",
         "npm run lint",
-        "npm run markdownlint",
         "npm run build",
         "npm run test"
       ]
@@ -61,7 +62,8 @@
     "build": "rimraf ./build && tsc",
     "start": "cross-env NODE_ENV=production node build/index.js",
     "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon -e js,json,yaml build/index.js\"",
-    "markdownlint": "markdownlint '**/*.md' --dot --ignore node_modules",
+    "lint:editorconfig": "editorconfig-checker",
+    "lint:markdown": "markdownlint '**/*.md' --dot --ignore node_modules",
     "lint": "ts-standard",
     "release": "release-it",
     "test": "jest",
@@ -103,6 +105,7 @@
     "@types/validator": "13.1.3",
     "concurrently": "6.0.0",
     "cross-env": "7.0.3",
+    "editorconfig-checker": "4.0.1",
     "husky": "5.2.0",
     "jest": "26.6.3",
     "markdownlint-cli": "0.27.1",
