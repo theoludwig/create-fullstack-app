@@ -1,0 +1,17 @@
+FROM node:14.16.0
+
+RUN npm install --global npm@7
+
+# docker-compose-wait
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
+RUN chmod +x /wait
+
+RUN mkdir --parents /usr/src/cache
+WORKDIR /usr/src/cache
+COPY ./package*.json ./
+RUN npm install
+
+RUN mkdir --parents /usr/src/app
+WORKDIR /usr/src/app
+
+CMD /usr/src/app/entrypoint.sh

@@ -1,0 +1,43 @@
+version: '3.0'
+services:
+  app-api:
+    container_name: ${COMPOSE_PROJECT_NAME}
+    build:
+      context: './'
+    environment:
+      WAIT_HOSTS: '${DATABASE_HOST}:${DATABASE_PORT}'
+    ports:
+      - '${PORT}:${PORT}'
+    depends_on:
+      - ${DATABASE_HOST}
+    volumes:
+      - './:/usr/src/app'
+
+  phpmyadmin-api:
+    container_name: 'phpmyadmin-api'
+    image: 'phpmyadmin/phpmyadmin:5.0.4'
+    environment:
+      PMA_HOST: ${DATABASE_HOST}
+      PMA_PORT: ${DATABASE_PORT}
+      PMA_USER: ${DATABASE_USER}
+      PMA_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - '8000:80'
+    depends_on:
+      - ${DATABASE_HOST}
+
+  database-api:
+    container_name: ${DATABASE_HOST}
+    image: 'mysql:8.0.23'
+    command: '--default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_TCP_PORT: ${DATABASE_PORT}
+    ports:
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
+    volumes:
+      - 'database-volume:/var/lib/mysql'
+
+volumes:
+  database-volume:

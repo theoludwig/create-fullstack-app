@@ -12,8 +12,8 @@ beforeAll(async () => {
     driver: sqlite3.Database
   })
   sequelize = new Sequelize({
-    dialect: process.env.DATABASE_DIALECT,
-    storage: process.env.DATABASE_DIALECT === 'sqlite' ? ':memory:' : undefined,
+    dialect: 'sqlite',
+    storage: ':memory:',
     logging: false,
     models: [path.join(__dirname, '..', 'models')]
   })

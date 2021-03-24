@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+  app-website:
+    container_name: ${COMPOSE_PROJECT_NAME}
+    build:
+      context: './'
+    ports:
+      - '${PORT}:${PORT}'
+    environment:
+      PORT: ${PORT}
+    volumes:
+      - './:/usr/src/app'

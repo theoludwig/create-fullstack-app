@@ -13,7 +13,7 @@ import { Posts } from './posts/posts.entity'
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        type: 'mysql',
+        type: configService.get('DATABASE_DIALECT'),
         host: configService.get('DATABASE_HOST'),
         port: configService.get<number>('DATABASE_PORT'),
         username: configService.get('DATABASE_USERNAME'),
