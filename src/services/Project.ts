@@ -1,4 +1,6 @@
 import path from 'path'
+import * as fsWithCallbacks from 'fs'
+
 import logSymbols from 'log-symbols'
 import childProcess from 'child-process-promise'
 
@@ -6,27 +8,33 @@ import tryGitInit from '../utils/tryGitInit'
 import {
   Template,
   commonConfigTemplatesPath,
-  commondDockerTemplatesPath
+  commondDockerTemplatesPath,
+  commondGitHubTemplatesPath
 } from './Template'
 import { copyDirectory } from '../utils/copyDirectory'
 import { loading } from '../utils/loading'
 import makeDirectory from 'make-dir'
 
+const fs = fsWithCallbacks.promises
+
 export interface ProjectOptions {
   template: Template
   projectPath: string
   noInstall: boolean
+  shouldCreateGitHubFolder: boolean
 }
 
 export class Project implements ProjectOptions {
   public template: Template
   public projectPath: string
   public noInstall: boolean
+  public shouldCreateGitHubFolder: boolean
 
   constructor (options: ProjectOptions) {
     this.template = options.template
     this.projectPath = options.projectPath
     this.noInstall = options.noInstall
+    this.shouldCreateGitHubFolder = options.shouldCreateGitHubFolder
   }
 
   public async create (): Promise<void> {
@@ -36,6 +44,7 @@ export class Project implements ProjectOptions {
     if (!this.noInstall) {
       await this.installPackages()
     }
+    console.log('\n')
   }
 
   private async copyFiles (): Promise<void> {
@@ -44,11 +53,16 @@ export class Project implements ProjectOptions {
       async () => {
         await makeDirectory(this.projectPath)
         await copyDirectory(commonConfigTemplatesPath, this.projectPath)
-        await copyDirectory(
+        if (this.shouldCreateGitHubFolder) {
+          const githubFolderPath = path.join(this.projectPath, '.github')
+          await makeDirectory(githubFolderPath)
+          await copyDirectory(commondGitHubTemplatesPath, githubFolderPath)
+        }
+        await fs.copyFile(
           path.join(commondDockerTemplatesPath, 'Dockerfile'),
           path.join(this.projectPath, 'Dockerfile')
         )
-        await copyDirectory(
+        await fs.copyFile(
           path.join(
             commondDockerTemplatesPath,
             this.template.type,

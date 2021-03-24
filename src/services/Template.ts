@@ -7,6 +7,7 @@ export const templatesPath = path.join(__dirname, '..', '..', 'templates')
 export const commonTemplatesPath = path.join(templatesPath, 'common')
 export const commonConfigTemplatesPath = path.join(templatesPath, 'common-config')
 export const commondDockerTemplatesPath = path.join(templatesPath, 'common-docker')
+export const commondGitHubTemplatesPath = path.join(templatesPath, 'common-github')
 
 export type TemplateType = 'api' | 'website'
 

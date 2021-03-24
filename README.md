@@ -56,6 +56,7 @@ It will ask you some questions (template(s), name, description, etc.), when answ
 --only-website  Generate only a website project.
 --only-api      Generate only an API project.
 --no-install    It avoids the installation of npm packages inside `node_modules`.
+--github        It creates a `.github` folder that contains issues templates, pull request templates and configurations for GitHub Actions.
 ```
 
 ## 💡 Contributing

@@ -25,7 +25,13 @@ export class CreateFullstackAppCommand extends Command {
   })
 
   public noInstall = Option.Boolean('--no-install', false, {
-    description: 'It avoids the installation of npm packages inside `node_modules`.'
+    description:
+      'It avoids the installation of npm packages inside `node_modules`.'
+  })
+
+  public github = Option.Boolean('--github', false, {
+    description:
+      'It creates a `.github` folder that contains issues templates, pull request templates and configurations for GitHub Actions.'
   })
 
   async execute (): Promise<number> {
@@ -68,7 +74,8 @@ export class CreateFullstackAppCommand extends Command {
       const projectAPI = new Project({
         template: templateAPI,
         projectPath: projectDirectory,
-        noInstall: this.noInstall
+        noInstall: this.noInstall,
+        shouldCreateGitHubFolder: this.github
       })
       await projectAPI.create()
     } else if (this.onlyWebsite) {
@@ -79,7 +86,8 @@ export class CreateFullstackAppCommand extends Command {
       const projectWebsite = new Project({
         template: templateWebsite,
         projectPath: projectDirectory,
-        noInstall: this.noInstall
+        noInstall: this.noInstall,
+        shouldCreateGitHubFolder: this.github
       })
       await projectWebsite.create()
     } else {
@@ -93,7 +101,8 @@ export class CreateFullstackAppCommand extends Command {
       const projectAPI = new Project({
         template: templateAPI,
         projectPath: pathAPI,
-        noInstall: this.noInstall
+        noInstall: this.noInstall,
+        shouldCreateGitHubFolder: this.github
       })
       const templateWebsite = await getTemplate({
         type: 'website',
@@ -102,14 +111,14 @@ export class CreateFullstackAppCommand extends Command {
       const projectWebsite = new Project({
         template: templateWebsite,
         projectPath: pathWebsite,
-        noInstall: this.noInstall
+        noInstall: this.noInstall,
+        shouldCreateGitHubFolder: this.github
       })
       await projectWebsite.create()
-      this.context.stdout.write('\n')
       await projectAPI.create()
     }
     this.context.stdout.write(
-      `\n ${chalk.green('Success:')} created "${
+      `${chalk.green('Success:')} created "${
         answers.projectName
       }" at ${projectDirectory}\n`
     )
