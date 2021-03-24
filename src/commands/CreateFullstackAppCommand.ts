@@ -17,11 +17,15 @@ export class CreateFullstackAppCommand extends Command {
   public directoryName = Option.String()
 
   public onlyWebsite = Option.Boolean('--only-website', false, {
-    description: 'generate only a website project'
+    description: 'Generate only a website project.'
   })
 
   public onlyAPI = Option.Boolean('--only-api', false, {
-    description: 'generate only an API project'
+    description: 'Generate only an API project.'
+  })
+
+  public noInstall = Option.Boolean('--no-install', false, {
+    description: 'It avoids the installation of npm packages inside `node_modules`.'
   })
 
   async execute (): Promise<number> {
@@ -63,7 +67,8 @@ export class CreateFullstackAppCommand extends Command {
       })
       const projectAPI = new Project({
         template: templateAPI,
-        projectPath: projectDirectory
+        projectPath: projectDirectory,
+        noInstall: this.noInstall
       })
       await projectAPI.create()
     } else if (this.onlyWebsite) {
@@ -73,7 +78,8 @@ export class CreateFullstackAppCommand extends Command {
       })
       const projectWebsite = new Project({
         template: templateWebsite,
-        projectPath: projectDirectory
+        projectPath: projectDirectory,
+        noInstall: this.noInstall
       })
       await projectWebsite.create()
     } else {
@@ -86,7 +92,8 @@ export class CreateFullstackAppCommand extends Command {
       })
       const projectAPI = new Project({
         template: templateAPI,
-        projectPath: pathAPI
+        projectPath: pathAPI,
+        noInstall: this.noInstall
       })
       const templateWebsite = await getTemplate({
         type: 'website',
@@ -94,7 +101,8 @@ export class CreateFullstackAppCommand extends Command {
       })
       const projectWebsite = new Project({
         template: templateWebsite,
-        projectPath: pathWebsite
+        projectPath: pathWebsite,
+        noInstall: this.noInstall
       })
       await projectWebsite.create()
       this.context.stdout.write('\n')

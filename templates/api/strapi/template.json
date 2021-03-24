@@ -1,17 +1,3 @@
 {
-  "name": "Strapi (Headless CMS)",
-  "dependencies": [
-    "strapi",
-    "strapi-admin",
-    "strapi-utils",
-    "strapi-plugin-content-type-builder",
-    "strapi-plugin-content-manager",
-    "strapi-plugin-users-permissions",
-    "strapi-plugin-email",
-    "strapi-plugin-upload",
-    "strapi-connector-bookshelf",
-    "knex",
-    "mysql"
-  ],
-  "devDependencies": ["snazzy", "standard"]
+  "name": "Strapi (Headless CMS)"
 }

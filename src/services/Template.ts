@@ -18,8 +18,6 @@ export type Templates = {
 export interface Template {
   name: string
   type: TemplateType
-  dependencies: string[]
-  devDependencies: string[]
   path: string
 }
 

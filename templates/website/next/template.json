@@ -1,26 +1,3 @@
 {
-  "name": "React.js with Next.js (server-side rendering)",
-  "dependencies": [
-    "next",
-    "next-pwa",
-    "normalize.css",
-    "react",
-    "react-dom"
-  ],
-  "devDependencies": [
-    "@commitlint/cli",
-    "@commitlint/config-conventional",
-    "@release-it/conventional-changelog",
-    "@styled-jsx/plugin-sass",
-    "@types/node",
-    "@types/react",
-    "@types/styled-jsx",
-    "copy-env-cli",
-    "husky",
-    "markdownlint-cli",
-    "release-it",
-    "sass",
-    "ts-standard",
-    "typescript"
-  ]
+  "name": "React.js with Next.js (server-side rendering)"
 }

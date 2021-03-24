@@ -51,10 +51,11 @@ It will ask you some questions (template(s), name, description, etc.), when answ
 ### Options
 
 ```text
--V, --version   output the version number
--h, --help      display help for command
---only-website  generate only a website project
---only-api      generate only an API project
+-V, --version   Output the version number.
+-h, --help      Display help for command.
+--only-website  Generate only a website project.
+--only-api      Generate only an API project.
+--no-install    It avoids the installation of npm packages inside `node_modules`.
 ```
 
 ## 💡 Contributing

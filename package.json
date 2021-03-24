@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "bin": "build/index.js",
   "engines": {
-    "node": ">=12"
+    "node": ">=14",
+    "npm": ">=7"
   },
   "files": [
     "build",

@@ -11,22 +11,27 @@ import makeDirectory from 'make-dir'
 export interface ProjectOptions {
   template: Template
   projectPath: string
+  noInstall: boolean
 }
 
 export class Project implements ProjectOptions {
   public template: Template
   public projectPath: string
+  public noInstall: boolean
 
   constructor (options: ProjectOptions) {
     this.template = options.template
     this.projectPath = options.projectPath
+    this.noInstall = options.noInstall
   }
 
   public async create (): Promise<void> {
     await this.copyFiles()
     process.chdir(this.projectPath)
-    await this.installPackages()
     this.tryGitInit()
+    if (!this.noInstall) {
+      await this.installPackages()
+    }
   }
 
   private async copyFiles (): Promise<void> {
@@ -47,12 +52,7 @@ export class Project implements ProjectOptions {
     await loading(
       'Installing npm packages. This might take a couple of minutes.',
       async () => {
-        const dependencies = this.template.dependencies.join(' ')
-        const devDependencies = this.template.devDependencies.join(' ')
-        await childProcess.exec(`npm install ${dependencies}`, {
-          cwd: this.projectPath
-        })
-        await childProcess.exec(`npm install --save-dev ${devDependencies}`, {
+        await childProcess.exec('npm install', {
           cwd: this.projectPath
         })
       }
