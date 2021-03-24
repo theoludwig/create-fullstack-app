@@ -3,7 +3,11 @@ import logSymbols from 'log-symbols'
 import childProcess from 'child-process-promise'
 
 import tryGitInit from '../utils/tryGitInit'
-import { Template, commonConfigTemplatesPath } from './Template'
+import {
+  Template,
+  commonConfigTemplatesPath,
+  commondDockerTemplatesPath
+} from './Template'
 import { copyDirectory } from '../utils/copyDirectory'
 import { loading } from '../utils/loading'
 import makeDirectory from 'make-dir'
@@ -40,6 +44,18 @@ export class Project implements ProjectOptions {
       async () => {
         await makeDirectory(this.projectPath)
         await copyDirectory(commonConfigTemplatesPath, this.projectPath)
+        await copyDirectory(
+          path.join(commondDockerTemplatesPath, 'Dockerfile'),
+          path.join(this.projectPath, 'Dockerfile')
+        )
+        await copyDirectory(
+          path.join(
+            commondDockerTemplatesPath,
+            this.template.type,
+            'docker-compose.yml'
+          ),
+          path.join(this.projectPath, 'docker-compose.yml')
+        )
         await copyDirectory(
           path.join(this.template.path, 'template'),
           this.projectPath
