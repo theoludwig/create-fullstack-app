@@ -54,6 +54,7 @@
     "lint:markdown": "markdownlint '**/*.md' --dot --ignore node_modules",
     "lint": "ts-standard",
     "release": "release-it",
+    "lighthouse": "lhci autorun",
     "postinstall": "husky install"
   },
   "dependencies": {
@@ -66,11 +67,13 @@
   "devDependencies": {
     "@commitlint/cli": "12.0.1",
     "@commitlint/config-conventional": "12.0.1",
+    "@lhci/cli": "0.7.0",
     "@release-it/conventional-changelog": "2.0.1",
     "@styled-jsx/plugin-sass": "3.0.0",
-    "@types/node": "14.14.35",
+    "@types/node": "14.14.36",
     "@types/react": "17.0.3",
     "@types/styled-jsx": "2.2.8",
+    "editorconfig-checker": "4.0.1",
     "husky": "5.2.0",
     "markdownlint-cli": "0.27.1",
     "release-it": "14.5.0",
