@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/Divlo/create-fullstack-app/compare/v2.4.0...v3.0.0) (2021-04-03)
+
+### Features
+
+- **templates:** add `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md` files ([ce2c2dc](https://github.com/Divlo/create-fullstack-app/commit/ce2c2dc933c011d247262a5a9ccbcb9ae93cad7c))
+- **templates:** add `Fastify` ([6662010](https://github.com/Divlo/create-fullstack-app/commit/666201006d745980e9d861a44fc5c67da7dd3907)), closes [#21](https://github.com/Divlo/create-fullstack-app/issues/21)
+- add `--github` option ([083b1cd](https://github.com/Divlo/create-fullstack-app/commit/083b1cdc17bd5c22c3da249fb7f748901fabfa45)), closes [#10](https://github.com/Divlo/create-fullstack-app/issues/10)
+- add `--no-install` option ([bfcc827](https://github.com/Divlo/create-fullstack-app/commit/bfcc827b5698aa562de08a68fb2e3b6ea9475e1e)), closes [#25](https://github.com/Divlo/create-fullstack-app/issues/25)
+- add docker configuration files ([ec20650](https://github.com/Divlo/create-fullstack-app/commit/ec20650715b0a3af6bbfe6f2eb5eb9c3d19f9321))
+
+### BREAKING CHANGES
+
+- Bump minimal `npm` and `Node.js` versions
+- No longer ask for `projectName`, `projectDescription` and `domainName`
+- It doesn't install the latest versions when creating a new project (now usage of `package-lock.json` inside templates)
+
 ## [2.4.0](https://github.com/Divlo/create-fullstack-app/compare/v2.3.1...v2.4.0) (2021-01-09)
 
 ### Features
