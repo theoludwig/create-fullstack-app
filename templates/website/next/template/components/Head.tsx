@@ -7,7 +7,7 @@ interface HeadProps {
   url?: string
 }
 
-const Head: React.FC<HeadProps> = (props) => {
+export const Head: React.FC<HeadProps> = (props) => {
   const {
     title = '{{ projectName }}',
     image = '/images/icons/icon-96x96.png',
@@ -49,5 +49,3 @@ const Head: React.FC<HeadProps> = (props) => {
     </HeadTag>
   )
 }
-
-export default Head

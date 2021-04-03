@@ -118,9 +118,9 @@ export class CreateFullstackAppCommand extends Command {
       await projectAPI.create()
     }
     this.context.stdout.write(
-      `${chalk.green('Success:')} created "${
-        answers.projectName
-      }" at ${projectDirectory}\n`
+      `${chalk.green(
+        'Success:'
+      )} created the new project at ${projectDirectory}\n`
     )
     return 0
   }

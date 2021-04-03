@@ -5,27 +5,6 @@ import { getTemplates } from './Template'
 export interface QuestionsAnswers {
   templateWebsite: string
   templateAPI: string
-  projectName: string
-  projectDescription: string
-  domainName: string
-}
-
-const questionCommon: DistinctQuestion[] = [
-  {
-    name: 'projectName',
-    type: 'input',
-    message: 'Project name:'
-  },
-  {
-    name: 'projectDescription',
-    type: 'input',
-    message: 'Project description:'
-  }
-]
-const questionDomainName: DistinctQuestion = {
-  name: 'domainName',
-  type: 'input',
-  message: 'Project domain name in production:'
 }
 
 export async function getQuestions (
@@ -47,17 +26,15 @@ export async function getQuestions (
   }
 
   if (onlyApi) {
-    return [questionAPITemplate, ...questionCommon]
+    return [questionAPITemplate]
   }
 
   if (onlyWebsite) {
-    return [questionWebsiteTemplate, ...questionCommon, questionDomainName]
+    return [questionWebsiteTemplate]
   }
 
   return [
     questionWebsiteTemplate,
-    questionAPITemplate,
-    ...questionCommon,
-    questionDomainName
+    questionAPITemplate
   ]
 }
