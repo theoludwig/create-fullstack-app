@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "0.0.1",
-  "description": "website",
+  "private": true,
   "release-it": {
     "git": {
       "commit": false,
@@ -16,9 +16,10 @@
     },
     "hooks": {
       "before:init": [
+        "npm run lint:docker",
         "npm run lint:editorconfig",
         "npm run lint:markdown",
-        "npm run lint",
+        "npm run lint:typescript",
         "npm run build",
         "npm run lighthouse"
       ]
@@ -50,35 +51,38 @@
     "start": "next start",
     "build": "next build",
     "export": "next export",
+    "lint:commit": "commitlint",
+    "lint:docker": "dockerfilelint './Dockerfile'",
     "lint:editorconfig": "editorconfig-checker",
     "lint:markdown": "markdownlint '**/*.md' --dot --ignore node_modules",
-    "lint": "ts-standard",
+    "lint:typescript": "ts-standard",
     "release": "release-it",
     "lighthouse": "lhci autorun",
     "postinstall": "husky install"
   },
   "dependencies": {
-    "next": "10.0.9",
-    "next-pwa": "5.0.6",
+    "next": "10.1.3",
+    "next-pwa": "5.2.14",
     "normalize.css": "8.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "12.0.1",
-    "@commitlint/config-conventional": "12.0.1",
-    "@lhci/cli": "0.7.0",
+    "@commitlint/cli": "12.1.1",
+    "@commitlint/config-conventional": "12.1.1",
+    "@lhci/cli": "0.7.1",
     "@release-it/conventional-changelog": "2.0.1",
     "@styled-jsx/plugin-sass": "3.0.0",
-    "@types/node": "14.14.36",
+    "@types/node": "14.14.41",
     "@types/react": "17.0.3",
     "@types/styled-jsx": "2.2.8",
-    "editorconfig-checker": "4.0.1",
-    "husky": "5.2.0",
+    "dockerfilelint": "^1.8.0",
+    "editorconfig-checker": "4.0.2",
+    "husky": "6.0.0",
     "markdownlint-cli": "0.27.1",
-    "release-it": "14.5.0",
-    "sass": "1.32.8",
+    "release-it": "14.6.1",
+    "sass": "1.32.10",
     "ts-standard": "10.0.0",
-    "typescript": "4.2.3"
+    "typescript": "4.2.4"
   }
 }

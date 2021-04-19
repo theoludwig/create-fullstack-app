@@ -1,6 +1,7 @@
 {
   "name": "api",
   "version": "0.0.1",
+  "private": true,
   "release-it": {
     "git": {
       "commit": false,
@@ -15,9 +16,10 @@
     },
     "hooks": {
       "before:init": [
+        "npm run lint:docker",
         "npm run lint:editorconfig",
         "npm run lint:markdown",
-        "npm run lint",
+        "npm run lint:typescript",
         "npm run build",
         "npm run test"
       ]
@@ -62,9 +64,11 @@
     "build": "rimraf ./build && tsc",
     "start": "cross-env NODE_ENV=production node build/index.js",
     "dev": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"cross-env NODE_ENV=development nodemon -e js,json,yaml build/index.js\"",
+    "lint:commit": "commitlint",
+    "lint:docker": "dockerfilelint './Dockerfile'",
     "lint:editorconfig": "editorconfig-checker",
     "lint:markdown": "markdownlint '**/*.md' --dot --ignore node_modules",
-    "lint": "ts-standard",
+    "lint:typescript": "ts-standard",
     "release": "release-it",
     "test": "jest",
     "postinstall": "husky install"
@@ -78,7 +82,7 @@
     "express-http-to-https": "1.1.4",
     "express-rate-limit": "5.2.6",
     "express-validator": "6.10.0",
-    "helmet": "4.4.1",
+    "helmet": "4.5.0",
     "morgan": "1.10.0",
     "mysql2": "2.2.5",
     "reflect-metadata": "0.1.13",
@@ -88,35 +92,36 @@
     "swagger-ui-express": "4.1.6"
   },
   "devDependencies": {
-    "@commitlint/cli": "12.0.1",
-    "@commitlint/config-conventional": "12.0.1",
+    "@commitlint/cli": "12.1.1",
+    "@commitlint/config-conventional": "12.1.1",
     "@release-it/conventional-changelog": "2.0.1",
     "@types/bcryptjs": "2.4.2",
     "@types/cors": "2.8.10",
     "@types/express": "4.17.11",
     "@types/express-rate-limit": "5.1.1",
     "@types/helmet": "4.0.0",
-    "@types/jest": "26.0.21",
+    "@types/jest": "26.0.22",
     "@types/morgan": "1.9.2",
-    "@types/node": "14.14.35",
-    "@types/supertest": "2.0.10",
+    "@types/node": "14.14.41",
+    "@types/supertest": "2.0.11",
     "@types/swagger-jsdoc": "6.0.0",
     "@types/swagger-ui-express": "4.1.2",
     "@types/validator": "13.1.3",
-    "concurrently": "6.0.0",
+    "concurrently": "6.0.2",
     "cross-env": "7.0.3",
-    "editorconfig-checker": "4.0.1",
-    "husky": "5.2.0",
+    "dockerfilelint": "^1.8.0",
+    "editorconfig-checker": "4.0.2",
+    "husky": "6.0.0",
     "jest": "26.6.3",
     "markdownlint-cli": "0.27.1",
     "nodemon": "2.0.7",
-    "release-it": "14.5.0",
+    "release-it": "14.6.1",
     "rimraf": "3.0.2",
-    "sqlite": "4.0.19",
+    "sqlite": "4.0.21",
     "sqlite3": "5.0.2",
     "supertest": "6.1.3",
-    "ts-jest": "26.5.4",
+    "ts-jest": "26.5.5",
     "ts-standard": "10.0.0",
-    "typescript": "4.2.3"
+    "typescript": "4.2.4"
   }
 }

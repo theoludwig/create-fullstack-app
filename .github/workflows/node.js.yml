@@ -5,19 +5,15 @@ name: 'Node.js CI'
 on:
   push:
     branches: [master, develop]
-  pull_request_review:
+  pull_request:
     branches: [master, develop]
-    types: [submitted]
 
 jobs:
   build:
-    if: ${{ (github.event_name == 'push') || (github.event_name == 'pull_request_review' && github.event.review.state == 'approved' && (github.event.review.author_association == 'COLLABORATOR' || github.event.review.author_association == 'MEMBER' || github.event.review.author_association == 'OWNER') && !github.event.pull_request.draft && github.event.pull_request.state == 'open') }}
     runs-on: 'ubuntu-latest'
-
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
       - uses: 'actions/checkout@v2'
 
@@ -26,9 +22,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: 'npm ci'
+      - name: 'Cache dependencies'
+        uses: 'actions/cache@v2.1.5'
+        with:
+          path: '.npm'
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - run: 'npm ci --cache .npm --prefer-offline'
+      - run: 'npm run lint:commit -- --to "${{ github.sha }}"'
       - run: 'npm run lint:editorconfig'
       - run: 'npm run lint:markdown'
-      - run: 'npm run lint'
+      - run: 'npm run lint:typescript'
       - run: 'npm run build'
       - run: 'npm run test'
