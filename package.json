@@ -88,6 +88,7 @@
     "build": "rimraf ./build && tsc",
     "start": "node build/index.js app-test",
     "dev": "tsc --watch",
+    "lint:commit": "commitlint",
     "lint:editorconfig": "editorconfig-checker",
     "lint:markdown": "markdownlint '**/*.md' --dot --ignore node_modules --ignore app-test",
     "lint:typescript": "ts-standard",
