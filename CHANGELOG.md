@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.1](https://github.com/Divlo/create-fullstack-app/compare/v3.0.0...v3.0.1) (2021-04-19)
+
+### Bug Fixes
+
+- **templates:** update fastify add HOST variable ([41f2be5](https://github.com/Divlo/create-fullstack-app/commit/41f2be583372aed6bc833f4ba019a1168ab1ad69))
+
+### Chore
+
+- Update dependencies to latest version of every templates
+- Set `engine-strict=true` inside `.npmrc`
+- Update GitHub Actions to remove `commitlint.yml`, instead use `npm run lint:commit`
+
 ## [3.0.0](https://github.com/Divlo/create-fullstack-app/compare/v2.4.0...v3.0.0) (2021-04-03)
 
 ### Features
