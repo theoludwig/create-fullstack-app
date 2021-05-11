@@ -103,7 +103,7 @@
     "child-process-promise": "2.2.1",
     "clipanion": "3.0.0-rc.12",
     "inquirer": "8.0.0",
-    "log-symbols": "4.1.0",
+    "log-symbols": "5.0.0",
     "make-dir": "3.1.0",
     "ora": "5.4.0",
     "rimraf": "3.0.2",
