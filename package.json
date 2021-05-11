@@ -99,7 +99,7 @@
     "postpublish": "pinst --enable"
   },
   "dependencies": {
-    "chalk": "4.1.0",
+    "chalk": "4.1.1",
     "child-process-promise": "2.2.1",
     "clipanion": "3.0.0-rc.12",
     "inquirer": "8.0.0",
