@@ -14,6 +14,11 @@ import { Project } from '../services/Project'
 const CURRENT_DIRECTORY = process.cwd()
 
 export class CreateFullstackAppCommand extends Command {
+  static usage = {
+    description:
+      'Create Fullstack TypeScript application with ease.'
+  }
+
   public directoryName = Option.String()
 
   public onlyWebsite = Option.Boolean('--only-website', false, {
