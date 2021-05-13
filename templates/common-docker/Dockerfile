@@ -1,6 +1,4 @@
-FROM node:14.16.0
-
-RUN npm install --global npm@7
+FROM node:16.1.0
 
 RUN mkdir --parents /usr/src/cache
 WORKDIR /usr/src/cache

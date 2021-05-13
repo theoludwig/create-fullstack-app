@@ -15,7 +15,7 @@ This project was bootstrapped with [create-fullstack-app](https://github.com/Div
 git clone <repo-url>
 
 # Go to the project root
-cd website
+cd <project-name>
 
 # Configure environment variables
 cp .env.example .env
@@ -27,8 +27,6 @@ cp .env.example .env
 # Setup and run all the services for you
 docker-compose up --build
 ```
-
-**Note:** Docker will automatically install all the dependencies (`node_modules`) in your host machine.
 
 ## 💡 Contributing
 
