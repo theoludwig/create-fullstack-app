@@ -1,10 +1,11 @@
 import { Head } from 'components/Head'
+import { Hello } from 'components/Hello'
 
 const Home: React.FC = () => {
   return (
     <>
       <Head />
-      <p className='mx-4 my-4'>Hello world! 👋</p>
+      <Hello />
     </>
   )
 }
