@@ -4,16 +4,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Head />
-
-      <p>Hello world! 👋</p>
-
-      <style jsx>
-        {`
-          p {
-            margin-left: 15px;
-          }
-        `}
-      </style>
+      <p className='mx-4 my-4'>Hello world! 👋</p>
     </>
   )
 }
