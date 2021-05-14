@@ -1,0 +1,27 @@
+version: '3.0'
+services:
+  api-fastify:
+    container_name: ${COMPOSE_PROJECT_NAME}
+    build:
+      context: './'
+    env_file:
+      - '.env'
+    ports:
+      - '${PORT}:${PORT}'
+    depends_on:
+      - 'api-fastify-database'
+    restart: 'unless-stopped'
+
+  api-fastify-database:
+    container_name: 'api-fastify-database'
+    image: 'postgres:13.2'
+    environment:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_DB: 'app'
+    volumes:
+      - 'database-volume:/var/lib/postgresql/data'
+    restart: 'unless-stopped'
+
+volumes:
+  database-volume:

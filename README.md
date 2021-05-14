@@ -34,12 +34,11 @@
 
 ### API (back-end)
 
-_Note : The projects templates use [MySQL](https://www.mysql.com/) as database._
-
-- [Express.js](https://expressjs.com/) with [Sequelize](https://sequelize.org/) (ORM)
-- [Fastify](https://fastify.io/) with [Sequelize](https://sequelize.org/) (ORM)
-- [Strapi](https://strapi.io/) (Headless CMS)
-- [Nest.js](https://nestjs.com/) (framework for building efficient, scalable server-side applications)
+- [Express.js](https://expressjs.com/) with [Sequelize](https://sequelize.org/) (ORM) + [MySQL](https://www.mysql.com/) as database
+- [Fastify](https://fastify.io/) with [Sequelize](https://sequelize.org/) (ORM) + [MySQL](https://www.mysql.com/) as database
+- [Fastify](https://fastify.io/) with [Prisma](https://www.prisma.io/) (ORM) + [PostgreSQL](https://www.postgresql.org/) as database
+- [Strapi](https://strapi.io/) (Headless CMS) + [MySQL](https://www.mysql.com/) as database
+- [Nest.js](https://nestjs.com/) (framework for building efficient, scalable server-side applications) + [MySQL](https://www.mysql.com/) as database
 
 ## ⚙️ Usage
 

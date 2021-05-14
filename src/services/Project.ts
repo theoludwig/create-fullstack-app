@@ -14,6 +14,7 @@ import {
 import { copyDirectory } from '../utils/copyDirectory'
 import { loading } from '../utils/loading'
 import makeDirectory from 'make-dir'
+import { checkFileExists } from '../utils/checkFileExists'
 
 const fs = fsWithCallbacks.promises
 
@@ -58,18 +59,21 @@ export class Project implements ProjectOptions {
           await makeDirectory(githubFolderPath)
           await copyDirectory(commondGitHubTemplatesPath, githubFolderPath)
         }
-        await fs.copyFile(
-          path.join(commondDockerTemplatesPath, 'Dockerfile'),
-          path.join(this.projectPath, 'Dockerfile')
-        )
-        await fs.copyFile(
-          path.join(
-            commondDockerTemplatesPath,
-            this.template.type,
-            'docker-compose.yml'
-          ),
-          path.join(this.projectPath, 'docker-compose.yml')
-        )
+        const hasDockerFiles = await checkFileExists(path.join(this.projectPath, 'Dockerfile'))
+        if (!hasDockerFiles) {
+          await fs.copyFile(
+            path.join(commondDockerTemplatesPath, 'Dockerfile'),
+            path.join(this.projectPath, 'Dockerfile')
+          )
+          await fs.copyFile(
+            path.join(
+              commondDockerTemplatesPath,
+              this.template.type,
+              'docker-compose.yml'
+            ),
+            path.join(this.projectPath, 'docker-compose.yml')
+          )
+        }
         await copyDirectory(
           path.join(this.template.path, 'template'),
           this.projectPath
