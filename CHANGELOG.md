@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.1.0](https://github.com/Divlo/create-fullstack-app/compare/v3.0.1...v3.1.0) (2021-05-23)
+
+### Features
+
+- **templates:** add Fastify with Prisma ([1b2c055](https://github.com/Divlo/create-fullstack-app/commit/1b2c05540c0ae2627874c723f43cbeae53fec41e))
+- **templates:** add jest for Next.js ([6b54891](https://github.com/Divlo/create-fullstack-app/commit/6b548910a020740ac613401303034581d50cb867))
+- **templates:** add Tailwind CSS for Next.js ([8630370](https://github.com/Divlo/create-fullstack-app/commit/86303700448707c8318c42573eae83952910a2a6))
+- improve description usage of the command ([6c9793f](https://github.com/Divlo/create-fullstack-app/commit/6c9793f103769bcb37fad3fb59090bd800eff853))
+- update Dockerfile to use Node.js 16.2.0 ([592816c](https://github.com/Divlo/create-fullstack-app/commit/592816c17aec702be439b8592971d058e13d16b9))
+
 ## [3.0.1](https://github.com/Divlo/create-fullstack-app/compare/v3.0.0...v3.0.1) (2021-04-19)
 
 ### Bug Fixes

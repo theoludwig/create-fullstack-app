@@ -1,4 +1,4 @@
-ARG NODE_VERSION=16.1.0
+ARG NODE_VERSION=16.2.0
 
 FROM node:${NODE_VERSION} AS dependencies
 WORKDIR /usr/src/app
