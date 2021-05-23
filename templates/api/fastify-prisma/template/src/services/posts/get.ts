@@ -4,7 +4,7 @@ import { FastifyPluginAsync, FastifySchema } from 'fastify'
 import { postSchema } from '../../models/Post'
 import { fastifyErrors } from '../../models/utils'
 import {
-  pagination,
+  getPaginationOptions,
   PaginationQuery,
   paginationQuerySchema
 } from '../../tools/database/pagination'
@@ -29,11 +29,11 @@ export const getPosts: FastifyPluginAsync = async (fastify) => {
     url: '/posts',
     schema: getPostsSchema,
     handler: async (request, reply) => {
-      reply.statusCode = 200
-      return await pagination({
-        model: prisma.post,
-        query: request.query
+      const posts = await prisma.post.findMany({
+        ...getPaginationOptions(request.query)
       })
+      reply.statusCode = 200
+      return posts
     }
   })
 }

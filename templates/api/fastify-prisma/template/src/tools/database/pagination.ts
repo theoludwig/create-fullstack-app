@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client'
 import { Static, Type } from '@sinclair/typebox'
 
 export const paginationQuerySchema = Type.Object({
@@ -15,17 +16,8 @@ export const paginationQuerySchema = Type.Object({
 
 export type PaginationQuery = Static<typeof paginationQuerySchema>
 
-export interface PaginationOptions<T> {
-  model: T
-  query: PaginationQuery
-}
-
-export const pagination = async <T>(
-  options: PaginationOptions<T>
-): Promise<T[]> => {
-  const { model, query } = options
-  // @ts-expect-error
-  const items = await model.findMany({
+export const getPaginationOptions = (query: PaginationQuery): Prisma.SelectSubset<unknown, unknown> => {
+  return {
     take: query.before != null ? query.limit * -1 : query.limit,
     skip: query.after != null || query.before != null ? 1 : undefined,
     ...(query.after != null && {
@@ -38,6 +30,5 @@ export const pagination = async <T>(
         id: query.before
       }
     })
-  })
-  return items
+  }
 }

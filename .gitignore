@@ -11,9 +11,9 @@ build
 npm-debug.log*
 
 # editors
-.vscode
-.theia
-.idea
+./.vscode
+./.theia
+./.idea
 
 # misc
 .DS_Store
