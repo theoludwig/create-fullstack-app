@@ -102,7 +102,7 @@
     "chalk": "4.1.1",
     "child-process-promise": "2.2.1",
     "clipanion": "3.0.0-rc.12",
-    "inquirer": "8.0.0",
+    "inquirer": "8.1.0",
     "log-symbols": "4.1.0",
     "make-dir": "3.1.0",
     "ora": "5.4.0",
@@ -119,7 +119,7 @@
     "@types/inquirer": "7.3.1",
     "@types/jest": "26.0.23",
     "@types/mock-fs": "4.13.0",
-    "@types/node": "15.0.3",
+    "@types/node": "15.6.1",
     "@types/rimraf": "3.0.0",
     "@types/update-notifier": "5.0.0",
     "@types/validate-npm-package-name": "3.0.2",
@@ -127,11 +127,11 @@
     "husky": "6.0.0",
     "jest": "26.6.3",
     "markdownlint-cli": "0.27.1",
-    "mock-fs": "4.14.0",
+    "mock-fs": "5.0.0",
     "pinst": "2.1.6",
     "release-it": "14.6.2",
     "ts-jest": "26.5.6",
     "ts-standard": "10.0.0",
-    "typescript": "4.2.4"
+    "typescript": "4.3.2"
   }
 }
