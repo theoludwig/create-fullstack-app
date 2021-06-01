@@ -1,0 +1,36 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: 'release'
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-npm:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v2'
+
+      - name: 'Use Node.js'
+        uses: 'actions/setup-node@v2.1.5'
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: 'Cache dependencies'
+        uses: 'actions/cache@v2.1.6'
+        with:
+          path: '.npm'
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: 'Install'
+        run: 'npm ci --cache .npm --prefer-offline'
+
+      - name: 'Build'
+        run: 'npm run build'
+
+      - name: 'Release'
+        run: 'npm publish --access public'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
