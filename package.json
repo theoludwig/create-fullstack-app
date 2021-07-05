@@ -121,7 +121,7 @@
     "@types/mock-fs": "4.13.0",
     "@types/node": "16.0.0",
     "@types/rimraf": "3.0.0",
-    "@types/update-notifier": "5.0.0",
+    "@types/update-notifier": "5.0.1",
     "@types/validate-npm-package-name": "3.0.2",
     "editorconfig-checker": "4.0.2",
     "husky": "7.0.0",
