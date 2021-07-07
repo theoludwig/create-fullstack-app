@@ -118,7 +118,7 @@
     "@types/child-process-promise": "2.2.1",
     "@types/inquirer": "7.3.3",
     "@types/jest": "26.0.23",
-    "@types/mock-fs": "4.13.0",
+    "@types/mock-fs": "4.13.1",
     "@types/node": "16.0.0",
     "@types/rimraf": "3.0.0",
     "@types/update-notifier": "5.0.1",
