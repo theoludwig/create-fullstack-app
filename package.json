@@ -119,7 +119,7 @@
     "@types/inquirer": "7.3.3",
     "@types/jest": "26.0.24",
     "@types/mock-fs": "4.13.1",
-    "@types/node": "16.0.0",
+    "@types/node": "16.3.1",
     "@types/rimraf": "3.0.1",
     "@types/update-notifier": "5.0.1",
     "@types/validate-npm-package-name": "3.0.3",
