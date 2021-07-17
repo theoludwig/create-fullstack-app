@@ -1,11 +1,13 @@
-name: 'Release'
+name: 'Build'
 
 on:
   push:
-    branches: [master]
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
 
 jobs:
-  release:
+  build:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@v2'
@@ -15,16 +17,9 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'npm'
-          registry-url: 'https://registry.npmjs.org/'
 
       - name: 'Install'
         run: 'npm install'
 
       - name: 'Build Package'
         run: 'npm run build'
-
-      - name: 'Release'
-        run: 'npm run release'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

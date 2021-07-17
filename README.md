@@ -5,14 +5,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Divlo/create-fullstack-app/actions?query=workflow%3A%22ci%22"><img src="https://github.com/Divlo/create-fullstack-app/workflows/ci/badge.svg" alt="CI" /></a>
-  <a href="https://www.npmjs.com/package/create-fullstack-app"><img src="https://img.shields.io/npm/v/create-fullstack-app.svg" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/ts-standard"><img alt="Typescript Standard Style" src="https://camo.githubusercontent.com/f87caadb70f384c0361ec72ccf07714ef69a5c0a/68747470733a2f2f62616467656e2e6e65742f62616467652f636f64652532307374796c652f74732d7374616e646172642f626c75653f69636f6e3d74797065736372697074"/></a>
+  <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
-  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits" /></a>
   <a href="./CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
+  <a href="https://dependabot.com/"><img src="https://badgen.net/github/dependabot/Divlo/create-fullstack-app?icon=dependabot" alt="Dependabot badge" /></a>
+  <br />
+  <a href="https://github.com/Divlo/create-fullstack-app/actions/workflows/build.yml"><img src="https://github.com/Divlo/create-fullstack-app/actions/workflows/build.yml/badge.svg?branch=develop" /></a>
+  <a href="https://github.com/Divlo/create-fullstack-app/actions/workflows/lint.yml"><img src="https://github.com/Divlo/create-fullstack-app/actions/workflows/lint.yml/badge.svg?branch=develop" /></a>
+  <a href="https://github.com/Divlo/create-fullstack-app/actions/workflows/test.yml"><img src="https://github.com/Divlo/create-fullstack-app/actions/workflows/test.yml/badge.svg?branch=develop" /></a>
+  <br />
+  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits" /></a>
+  <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release" /></a>
+  <a href="https://www.npmjs.com/package/create-fullstack-app"><img src="https://img.shields.io/npm/v/create-fullstack-app.svg" alt="npm version"></a>
   <br/> <br/>
-  <a href="https://github.com/GoogleChrome/lighthouse"><img width="650px" src="https://raw.githubusercontent.com/Divlo/create-fullstack-app/master/.github/lighthouse_google-chrome.gif" alt="Google Chrome Lighthouse" /></a>
+  <a href="https://github.com/GoogleChrome/lighthouse"><img width="650px" src="./lighthouse_google-chrome.gif" alt="Google Chrome Lighthouse" /></a>
 </p>
 
 ## 📜 About

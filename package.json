@@ -1,21 +1,17 @@
 {
   "name": "create-fullstack-app",
-  "version": "3.1.0",
+  "version": "0.0.0-development",
   "description": "Create Fullstack TypeScript application with ease.",
-  "main": "build/index.js",
-  "bin": "build/index.js",
-  "engines": {
-    "node": ">=14",
-    "npm": ">=7"
-  },
-  "files": [
-    "build",
-    "templates"
-  ],
+  "author": "Divlo <contact@divlo.fr>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Divlo/create-fullstack-app.git"
   },
+  "bugs": {
+    "url": "https://github.com/Divlo/create-fullstack-app/issues"
+  },
+  "homepage": "https://github.com/Divlo/create-fullstack-app#readme",
   "keywords": [
     "cli",
     "fullstack",
@@ -29,48 +25,16 @@
     "strapi",
     "nest"
   ],
-  "author": "Divlo <contact@divlo.fr>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Divlo/create-fullstack-app/issues"
+  "main": "build/index.js",
+  "bin": "build/index.js",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
   },
-  "homepage": "https://github.com/Divlo/create-fullstack-app#readme",
-  "release-it": {
-    "git": {
-      "commit": false,
-      "push": false,
-      "tag": false
-    },
-    "github": {
-      "release": false
-    },
-    "npm": {
-      "publish": false
-    },
-    "hooks": {
-      "before:init": [
-        "npm run lint:editorconfig",
-        "npm run lint:markdown",
-        "npm run lint:typescript",
-        "npm run build",
-        "npm run test"
-      ]
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular",
-        "infile": "CHANGELOG.md"
-      }
-    }
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "./__test__/setup.ts"
-    ],
-    "rootDir": "./src"
-  },
+  "files": [
+    "build",
+    "templates"
+  ],
   "ts-standard": {
     "ignore": [
       "build",
@@ -114,12 +78,11 @@
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
-    "@release-it/conventional-changelog": "3.0.1",
     "@types/child-process-promise": "2.2.2",
     "@types/inquirer": "7.3.3",
     "@types/jest": "26.0.24",
     "@types/mock-fs": "4.13.1",
-    "@types/node": "16.3.2",
+    "@types/node": "16.3.3",
     "@types/rimraf": "3.0.1",
     "@types/update-notifier": "5.0.1",
     "@types/validate-npm-package-name": "3.0.3",
@@ -128,8 +91,8 @@
     "jest": "27.0.6",
     "markdownlint-cli": "0.27.1",
     "mock-fs": "5.0.0",
+    "semantic-release": "17.4.4",
     "pinst": "2.1.6",
-    "release-it": "14.10.0",
     "ts-jest": "27.0.3",
     "ts-standard": "10.0.0",
     "typescript": "4.3.5"
