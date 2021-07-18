@@ -15,7 +15,6 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'npm'
-          registry-url: 'https://registry.npmjs.org/'
 
       - name: 'Install'
         run: 'npm install'
