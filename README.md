@@ -35,16 +35,16 @@
 
 ### Website (front-end)
 
-- [React.js](https://reactjs.org/) with [Next.js](https://nextjs.org/) (server-side rendering)
-- [Vue.js](https://vuejs.org/) with [Nuxt.js](https://nuxtjs.org/) (server-side rendering)
+- `next`: [React.js](https://reactjs.org/) + [Next.js](https://nextjs.org/)
+- `nuxt`: [Vue.js](https://vuejs.org/) + [Nuxt.js](https://nuxtjs.org/)
 
 ### API (back-end)
 
-- [Express.js](https://expressjs.com/) with [Sequelize](https://sequelize.org/) (ORM) + [MySQL](https://www.mysql.com/) as database
-- [Fastify](https://fastify.io/) with [Sequelize](https://sequelize.org/) (ORM) + [MySQL](https://www.mysql.com/) as database
-- [Fastify](https://fastify.io/) with [Prisma](https://www.prisma.io/) (ORM) + [PostgreSQL](https://www.postgresql.org/) as database
-- [Strapi](https://strapi.io/) (Headless CMS) + [MySQL](https://www.mysql.com/) as database
-- [Nest.js](https://nestjs.com/) (framework for building efficient, scalable server-side applications) + [MySQL](https://www.mysql.com/) as database
+- `express`: [Express.js](https://expressjs.com/) + [Sequelize](https://sequelize.org/) (ORM) + [MySQL](https://www.mysql.com/) (database)
+- `fastify`: [Fastify](https://fastify.io/) + [Sequelize](https://sequelize.org/) (ORM) + [MySQL](https://www.mysql.com/) (database)
+- `fastify-prisma`: [Fastify](https://fastify.io/) + [Prisma](https://www.prisma.io/) (ORM) + [PostgreSQL](https://www.postgresql.org/) (database)
+- `nest`: [Nest.js](https://nestjs.com/) + [MySQL](https://www.mysql.com/) (database)
+- `strapi`: [Strapi](https://strapi.io/) + [MySQL](https://www.mysql.com/) (database)
 
 ## ⚙️ Usage
 
@@ -57,12 +57,14 @@ It will ask you some questions (template(s), name, description, etc.), when answ
 ### Options
 
 ```text
--V, --version   Output the version number.
--h, --help      Display help for command.
---only-website  Generate only a website project.
---only-api      Generate only an API project.
---no-install    It avoids the installation of npm packages inside `node_modules`.
---github        It creates a `.github` folder that contains issues templates, pull request templates and configurations for GitHub Actions.
+-V, --version       Output the version number.
+-h, --help          Display help for command.
+--only-website      Generate only a website project.
+--only-api          Generate only an API project.
+--no-install        It avoids the installation of npm packages inside `node_modules`.
+--github            It creates a `.github` folder that contains issues templates, pull request templates and configurations for GitHub Actions.
+--template-api      Choose the API template.
+--template-website  Choose the Website template.
 ```
 
 ## 💡 Contributing

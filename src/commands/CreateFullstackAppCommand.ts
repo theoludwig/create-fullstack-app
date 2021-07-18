@@ -8,15 +8,18 @@ import { checkFileExists } from '../utils/checkFileExists'
 import { copyDirectory } from '../utils/copyDirectory'
 import { getQuestions, QuestionsAnswers } from '../services/Question'
 import makeDirectory from 'make-dir'
-import { getTemplate, commonTemplatesPath } from '../services/Template'
+import {
+  getTemplate,
+  commonTemplatesPath,
+  getTemplates
+} from '../services/Template'
 import { Project } from '../services/Project'
 
 const CURRENT_DIRECTORY = process.cwd()
 
 export class CreateFullstackAppCommand extends Command {
   static usage = {
-    description:
-      'Create Fullstack TypeScript application with ease.'
+    description: 'Create Fullstack TypeScript application with ease.'
   }
 
   public directoryName = Option.String()
@@ -39,19 +42,27 @@ export class CreateFullstackAppCommand extends Command {
       'It creates a `.github` folder that contains issues templates, pull request templates and configurations for GitHub Actions.'
   })
 
+  public templateAPI = Option.String('--template-api', {
+    description: 'Choose the API template.'
+  })
+
+  public templateWebsite = Option.String('--template-website', {
+    description: 'Choose the website template.'
+  })
+
   async execute (): Promise<number> {
     if (this.onlyAPI && this.onlyWebsite) {
       this.context.stderr.write(
         `${chalk.red(
-          "You can't set both --only-api and --only-website options."
-        )}\n`
+          'Error:'
+        )} You can't set both "--only-api" and "--only-website" options.\n`
       )
       return 1
     }
     const validationDirectory = validateNpmName(this.directoryName)
     if (!validationDirectory.isValid) {
       this.context.stderr.write(
-        `${chalk.red('Invalid directory name:')} ${
+        `${chalk.red('Error:')} Invalid directory, ${
           validationDirectory.problem
         }\n`
       )
@@ -60,21 +71,79 @@ export class CreateFullstackAppCommand extends Command {
     const projectDirectory = path.join(CURRENT_DIRECTORY, this.directoryName)
     if (await checkFileExists(projectDirectory)) {
       this.context.stderr.write(
-        `Could not create a project called "${chalk.red(
-          this.directoryName
-        )}" because the folder name already exists...\n`
+        `${chalk.red('Error:')} Could not create a project called "${this.directoryName}" because the folder name already exists...\n`
       )
       return 1
     }
-    const questions = await getQuestions(this.onlyAPI, this.onlyWebsite)
-    const answers = (await inquirer.prompt(questions)) as QuestionsAnswers
+    let answers: Partial<QuestionsAnswers> = {
+      templateWebsite: this.templateWebsite,
+      templateAPI: this.templateAPI
+    }
+    const templatesAvailable = await getTemplates()
+    if (this.templateAPI == null && this.templateWebsite == null) {
+      const questions = await getQuestions(this.onlyAPI, this.onlyWebsite)
+      answers = (await inquirer.prompt(questions)) as QuestionsAnswers
+    }
+    if (this.onlyAPI) {
+      if (answers.templateAPI == null) {
+        this.context.stderr.write(
+          `${chalk.red('Error:')} You didn't choose a template for the API.\n`
+        )
+        return 1
+      }
+      if (!templatesAvailable.api.includes(answers.templateAPI)) {
+        this.context.stderr.write(
+          `${chalk.red('Error:')} The template for the API doesn't exist.\n`
+        )
+        return 1
+      }
+    }
+    if (this.onlyWebsite) {
+      if (answers.templateWebsite == null) {
+        this.context.stderr.write(
+          `${chalk.red(
+            'Error:'
+          )} You didn't choose a template for the Website.\n`
+        )
+        return 1
+      }
+      if (!templatesAvailable.website.includes(answers.templateWebsite)) {
+        this.context.stderr.write(
+          `${chalk.red('Error:')} The template for the Website doesn't exist.\n`
+        )
+        return 1
+      }
+    }
+    if (!this.onlyAPI && !this.onlyWebsite) {
+      if (answers.templateAPI == null || answers.templateWebsite == null) {
+        this.context.stderr.write(
+          `${chalk.red(
+            'Error:'
+          )} You didn't choose a template for the Website or the API.\n`
+        )
+        return 1
+      }
+      if (!templatesAvailable.api.includes(answers.templateAPI)) {
+        this.context.stderr.write(
+          `${chalk.red('Error:')} The template for the API doesn't exist.\n`
+        )
+        return 1
+      }
+      if (!templatesAvailable.website.includes(answers.templateWebsite)) {
+        this.context.stderr.write(
+          `${chalk.red('Error:')} The template for the Website doesn't exist.\n`
+        )
+        return 1
+      }
+    }
+    const answersDefinitive = answers as QuestionsAnswers
     this.context.stdout.write('\n')
     await makeDirectory(projectDirectory)
     await copyDirectory(commonTemplatesPath, projectDirectory)
     if (this.onlyAPI) {
       const templateAPI = await getTemplate({
         type: 'api',
-        name: answers.templateAPI
+        name: answersDefinitive.templateAPI
       })
       const projectAPI = new Project({
         template: templateAPI,
@@ -86,7 +155,7 @@ export class CreateFullstackAppCommand extends Command {
     } else if (this.onlyWebsite) {
       const templateWebsite = await getTemplate({
         type: 'website',
-        name: answers.templateWebsite
+        name: answersDefinitive.templateWebsite
       })
       const projectWebsite = new Project({
         template: templateWebsite,
@@ -101,7 +170,7 @@ export class CreateFullstackAppCommand extends Command {
       await makeDirectory(projectDirectory)
       const templateAPI = await getTemplate({
         type: 'api',
-        name: answers.templateAPI
+        name: answersDefinitive.templateAPI
       })
       const projectAPI = new Project({
         template: templateAPI,
@@ -111,7 +180,7 @@ export class CreateFullstackAppCommand extends Command {
       })
       const templateWebsite = await getTemplate({
         type: 'website',
-        name: answers.templateWebsite
+        name: answersDefinitive.templateWebsite
       })
       const projectWebsite = new Project({
         template: templateWebsite,
@@ -122,11 +191,7 @@ export class CreateFullstackAppCommand extends Command {
       await projectWebsite.create()
       await projectAPI.create()
     }
-    this.context.stdout.write(
-      `${chalk.green(
-        'Success:'
-      )} created the new project at ${projectDirectory}\n`
-    )
+    this.context.stdout.write(`${chalk.green('Success:')} created the new project at "${projectDirectory}"\n`)
     return 0
   }
 }
