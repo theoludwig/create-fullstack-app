@@ -56,7 +56,7 @@
     "lint:editorconfig": "editorconfig-checker",
     "lint:markdown": "markdownlint '**/*.md' --dot --ignore node_modules --ignore app-test",
     "lint:typescript": "ts-standard",
-    "release": "release-it",
+    "release": "semantic-release",
     "test": "jest",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
