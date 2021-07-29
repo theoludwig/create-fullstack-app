@@ -82,7 +82,7 @@
     "@types/inquirer": "7.3.3",
     "@types/jest": "26.0.24",
     "@types/mock-fs": "4.13.1",
-    "@types/node": "16.4.4",
+    "@types/node": "16.4.6",
     "@types/rimraf": "3.0.1",
     "@types/update-notifier": "5.1.0",
     "@types/validate-npm-package-name": "3.0.3",
