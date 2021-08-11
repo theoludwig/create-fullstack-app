@@ -80,7 +80,7 @@
     "@commitlint/config-conventional": "13.1.0",
     "@types/child-process-promise": "2.2.2",
     "@types/inquirer": "7.3.3",
-    "@types/jest": "26.0.24",
+    "@types/jest": "27.0.0",
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.4.10",
     "@types/rimraf": "3.0.1",
