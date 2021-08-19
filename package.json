@@ -83,7 +83,7 @@
     "@types/jest": "27.0.1",
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.6.1",
-    "@types/rimraf": "3.0.1",
+    "@types/rimraf": "3.0.2",
     "@types/update-notifier": "5.1.0",
     "@types/validate-npm-package-name": "3.0.3",
     "editorconfig-checker": "4.0.2",
