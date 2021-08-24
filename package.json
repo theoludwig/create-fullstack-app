@@ -91,7 +91,7 @@
     "jest": "27.0.6",
     "markdownlint-cli": "0.28.1",
     "mock-fs": "5.0.0",
-    "semantic-release": "17.4.5",
+    "semantic-release": "17.4.6",
     "pinst": "2.1.6",
     "ts-jest": "27.0.5",
     "ts-standard": "10.0.0",
