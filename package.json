@@ -88,7 +88,7 @@
     "@types/validate-npm-package-name": "3.0.3",
     "editorconfig-checker": "4.0.2",
     "husky": "7.0.2",
-    "jest": "27.1.0",
+    "jest": "27.1.1",
     "markdownlint-cli": "0.28.1",
     "mock-fs": "5.0.0",
     "semantic-release": "17.4.7",
