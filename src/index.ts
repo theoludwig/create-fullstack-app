@@ -1,15 +1,18 @@
 #!/usr/bin/env node
+import path from 'path'
+
 import chalk from 'chalk'
 import { Builtins, Cli } from 'clipanion'
 import updateNotifier from 'update-notifier'
+import readPackage from 'read-pkg'
 
-import { getPackageJSON } from './utils/getPackageJSON'
 import { CreateFullstackAppCommand } from './commands/CreateFullstackAppCommand'
 
 const [, , ...args] = process.argv
 
+const packageJSON = readPackage.sync({ cwd: path.join(__dirname, '..') })
+
 async function main (): Promise<void> {
-  const packageJSON = await getPackageJSON()
   const cli = new Cli({
     binaryLabel: packageJSON.name,
     binaryName: packageJSON.name,
