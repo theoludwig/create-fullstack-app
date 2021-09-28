@@ -65,7 +65,7 @@
   "dependencies": {
     "chalk": "4.1.2",
     "child-process-promise": "2.2.1",
-    "clipanion": "3.0.1",
+    "clipanion": "3.1.0",
     "inquirer": "8.1.5",
     "log-symbols": "4.1.0",
     "make-dir": "3.1.0",
