@@ -77,7 +77,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "13.1.0",
-    "@commitlint/config-conventional": "13.1.0",
+    "@commitlint/config-conventional": "13.2.0",
     "@types/child-process-promise": "2.2.2",
     "@types/inquirer": "8.1.2",
     "@types/jest": "27.0.2",
