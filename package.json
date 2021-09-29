@@ -76,7 +76,7 @@
     "validate-npm-package-name": "3.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "13.1.0",
+    "@commitlint/cli": "13.2.0",
     "@commitlint/config-conventional": "13.2.0",
     "@types/child-process-promise": "2.2.2",
     "@types/inquirer": "8.1.3",
