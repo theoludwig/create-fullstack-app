@@ -19,10 +19,8 @@ export const postSchema = Type.Object({
 export type PostSchemaType = Static<typeof postSchema>
 
 @Table
+// @ts-expect-error
 export default class Post extends Model implements PostSchemaType {
-  @Column({ primaryKey: true, autoIncrement: true })
-  id!: number
-
   @Column({
     type: DataType.STRING,
     allowNull: false
@@ -34,10 +32,4 @@ export default class Post extends Model implements PostSchemaType {
     allowNull: false
   })
   description!: string
-
-  @CreatedAt
-  createdAt!: string
-
-  @UpdatedAt
-  updatedAt!: string
 }

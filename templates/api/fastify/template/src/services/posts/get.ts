@@ -28,6 +28,7 @@ export const getPosts: FastifyPluginAsync = async (fastify) => {
     schema: getPostsSchema,
     handler: async (request, reply) => {
       const { page, itemsPerPage } = request.query
+      // @ts-expect-error
       const response: PaginatePostType = await paginateModel({
         Model: Post,
         paginateQuery: { itemsPerPage, page }

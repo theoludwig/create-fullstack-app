@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { PostsModule } from './posts/posts.module'
@@ -21,7 +21,7 @@ import { Posts } from './posts/posts.entity'
         database: configService.get('DATABASE_NAME'),
         entities: [Posts],
         synchronize: true
-      })
+      } as TypeOrmModuleOptions)
     }),
     PostsModule
   ],

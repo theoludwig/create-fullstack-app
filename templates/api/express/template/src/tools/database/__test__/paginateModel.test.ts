@@ -88,7 +88,7 @@ describe('/tools/database/paginateModel', () => {
     })
     page += 1
     expect(result1.hasMore).toBeTruthy()
-    expect(result1.rows[itemsPerPageInt - 1].title).toEqual(
+    expect(result1.rows[itemsPerPageInt - 1].getDataValue('title')).toEqual(
       `title-${itemsPerPage}`
     )
     expect(result1.totalItems).toEqual(numberOfPosts)
@@ -100,7 +100,7 @@ describe('/tools/database/paginateModel', () => {
       }
     })
     expect(result2.hasMore).toBeTruthy()
-    expect(result2.rows[itemsPerPageInt - 1].title).toEqual(
+    expect(result2.rows[itemsPerPageInt - 1].getDataValue('title')).toEqual(
       `title-${itemsPerPageInt * 2}`
     )
     expect(result2.totalItems).toEqual(numberOfPosts)
